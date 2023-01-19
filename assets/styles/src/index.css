@@ -1,3 +1,28 @@
+body,
+.theme-blue {
+	--color-theme-50-rgb: 245 250 255;
+	--color-theme-100-rgb: 187 223 255;
+	--color-theme-200-rgb: 156 209 255;
+	--color-theme-300-rgb: 116 190 255;
+	--color-theme-400-rgb: 67 167 255;
+	--color-theme-500-rgb: 30 146 248;
+	--color-theme-600-rgb: 12 117 209;
+	--color-theme-700-rgb: 0 97 183;
+	--color-theme-800-rgb: 0 74 139;
+	--color-theme-900-rgb: 13 36 70;
+
+	--color-theme-50: rgb(var(--color-theme-50-rgb));
+	--color-theme-100: rgb(var(--color-theme-100-rgb));
+	--color-theme-200: rgb(var(--color-theme-200-rgb));
+	--color-theme-300: rgb(var(--color-theme-300-rgb));
+	--color-theme-400: rgb(var(--color-theme-400-rgb));
+	--color-theme-500: rgb(var(--color-theme-500-rgb));
+	--color-theme-600: rgb(var(--color-theme-600-rgb));
+	--color-theme-700: rgb(var(--color-theme-700-rgb));
+	--color-theme-800: rgb(var(--color-theme-800-rgb));
+	--color-theme-900: rgb(var(--color-theme-900-rgb));
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

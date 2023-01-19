@@ -1,7 +1,7 @@
 <?php
 
 /**
- * The template for displaying post archives.
+ * The template for displaying search results.
  *
  * @package wrdstudio
  *
@@ -12,11 +12,12 @@ namespace wrd;
 
 get_header();
 
+get_search_form();
+
 if ( have_posts() ) :
 	while ( have_posts() ) :
 		the_post();
-		the_title();
-		// get_template_part( 'template-parts/content', 'archive' );
+		get_template_part( 'template-parts/content', 'search' );
 	endwhile;
 
 	the_posts_navigation();
