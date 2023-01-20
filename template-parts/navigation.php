@@ -26,7 +26,7 @@ namespace wrd;
 					</a>
 					
 					<button aria-label="<?php esc_attr_e( 'Toggle dark mode', 'wrd' ); ?>" type="button" data-darkmode>
-						<?php the_icon( 'nights_stay' ); ?>
+						<?php the_icon( 'dark_mode' ); ?>
 					</button>
 
 					<a aria-label="<?php esc_attr_e( 'Manage account', 'wrd' ); ?>" href="<?php echo esc_url( get_account_link() ); ?>">

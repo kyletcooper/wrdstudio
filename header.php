@@ -29,10 +29,28 @@ namespace wrd;
 
 		window.wrd.theme = {
 			refresh: () => {
-				if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+				if (window.wrd.theme.get() === 'dark') {
 					document.documentElement.classList.add('dark')
 				} else {
 					document.documentElement.classList.remove('dark')
+				}
+				window.dispatchEvent(new Event('theme-change'))
+			},
+
+			get: () => {
+				if(('theme' in localStorage)){
+					return localStorage.theme;
+				}
+				
+				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			},
+
+			toggle: () => {
+				if(window.wrd.theme.get() === 'dark'){
+					window.wrd.theme.setLight();
+				}
+				else{
+					window.wrd.theme.setDark();
 				}
 			},
 
