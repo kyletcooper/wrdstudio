@@ -98,7 +98,7 @@ function get_theme_color_class() {
 /**
  * Private: Creates an anchor tag for a breadcrumb item.
  *
- * @param string|WP_Post $post_or_url The URL or the post to get the URL for.
+ * @param string|WP_Post $url The URL or the post to get the URL for.
  *
  * @param string         $title Optional. The title for the link. Defaults to post title or empty string.
  *
@@ -106,21 +106,16 @@ function get_theme_color_class() {
  *
  * @since 1.0.0
  */
-function _the_breadcrumb_link( $post_or_url, $title = '' ) {
-	$max_title_length = 15;
-
-	if ( $post_or_url instanceof \WP_Post ) {
-		$title       = get_the_title( $post_or_url );
-		$post_or_url = get_the_permalink( $post_or_url );
-	}
+function _the_breadcrumb_link( $url, $title = '' ) {
+	$max_title_length = 17;
 
 	if ( strlen( $title ) > $max_title_length ) {
-		$title = substr( $title, 0, $max_title_length ) . '...';
+		$title = substr( $title, 0, $max_title_length - 1 ) . '...';
 	}
 
 	?>
 	
-	<a href="<?php echo esc_url( $post_or_url ); ?>">
+	<a href="<?php echo esc_url( $url ); ?>">
 		<?php echo esc_html( $title ); ?>
 	</a>
 
@@ -132,55 +127,132 @@ function _the_breadcrumb_link( $post_or_url, $title = '' ) {
  *
  * @param int|WP_Post|null $post The post to get breadcrumbs for. Accepts post ID, WP_Post. Defaults to global post.
  *
+ * @param array            $args Arguments for the breadcrumbs.
+ *
+ * @param bool             $include_home Whether to include the home page link at the start. Defaults to true.
+ *
+ * @param bool             $include_self Whether to include the post being breadcrumbed. Defaults to true.
+ *
  * @return void
  *
  * @since 1.0.0
  */
-function the_breadcrumbs( $post = null ) {
-	$post      = get_post( $post );
-	$post_type = get_post_type( $post );
+function the_breadcrumbs( $post = null, array $args = array() ) {
+	$default_args = array(
+		'use_main_query' => true,
+		'include_home'   => true,
+		'include_self'   => true,
+	);
 
-	_the_breadcrumb_link( get_home_url(), get_bloginfo( 'name' ) );
+	$args = wp_parse_args( $args, $default_args );
 
-	if ( is_404() ) {
-		return;
+	$post             = get_post( $post );
+	$post_type        = get_post_type( $post );
+	$post_type_object = get_post_type_object( $post_type );
+
+	$links = array();
+
+	if ( $args['include_home'] ) {
+		$links[] = array(
+			'url'   => get_home_url(),
+			'title' => get_bloginfo( 'name' ),
+		);
 	}
 
-	if ( 'page' === $post_type ) {
-		if ( is_front_page( $post ) ) {
-			return;
+	if ( $args['use_main_query'] ) {
+		if ( is_404() ) {
+			$links[] = array(
+				'url'   => '',
+				'title' => __( '404 Error', 'wrd' ),
+			);
 		}
 
-		$ancestors        = array( $post );
-		$current_ancestor = get_post_parent( $post );
+		if ( is_search() ) {
+			$links[] = array(
+				'url'   => get_search_link( ' ' ),
+				'title' => __( 'Search', 'wrd' ),
+			);
 
-		while ( $current_ancestor ) {
-			$ancestors[]      = $current_ancestor;
-			$current_ancestor = get_post_parent( $current_ancestor );
+			$search_query = trim( get_search_query() );
+
+			if ( strlen( $search_query ) > 0 && $args['include_self'] ) {
+				$links[] = array(
+					'url'   => get_search_link( $search_query ),
+					'title' => $search_query,
+				);
+			}
 		}
 
-		foreach ( array_reverse( $ancestors ) as $ancestor ) {
+		if ( is_home() && get_option( 'show_on_front' ) === 'page' ) {
+			// If the posts archive is not the front page but a static page.
+			$posts_archive_page_id = get_option( 'page_for_posts' );
+			$links[]               = array(
+				'url'   => get_the_permalink( $posts_archive_page_id ),
+				'title' => get_the_title( $posts_archive_page_id ),
+			);
+		}
+
+		if ( is_post_type_archive() ) {
+			// is_post_type_archive will not include the posts home page.
+			$links[] = array(
+				'url'   => get_post_type_archive_link( $post_type ),
+				'title' => $post_type_object->labels->name,
+			);
+		}
+	}
+
+	if ( ( is_singular() && ! is_front_page() ) || ! $args['use_main_query'] ) {
+		if ( is_post_type_hierarchical( $post_type ) ) {
+			// Navigate through parent pages.
+
+			$ancestors        = array();
+			$current_ancestor = get_post_parent( $post );
+
+			while ( $current_ancestor ) {
+				$ancestors[]      = $current_ancestor;
+				$current_ancestor = get_post_parent( $current_ancestor );
+			}
+
+			foreach ( array_reverse( $ancestors ) as $ancestor ) {
+				$links[] = array(
+					'url'   => get_the_permalink( $ancestor ),
+					'title' => get_the_title( $ancestor ),
+				);
+			}
+		} else {
+			// Get just the archive (no taxonomies).
+
+			if ( 'post' === $post_type ) {
+				// The posts archive might be the home page (don't include again) or a static page.
+				if ( get_option( 'show_on_front' ) === 'page' ) {
+					$posts_archive_page_id = get_option( 'page_for_posts' );
+					$links[]               = array(
+						'url'   => get_the_permalink( $posts_archive_page_id ),
+						'title' => get_the_title( $posts_archive_page_id ),
+					);
+				}
+			} else {
+				$links[] = array(
+					'url'   => get_post_type_archive_link( $post_type ),
+					'title' => $post_type_object->labels->name,
+				);
+			}
+		}
+
+		if ( $args['include_self'] ) {
+			$links[] = array(
+				'url'   => get_the_permalink( $post ),
+				'title' => get_the_title( $post ),
+			);
+		}
+	}
+
+	foreach ( $links as $i => $link ) {
+		if ( 0 !== $i ) {
 			the_icon( 'chevron_right' );
-			_the_breadcrumb_link( $ancestor );
-		}
-	} else {
-		$post_type_object      = get_post_type_object( $post_type );
-		$post_type_archive_url = get_post_type_archive_link( $post_type );
-		$post_type_label       = $post_type_object->labels->name;
-
-		if ( 'post' === $post_type && get_option( 'page_for_posts' ) ) {
-			// If the posts archive is using a static page, get that page title rather than the post type label.
-			$posts_static_page = get_post( get_option( 'page_for_posts' ) );
-			$post_type_label   = get_the_title( $posts_static_page );
 		}
 
-		the_icon( 'chevron_right' );
-		_the_breadcrumb_link( $post_type_archive_url, $post_type_label );
-
-		if ( ! is_archive() && ! is_home() ) {
-			the_icon( 'chevron_right' );
-			_the_breadcrumb_link( $post );
-		}
+		_the_breadcrumb_link( $link['url'], $link['title'] );
 	}
 }
 
