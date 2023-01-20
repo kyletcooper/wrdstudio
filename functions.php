@@ -24,6 +24,7 @@ define( 'WRDSTUDIO_VERSION', '1.0.0' );
 function include_src() {
 	include get_template_directory() . '/src/template-tags.php';
 	include get_template_directory() . '/src/megamenu.php';
+	include get_template_directory() . '/src/search.php';
 }
 include_src();
 
