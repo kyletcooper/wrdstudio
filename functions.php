@@ -34,7 +34,7 @@ include_src();
  */
 function enqueue_assets() {
 	wp_enqueue_style( 'wrdstudio-css', get_template_directory_uri() . '/assets/styles/dist.css', array(), WRDSTUDIO_VERSION );
-	wp_enqueue_script( 'wrdstudio-js', get_template_directory_uri() . '/assets/scripts/dist.css', array(), WRDSTUDIO_VERSION, true );
+	wp_enqueue_script( 'wrdstudio-js', get_template_directory_uri() . '/assets/scripts/dist.js', array(), WRDSTUDIO_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
 
