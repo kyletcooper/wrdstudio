@@ -22,6 +22,23 @@ function the_icon( string $name ) {
 }
 
 /**
+ * Returns the list of allowed themes with the array keys being the slugs and the values being the labels.
+ *
+ * @return array The array of themes.
+ *
+ * @since 1.0.0
+ */
+function get_theme_slugs() {
+	return array(
+		'red'    => __( 'Red', 'wrd' ),
+		'orange' => __( 'Orange', 'wrd' ),
+		'green'  => __( 'Green', 'wrd' ),
+		'blue'   => __( 'Blue', 'wrd' ),
+		'pink'   => __( 'Pink', 'wrd' ),
+	);
+}
+
+/**
  * Returns the slug of the theme of the page.
  */
 function get_theme_slug() {

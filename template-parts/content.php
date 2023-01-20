@@ -12,5 +12,5 @@ namespace wrd;
 ?>
 
 <article>
-	<?php the_title() ?>
+	<?php the_title(); ?>
 </article>

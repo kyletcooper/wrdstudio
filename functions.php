@@ -1,4 +1,11 @@
 <?php
+/**
+ * The main theme file which tells WordPress how the theme works and adds the typical theme hooks.
+ *
+ * @package wrdstudio
+ *
+ * @since 1.0.0
+ */
 
 namespace wrd;
 
