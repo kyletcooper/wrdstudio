@@ -15,8 +15,8 @@ namespace wrd;
 	<div class="container py-16">
 		<div class="flex items-end justify-between flex-wrap gap-12">
 			<div>
-				<a class="block text-5xl font-semibold mb-6" href="mailto:<?php the_contact_email(); ?>"><?php the_contact_email(); ?></a>
-				<a class="block text-5xl font-semibold" href="tel:<?php the_contact_phone(); ?>"><?php the_contact_phone(); ?></a>
+				<a class="block text-2xl md:text-4xl font-semibold md:mb-4" href="mailto:<?php the_contact_email(); ?>"><?php the_contact_email(); ?></a>
+				<a class="block text-2xl md:text-4xl font-semibold" href="tel:<?php the_contact_phone(); ?>"><?php the_contact_phone(); ?></a>
 			</div>
 
 			<?php
