@@ -24,6 +24,7 @@ module.exports = {
         900: 'rgb(var(--color-theme-900-rgb) / <alpha-value>)',
       },
 
+      'transparent': 'rgb(255 255 255 / 0)',
       'red': '#EF3838',
       'orange': '#F8841E',
       'green': '#85A700',
