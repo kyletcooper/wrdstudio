@@ -16,7 +16,7 @@ namespace wrd;
 	<div class="bg-theme-500 text-white">
 		<div class="container py-2">
 			<div class="flex items-center justify-between">
-				<div>
+				<div class="flex items-center gap-2 text-xs [&>svg]:w-4">
 					<?php the_breadcrumbs(); ?>
 				</div>
 

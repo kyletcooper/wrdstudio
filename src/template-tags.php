@@ -81,6 +81,38 @@ function get_theme_color_class() {
 }
 
 /**
+ * Private: Creates an anchor tag for a breadcrumb item.
+ *
+ * @param string|WP_Post $post_or_url The URL or the post to get the URL for.
+ *
+ * @param string         $title Optional. The title for the link. Defaults to post title or empty string.
+ *
+ * @return void
+ *
+ * @since 1.0.0
+ */
+function _the_breadcrumb_link( $post_or_url, $title = '' ) {
+	$max_title_length = 15;
+
+	if ( $post_or_url instanceof \WP_Post ) {
+		$title       = get_the_title( $post_or_url );
+		$post_or_url = get_the_permalink( $post_or_url );
+	}
+
+	if ( strlen( $title ) > $max_title_length ) {
+		$title = substr( $title, 0, $max_title_length ) . '...';
+	}
+
+	?>
+	
+	<a href="<?php echo esc_url( $post_or_url ); ?>">
+		<?php echo esc_html( $title ); ?>
+	</a>
+
+	<?php
+}
+
+/**
  * Renders breadcrumbs for a post.
  *
  * @param int|WP_Post|null $post The post to get breadcrumbs for. Accepts post ID, WP_Post. Defaults to global post.
@@ -90,11 +122,47 @@ function get_theme_color_class() {
  * @since 1.0.0
  */
 function the_breadcrumbs( $post = null ) {
-	?>
+	$post      = get_post( $post );
+	$post_type = get_post_type( $post );
 
-	Breadcrumbs > to > post
+	_the_breadcrumb_link( get_home_url(), get_bloginfo( 'name' ) );
 
-	<?php
+	if ( 'page' === $post_type ) {
+		if ( is_front_page( $post ) ) {
+			return;
+		}
+
+		$ancestors        = array( $post );
+		$current_ancestor = get_post_parent( $post );
+
+		while ( $current_ancestor ) {
+			$ancestors[]      = $current_ancestor;
+			$current_ancestor = get_post_parent( $current_ancestor );
+		}
+
+		foreach ( array_reverse( $ancestors ) as $ancestor ) {
+			the_icon( 'chevron_right' );
+			_the_breadcrumb_link( $ancestor );
+		}
+	} else {
+		$post_type_object      = get_post_type_object( $post_type );
+		$post_type_archive_url = get_post_type_archive_link( $post_type );
+		$post_type_label       = $post_type_object->labels->name;
+
+		if ( 'post' === $post_type && get_option( 'page_for_posts' ) ) {
+			// If the posts archive is using a static page, get that page title rather than the post type label.
+			$posts_static_page = get_post( get_option( 'page_for_posts' ) );
+			$post_type_label   = get_the_title( $posts_static_page );
+		}
+
+		the_icon( 'chevron_right' );
+		_the_breadcrumb_link( $post_type_archive_url, $post_type_label );
+
+		if ( ! is_archive() && ! is_home() ) {
+			the_icon( 'chevron_right' );
+			_the_breadcrumb_link( $post );
+		}
+	}
 }
 
 /**
