@@ -87,4 +87,4 @@ namespace wrd;
 
 		<?php get_template_part( 'template-parts/navigation' ); ?>
 
-		<div id="primary" class="min-h-[70vh]">
+		<main id="primary" class="min-h-[70vh]">

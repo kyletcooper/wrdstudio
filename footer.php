@@ -11,7 +11,7 @@ namespace wrd;
 
 ?>
 
-			</div> <!-- #primary -->
+			</main> <!-- #primary -->
 
 			<?php get_template_part( 'template-parts/footer' ); ?>
 
