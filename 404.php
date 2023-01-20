@@ -23,7 +23,9 @@ get_header();
 			Sorry, the page you are trying to visit doesn't exist or has been moved somewhere else. Why no try searching try searching our site instead:
 		</p>
 
-		<?php get_search_form(); ?>
+		<div class="max-w-lg">
+			<?php get_search_form(); ?>
+		</div>
 	</div>
 
 	<div class="absolute top-0 bottom-0 right-0 -z-10 dark:opacity-10 [&>svg]:h-full [&>svg]:w-full">

@@ -11,17 +11,37 @@ namespace wrd;
 
 get_header();
 
-get_search_form();
+?>
 
-if ( have_posts() ) :
-	while ( have_posts() ) :
-		the_post();
-		get_template_part( 'template-parts/content', 'search' );
-	endwhile;
+<div class="container grid grid-cols-12 gap-24 mt-16">
+	<div class="col-span-5">
+		<h1 class="text-5xl font-semibold mb-8">
+			Search
+		</h1>
 
-	the_posts_navigation();
-else :
-	get_template_part( 'template-parts/content', 'none' );
-endif;
+		<?php get_search_form(); ?>
+	</div>
+
+	<div class="col-span-7">
+		<div class="grid gap-16">
+			<?php
+
+			if ( have_posts() ) :
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/content', 'search' );
+				endwhile;
+
+				the_posts_navigation();
+			else :
+				get_template_part( 'template-parts/content', 'none' );
+			endif;
+
+			?>
+		</div>
+	</div>
+</div>
+
+<?php
 
 get_footer();
