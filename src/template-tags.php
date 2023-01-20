@@ -22,6 +22,21 @@ function the_icon( string $name ) {
 }
 
 /**
+ * Returns an icon.
+ *
+ * @param string $name The name of the icon.
+ *
+ * @return void
+ *
+ * @since 1.0.0
+ */
+function get_icon( string $name ) {
+	ob_start();
+	the_icon( $name );
+	return ob_get_clean();
+}
+
+/**
  * Returns the list of allowed themes with the array keys being the slugs and the values being the labels.
  *
  * @return array The array of themes.
@@ -42,7 +57,7 @@ function get_theme_slugs() {
  * Returns the slug of the theme of the page.
  */
 function get_theme_slug() {
-	return 'pink';
+	return 'blue';
 }
 
 /**
@@ -178,4 +193,22 @@ function get_account_link() {
 	} else {
 		return wp_login_url();
 	}
+}
+
+/**
+ * Prints the contact email address.
+ *
+ * @since 1.0.0
+ */
+function the_contact_email() {
+	echo 'sales@wrd.studio';
+}
+
+/**
+ * Prints the contact phone number.
+ *
+ * @since 1.0.0
+ */
+function the_contact_phone() {
+	echo '01483 239967';
 }

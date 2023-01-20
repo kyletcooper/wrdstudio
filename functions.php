@@ -52,6 +52,8 @@ function add_theme_supports() {
 	register_nav_menus(
 		array(
 			'navigation' => esc_html__( 'Primary Navigation', 'wrd' ),
+			'footer'     => esc_html__( 'Footer Navigation', 'wrd' ),
+			'socials'    => esc_html__( 'Social Media Accounts', 'wrd' ),
 		)
 	);
 

@@ -42,6 +42,9 @@ module.exports = {
     extend: {
       backgroundImage: {
         'grid': "var(--bg-grid-url)"
+      },
+      backgroundSize: {
+        '100%': '100%'
       }
     },
   },

@@ -49,10 +49,42 @@ body {
 		gap: 2.5rem;
 	}
 
-	.mm__top-level-link {
+	.megamenu__a--top-level {
 		color: var(--color-theme-500);
 		font-weight: 500;
 	}
+}
+
+
+/* Footer Menu */
+.footermenu {
+	display: grid;
+	row-gap: 4rem;
+	column-gap: 2rem;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr))
+}
+
+.footermenu__ul {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.footermenu__a--top-level {
+	font-weight: 600;
+}
+
+
+/* Social Icons Menu */
+.socialicons {
+	display: flex;
+	gap: 2rem;
+}
+
+.socialicons svg {
+	width: 2rem;
+	height: 2rem;
 }
 
 @tailwind base;
