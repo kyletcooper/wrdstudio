@@ -82,7 +82,7 @@ namespace wrd;
 		}
 	</style>
 
-	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen">
+	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
 		<a class="sr-only" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
 
 		<?php get_template_part( 'template-parts/navigation' ); ?>

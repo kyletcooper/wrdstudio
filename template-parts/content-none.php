@@ -11,6 +11,12 @@ namespace wrd;
 
 ?>
 
-<h2>
-	No posts found.
-</h2>
+<div class="text-center">
+	<h2 class="text-xl font-semibold mb-3">
+		<?php esc_html_e( "There's nothing here!", 'wrd' ); ?>
+	</h2>
+
+	<p class="max-w-lg mx-auto">
+		<?php esc_html_e( "We couldn't find any posts that matched your search. Try searching for something shorter or with less filters applied.", 'wrd' ); ?>
+	</p>
+</div>
