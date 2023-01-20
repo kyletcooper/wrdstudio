@@ -142,6 +142,10 @@ function the_breadcrumbs( $post = null ) {
 
 	_the_breadcrumb_link( get_home_url(), get_bloginfo( 'name' ) );
 
+	if ( is_404() ) {
+		return;
+	}
+
 	if ( 'page' === $post_type ) {
 		if ( is_front_page( $post ) ) {
 			return;
