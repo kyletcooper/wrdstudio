@@ -4,6 +4,7 @@ const colors = require('tailwindcss/colors');
 
 module.exports = {
   content: ["*.{html,php}", "./**/*.{html,php}"],
+
   theme: {
     colors: {
       'gray': colors.slate,
@@ -48,5 +49,8 @@ module.exports = {
       }
     },
   },
+
+  darkMode: 'class',
+
   plugins: [],
 }

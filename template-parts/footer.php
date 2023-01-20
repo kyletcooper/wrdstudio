@@ -32,7 +32,7 @@ namespace wrd;
 	</div>
 </div>
 
-<footer class="bg-theme-50">
+<footer class="bg-theme-50 dark:bg-theme-900">
 	<nav class="container py-16">
 		<?php
 		wp_nav_menu(
@@ -44,7 +44,7 @@ namespace wrd;
 		);
 		?>
 
-		<p class="mt-12 text-gray-600">
+		<p class="mt-12 text-gray-600 dark:text-gray-400">
 			Copyright © <?php echo esc_html( gmdate( 'Y' ) ); ?>. All rights reserved. <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Privacy Policy</a>
 		</p>
 	</nav>
