@@ -21,10 +21,18 @@ namespace wrd;
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class( get_theme_color_class() ); ?>>
 	<?php wp_body_open(); ?>
 
-	<div id="page">
+
+	<style>
+		:root{
+			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid.svg' ); ?>');
+		}
+	</style>
+
+
+	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen">
 		<a class="sr-only" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
 
 		<?php get_template_part( 'template-parts/navigation' ); ?>

@@ -8,6 +8,8 @@ module.exports = {
     colors: {
       'gray': colors.slate,
 
+      'white': '#FFFFFF',
+
       'theme': {
         50: 'rgb(var(--color-theme-50-rgb) / <alpha-value>)',
         100: 'rgb(var(--color-theme-100-rgb) / <alpha-value>)',
@@ -37,7 +39,11 @@ module.exports = {
       padding: '2rem',
     },
 
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'grid': "var(--bg-grid-url)"
+      }
+    },
   },
   plugins: [],
 }
