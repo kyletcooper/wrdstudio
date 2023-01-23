@@ -288,3 +288,70 @@ function the_contact_email() {
 function the_contact_phone() {
 	echo '01483 239967';
 }
+
+/**
+ * Returns the date relative to the current time.
+ *
+ * @param mixed $date The date to compare to. Optional, defaults to current post date.
+ *
+ * @since 1.0.0
+ */
+function get_relative_date( $date = null ) {
+	if ( ! $date ) {
+		$date = get_the_date();
+	}
+
+	if ( ! ctype_digit( $date ) ) {
+		$date = strtotime( $date );
+	}
+
+	$diff = time() - $date;
+	if ( 0 === $diff ) {
+		return __( 'Now', 'wrd' );
+	}
+
+	$day_diff = floor( $diff / 86400 );
+
+	if ( 0 == $day_diff ) {
+		if ( $diff < 60 ) {
+			return __( 'Less than a minute ago', 'wrd' );
+		}
+		if ( $diff < 120 ) {
+			return __( '1 minute ago', 'wrd' );
+		}
+		if ( $diff < 3600 ) {
+			return floor( $diff / 60 ) . __( ' minutes ago', 'wrd' );
+		}
+		if ( $diff < 7200 ) {
+			return __( '1 hr ago', 'wrd' );
+		}
+		if ( $diff < 86400 ) {
+			return floor( $diff / 3600 ) . __( ' hrs ago', 'wrd' );
+		}
+	}
+	if ( 1 === $day_diff ) {
+		return __( 'Yesterday', 'wrd' );
+	}
+	if ( $day_diff < 7 ) {
+		return $day_diff . __( ' days ago', 'wrd' );
+	}
+	if ( $day_diff < 31 ) {
+		return ceil( $day_diff / 7 ) . __( ' wks ago', 'wrd' );
+	}
+	if ( $day_diff < 60 ) {
+		return __( 'Last month', 'wrd' );
+	}
+
+	return gmdate( 'F Y', $date );
+}
+
+/**
+ * Prints the date relative to the current time.
+ *
+ * @param mixed $date The date to compare to. Optional, defaults to current post date.
+ *
+ * @since 1.0.0
+ */
+function the_relative_date( $date = null ) {
+	echo esc_html( get_relative_date( $date ) );
+}

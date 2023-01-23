@@ -45,7 +45,11 @@ get_header();
 	
 	<div class="grid lg:grid-cols-3 gap-x-16 gap-y-8">
 		<div class="col-span-2">
-			<?php the_content(); ?>
+			<div class="mb-24">
+				<?php the_content(); ?>
+			</div>
+
+			<?php comments_template(); ?>
 		</div>
 
 		<div class="">
@@ -65,16 +69,6 @@ get_header();
 				</a>
 			</div>
 		</div>
-	</div>
-
-	<div>
-		<?php
-
-		if ( comments_open() || get_comments_number() ) {
-			comments_template();
-		}
-
-		?>
 	</div>
 </div>
 

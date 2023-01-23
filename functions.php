@@ -100,3 +100,15 @@ function include_plugin_dependencies() {
 	);
 }
 include_plugin_dependencies();
+
+/**
+ * Filters the fields in the comment form.
+ *
+ * @param array $fields The array of fields.
+ */
+function filter_comment_fields( $fields ) {
+	unset( $fields['url'] );
+	unset( $fields['cookies'] );
+	return $fields;
+}
+add_filter( 'comment_form_default_fields', __NAMESPACE__ . '\\filter_comment_fields' );
