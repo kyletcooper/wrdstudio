@@ -63,14 +63,14 @@ class PostArchive extends LitElement {
 
 
 	clearPlaceholders(type) {
-		if("posts" === type){
+		if ("posts" === type) {
 			this._usingPostsPlaceholder = false;
 		}
 
 		this.querySelectorAll(`[data-placeholder="${type}"]`).forEach(el => el.remove());
 	}
 
-	async getCats(){
+	async getCats() {
 		var allCategories = new wp.api.collections.Categories()
 
 		this._cats = await allCategories.fetch({
@@ -82,13 +82,13 @@ class PostArchive extends LitElement {
 		this.clearPlaceholders('filters');
 	}
 
-	toggleCategory(catID){
+	toggleCategory(catID) {
 		const index = this.categories.indexOf(catID);
 
-		if(index === -1){
+		if (index === -1) {
 			this.categories.push(catID);
 		}
-		else{
+		else {
 			this.categories.splice(index, 1);
 		}
 
@@ -96,7 +96,7 @@ class PostArchive extends LitElement {
 		this.getPosts();
 	}
 
-	hasCategory(catID){
+	hasCategory(catID) {
 		const index = this.categories.indexOf(catID);
 		return index !== -1;
 	}
@@ -118,6 +118,10 @@ class PostArchive extends LitElement {
 	}
 
 	hasOlderPosts() {
+		if (this.postsCollection.state.totalPages === null) {
+			return true;
+		}
+
 		return this.page < this.postsCollection.state.totalPages;
 	}
 
@@ -145,28 +149,22 @@ class PostArchive extends LitElement {
 
 	render() {
 		return html`
-			${ this._cats.length > 0 ? html`
-				<div class="-order-1 flex gap-4 mb-8 overflow-x-auto">
-					${this._cats.map(cat => {return this.renderChip(cat)})}
-				</div>
-			` : null}
-
-			<div class="grid gap-14">
-				${
-					this._loading > 0 ?
-						this.renderPostSkeletons() : 
-						this._posts.length < 1 ?
-							this.renderEmpty() :
-							this._posts.map(post => unsafeHTML(post.preview.default))
-				}
+			${this._cats.length > 0 ? html`
+			<div class="-order-1 flex gap-4 mb-8 overflow-x-auto">
+				${this._cats.map(cat => { return this.renderChip(cat) })}
 			</div>
-		
+			` : null}
+			
+			<div class="grid gap-14">
+				${this.renderPosts()}
+			</div>
+			
 			<div class="flex justify-between mt-8">
 				<button @click="${this.showNewerPosts}" ?disabled="${!this.hasNewerPosts()}" type="button"
 					class="py-2 px-8 border-2 border-theme-500 font-medium text-theme-500 trasition-colors cursor-pointer hover:bg-theme-500 hover:text-white focus:bg-theme-500 focus:text-white disabled:border-gray-500 disabled:text-gray-500 disabled:hover:bg-transparent">
 					Newer posts
 				</button>
-		
+			
 				<button @click="${this.showOlderPosts}" ?disabled="${!this.hasOlderPosts()}" type="button"
 					class="py-2 px-8 border-2 border-theme-500 font-medium text-theme-500 trasition-colors cursor-pointer hover:bg-theme-500 hover:text-white focus:bg-theme-500 focus:text-white disabled:border-gray-500 disabled:text-gray-500 disabled:hover:bg-transparent">
 					Older posts
@@ -175,9 +173,27 @@ class PostArchive extends LitElement {
 		`;
 	}
 
-	renderChip(cat){
+	renderPosts() {
+		if (this._usingPostsPlaceholder) {
+			return;
+		}
+
+		if (this._loading !== 0) {
+			return this.renderPostSkeletons();
+		}
+
+		if (this._posts.length > 0) {
+			return this._posts.map(post => unsafeHTML(post.preview.default));
+		}
+		else {
+			return this.renderEmpty();
+		}
+	}
+
+	renderChip(cat) {
 		return html`
-			<button @click="${() => { this.toggleCategory(cat.id) }}" class="rounded-full py-2 px-4 text-sm whitespace-nowrap ${this.hasCategory(cat.id) ? 'bg-theme-100 dark:bg-theme-900 text-theme-500' : 'bg-gray-100 dark:bg-gray-800'}">
+			<button @click="${() => { this.toggleCategory(cat.id) }}"
+				class="rounded-full py-2 px-4 text-sm whitespace-nowrap ${this.hasCategory(cat.id) ? 'bg-theme-100 dark:bg-theme-900 text-theme-500' : 'bg-gray-100 dark:bg-gray-800'}">
 				${cat.name}
 			</button>
 		`;
@@ -205,15 +221,16 @@ class PostArchive extends LitElement {
 		`);
 	}
 
-	renderEmpty(){
+	renderEmpty() {
 		return html`
 			<div class="text-center py-16">
 				<h2 class="text-xl font-semibold mb-3">
 					There's nothing here!
 				</h2>
-
+			
 				<p class="max-w-lg mx-auto">
-					We couldn't find any posts that matched your search. Try searching for something shorter or with less filters applied.
+					We couldn't find any posts that matched your search. Try searching for something shorter or with less filters
+					applied.
 				</p>
 			</div>
 		`;
