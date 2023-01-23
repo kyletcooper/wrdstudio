@@ -87,6 +87,36 @@ body {
 	height: 2rem;
 }
 
+
+/* Default Posts Pagination */
+.nav-links {
+	display: flex;
+	justify-content: space-between;
+}
+
+.nav-previous {
+	order: 2;
+	margin-left: auto;
+}
+
+.nav-links a {
+	display: block;
+	padding: 0.5rem 2rem;
+
+	border: 2px solid var(--color-theme-500);
+
+	color: var(--color-theme-500);
+	font-weight: 500;
+
+	transition: all 250ms ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus {
+	background-color: var(--color-theme-500);
+	color: #fff;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

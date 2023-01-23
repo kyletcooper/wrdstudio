@@ -41,3 +41,30 @@ function excerpt_length() {
 	return 35;
 }
 add_filter( 'excerpt_length', __NAMESPACE__ . '\\excerpt_length' );
+
+/**
+ * Registers REST API endpoints.
+ */
+function register_rest_html_fields() {
+	register_rest_field(
+		'post',
+		'preview',
+		array(
+			'get_callback' => function( $post_arr ) {
+				ob_start();
+				get_template_part( '/template-parts/content' );
+				$default = ob_get_clean();
+
+				ob_start();
+				get_template_part( '/template-parts/content', 'search' );
+				$search = ob_get_clean();
+
+				return array(
+					'default' => $default,
+					'search'  => $search,
+				);
+			},
+		)
+	);
+}
+add_action( 'rest_api_init', __NAMESPACE__ . '\\register_rest_html_fields' );

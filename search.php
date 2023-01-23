@@ -31,14 +31,14 @@ get_header();
 					the_post();
 					get_template_part( 'template-parts/content', 'search' );
 				endwhile;
-
-				the_posts_navigation();
 			else :
 				get_template_part( 'template-parts/content', 'none' );
 			endif;
 
 			?>
 		</div>
+
+		<?php the_posts_navigation(); ?>
 	</div>
 </div>
 
