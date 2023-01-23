@@ -9,8 +9,75 @@
 
 namespace wrd;
 
+the_post();
+
 get_header();
 
-the_content();
+?>
+
+<div class="container grid gap-16 mt-16 mb-24">
+	<header>
+		<h1 class="text-4xl lg:text-5xl font-semibold mb-8">
+			<?php the_title(); ?>
+		</h1>
+
+		<div class="flex items-center gap-6">
+			<div class="rounded-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+				<?php echo get_avatar( get_the_author_meta( 'ID' ), 64, '', get_the_author(), ); ?>
+			</div>
+
+			<div>
+				<div class="font-semibold"><?php the_author(); ?></div>
+				<div class="font-medium"><?php the_date(); ?></div>
+			</div>
+		</div>
+	</header>
+
+	<?php
+	the_post_thumbnail(
+		'xlarge',
+		array(
+			'loading' => 'eager',
+			'class'   => 'w-full h-96 bg-gray-100 dark:bg-gray-800 object-cover object-center',
+		)
+	);
+	?>
+	
+	<div class="grid lg:grid-cols-3 gap-x-16 gap-y-8">
+		<div class="col-span-2">
+			<?php the_content(); ?>
+		</div>
+
+		<div class="">
+			<span class="hidden lg:block text-2xl font-semibold">
+				<?php the_title(); ?>
+			</span>
+
+			<div class="flex flex-wrap gap-10 mt-4">
+				<button data-share class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer" type="button">
+					<?php the_icon( 'share' ); ?>
+					Share
+				</button>
+
+				<a data-bookmark href="<?php echo esc_url( get_the_permalink() ); ?>" rel="sidebar" title="<?php echo esc_attr( get_the_title() ); ?>" class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer">
+					<?php the_icon( 'bookmark' ); ?>
+					Add to Bookmarks
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<?php
+
+		if ( comments_open() || get_comments_number() ) {
+			comments_template();
+		}
+
+		?>
+	</div>
+</div>
+
+<?php
 
 get_footer();
