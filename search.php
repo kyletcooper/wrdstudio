@@ -23,7 +23,7 @@ get_header();
 	</div>
 
 	<div class="col-span-7">
-		<div class="grid gap-16">
+		<div class="grid gap-16 mb-8">
 			<?php
 
 			if ( have_posts() ) :
