@@ -16,7 +16,7 @@ get_header();
 <div class="container grid grid-cols-12 gap-24 mt-16 mb-24 min-h-[50vh]">
 	<div class="col-span-5">
 		<h1 class="text-5xl font-semibold mb-8">
-			Search
+			<?php esc_html_e( 'Search', 'wrd' ); ?>
 		</h1>
 
 		<?php get_search_form(); ?>
