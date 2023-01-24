@@ -232,6 +232,19 @@ body {
 	background: #E2E8F0;
 }
 
+.dark .scrollbar-subtle::-webkit-scrollbar-track {
+	background: #0F172A;
+}
+
+.dark .scrollbar-subtle::-webkit-scrollbar-thumb {
+	background: #1E293B;
+	border-top: 0.3rem solid #0F172A;
+	border-left: 0.3rem solid #0F172A;
+}
+
+.dark .scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+	background: #334155;
+}
 
 @tailwind base;
 @tailwind components;
