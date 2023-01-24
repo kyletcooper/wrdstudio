@@ -211,6 +211,28 @@ body {
 	background-color: var(--color-theme-500);
 }
 
+/* Scrollbar */
+.scrollbar-subtle::-webkit-scrollbar {
+	width: 0.8rem;
+	height: 0.8rem;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-track {
+	background: #fff;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-thumb {
+	background: #F1F5F9;
+	border-radius: 1rem;
+	border-top: 0.3rem solid #fff;
+	border-left: 0.3rem solid #fff;
+}
+
+.scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+	background: #E2E8F0;
+}
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

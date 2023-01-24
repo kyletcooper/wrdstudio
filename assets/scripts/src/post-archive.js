@@ -75,7 +75,7 @@ class PostArchive extends LitElement {
 
 		this._cats = await allCategories.fetch({
 			data: {
-				hide_empty: false
+				hide_empty: true
 			}
 		});
 
@@ -150,7 +150,7 @@ class PostArchive extends LitElement {
 	render() {
 		return html`
 			${this._cats.length > 0 ? html`
-			<div class="-order-1 flex gap-4 mb-8 overflow-x-auto">
+			<div class="scrollbar-subtle -order-1 flex gap-4 mb-8 overflow-x-auto">
 				${this._cats.map(cat => { return this.renderChip(cat) })}
 			</div>
 			` : null}
@@ -192,7 +192,7 @@ class PostArchive extends LitElement {
 
 	renderChip(cat) {
 		return html`
-			<button @click="${() => { this.toggleCategory(cat.id) }}"
+			<button @click="${() => { this.toggleCategory(cat.id) }}" type="button"
 				class="rounded-full py-2 px-4 text-sm whitespace-nowrap ${this.hasCategory(cat.id) ? 'bg-theme-100 dark:bg-theme-900 text-theme-500' : 'bg-gray-100 dark:bg-gray-800'}">
 				${cat.name}
 			</button>
