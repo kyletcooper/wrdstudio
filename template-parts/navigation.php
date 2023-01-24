@@ -21,7 +21,7 @@ namespace wrd;
 				</div>
 
 				<div class="flex items-center gap-6">
-					<a aria-label="<?php esc_attr_e( 'Search', 'wrd' ); ?>" href="<?php echo esc_url( get_search_link( ' ' ) ); ?>">
+					<a aria-label="<?php esc_attr_e( 'Search', 'wrd' ); ?>" href="<?php echo esc_url( get_search_link( ' ' ) ); ?>" data-search>
 						<?php the_icon( 'search' ); ?>
 					</a>
 					

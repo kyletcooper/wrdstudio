@@ -83,7 +83,7 @@ namespace wrd;
 	</style>
 
 	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
-		<a class="sr-only" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
+		<a class="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:bg-theme-500 focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
 
 		<?php get_template_part( 'template-parts/navigation' ); ?>
 

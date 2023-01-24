@@ -106,20 +106,27 @@ function get_theme_color_class() {
  *
  * @since 1.0.0
  */
-function _the_breadcrumb_link( $url, $title = '' ) {
+function _the_breadcrumb_link( $url, $title = '', $args ) {
 	$max_title_length = 17;
 
 	if ( strlen( $title ) > $max_title_length ) {
 		$title = substr( $title, 0, $max_title_length - 1 ) . '...';
 	}
 
-	?>
+	if ( $args['use_links'] ) : ?>
 	
-	<a href="<?php echo esc_url( $url ); ?>">
-		<?php echo esc_html( $title ); ?>
-	</a>
+		<a href="<?php echo esc_url( $url ); ?>">
+			<?php echo esc_html( $title ); ?>
+		</a>
 
-	<?php
+	<?php else : ?>
+
+		<span>
+			<?php echo esc_html( $title ); ?>
+		</span>
+
+		<?php
+	endif;
 }
 
 /**
@@ -142,6 +149,7 @@ function the_breadcrumbs( $post = null, array $args = array() ) {
 		'use_main_query' => true,
 		'include_home'   => true,
 		'include_self'   => true,
+		'use_links'      => true,
 	);
 
 	$args = wp_parse_args( $args, $default_args );
@@ -252,7 +260,7 @@ function the_breadcrumbs( $post = null, array $args = array() ) {
 			the_icon( 'chevron_right' );
 		}
 
-		_the_breadcrumb_link( $link['url'], $link['title'] );
+		_the_breadcrumb_link( $link['url'], $link['title'], $args );
 	}
 }
 

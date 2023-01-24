@@ -13,8 +13,8 @@ get_header();
 
 ?>
 
-<div class="container grid grid-cols-12 gap-24 mt-16 mb-24 min-h-[50vh]">
-	<div class="col-span-5">
+<div class="container grid lg:grid-cols-2 2xl:grid-cols-5 gap-24 mt-16 mb-24 min-h-[50vh]">
+	<div class="2xl:col-span-2">
 		<h1 class="text-5xl font-semibold mb-8">
 			<?php esc_html_e( 'Search', 'wrd' ); ?>
 		</h1>
@@ -22,7 +22,7 @@ get_header();
 		<?php get_search_form(); ?>
 	</div>
 
-	<div class="col-span-7">
+	<div class="2xl:col-span-3">
 		<div class="grid gap-16 mb-8">
 			<?php
 

@@ -9,6 +9,8 @@
 
 namespace wrd;
 
+get_template_part( '/template-parts/search' );
+
 ?>
 
 <div class="bg-theme-500 bg-grid bg-100% bg-no-repeat text-white mt-12">
