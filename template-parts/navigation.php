@@ -15,12 +15,12 @@ namespace wrd;
 
 	<div class="bg-theme-500 text-white">
 		<div class="container py-2">
-			<div class="flex items-center justify-between">
+			<div class="flex items-center justify-between flex-wrap gap-2">
 				<div class="flex items-center gap-2 text-xs [&>svg]:w-4">
 					<?php the_breadcrumbs(); ?>
 				</div>
 
-				<div class="flex items-center gap-6">
+				<div class="hidden sm:flex items-center gap-6 ml-auto">
 					<a aria-label="<?php esc_attr_e( 'Search', 'wrd' ); ?>" href="<?php echo esc_url( get_search_link( ' ' ) ); ?>" data-search>
 						<?php the_icon( 'search' ); ?>
 					</a>

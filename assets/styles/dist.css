@@ -232,6 +232,20 @@ body {
   background: #E2E8F0;
 }
 
+.dark .scrollbar-subtle::-webkit-scrollbar-track {
+  background: #0F172A;
+}
+
+.dark .scrollbar-subtle::-webkit-scrollbar-thumb {
+  background: #1E293B;
+  border-top: 0.3rem solid #0F172A;
+  border-left: 0.3rem solid #0F172A;
+}
+
+.dark .scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
 /* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
 
 /*
@@ -1015,6 +1029,10 @@ video {
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.ml-auto {
+  margin-left: auto;
 }
 
 .box-border {
@@ -3315,6 +3333,10 @@ video {
     display: block;
   }
 
+  .sm\:flex {
+    display: flex;
+  }
+
   .sm\:hidden {
     display: none;
   }
@@ -3335,6 +3357,10 @@ video {
 
   .md\:block {
     display: block;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:gap-8 {

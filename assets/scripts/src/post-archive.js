@@ -162,12 +162,26 @@ class PostArchive extends LitElement {
 			<div class="flex justify-between mt-8">
 				<button @click="${this.showNewerPosts}" ?disabled="${!this.hasNewerPosts()}" type="button"
 					class="py-2 px-8 border-2 border-theme-500 font-medium text-theme-500 trasition-colors cursor-pointer hover:bg-theme-500 hover:text-white focus:bg-theme-500 focus:text-white disabled:border-gray-500 disabled:text-gray-500 disabled:hover:bg-transparent">
-					Newer posts
+			
+					<svg class="md:hidden" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+						fill="currentColor">
+						<path d="M0 0h24v24H0z" fill="none" />
+						<path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+					</svg>
+			
+					<span class="hidden md:block">Newer posts</span>
 				</button>
 			
 				<button @click="${this.showOlderPosts}" ?disabled="${!this.hasOlderPosts()}" type="button"
 					class="py-2 px-8 border-2 border-theme-500 font-medium text-theme-500 trasition-colors cursor-pointer hover:bg-theme-500 hover:text-white focus:bg-theme-500 focus:text-white disabled:border-gray-500 disabled:text-gray-500 disabled:hover:bg-transparent">
-					Older posts
+			
+					<svg class="md:hidden" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+						fill="currentColor">
+						<path d="M0 0h24v24H0z" fill="none" />
+						<path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+					</svg>
+			
+					<span class="hidden md:block">Older posts</span>
 				</button>
 			</div>
 		`;
