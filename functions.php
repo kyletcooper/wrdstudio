@@ -25,6 +25,7 @@ function include_src() {
 	include get_template_directory() . '/src/template-tags.php';
 	include get_template_directory() . '/src/megamenu.php';
 	include get_template_directory() . '/src/search.php';
+	include get_template_directory() . '/src/register-blocks.php';
 }
 include_src();
 
@@ -46,6 +47,16 @@ function enqueue_assets() {
 	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
+
+/**
+ * Enqueues all assets required for the block editor.
+ *
+ * @since 1.0.0
+ */
+function enqueue_block_editor_assets() {
+	wp_enqueue_style( 'wrdstudio-editor', get_template_directory_uri() . '/assets/styles/dist.css', array(), WRDSTUDIO_VERSION );
+}
+add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 
 /**
  * Registers the theme's support level for WordPress features.

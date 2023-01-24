@@ -1,0 +1,19 @@
+{
+	"name": "wrd/text-section",
+	"title": "Text Section",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	},
+	"styles": [
+		{
+			"isDefault": true,
+			"name": "left",
+			"label": "Left"
+		},
+		{
+			"name": "right",
+			"label": "Right"
+		}
+	]
+}

@@ -45,14 +45,14 @@ get_header();
 	
 	<div class="grid lg:grid-cols-3 gap-x-16 gap-y-8">
 		<div class="col-span-2">
-			<div class="mb-24">
+			<div class="prose max-w-none mb-24">
 				<?php the_content(); ?>
 			</div>
 
 			<?php comments_template(); ?>
 		</div>
 
-		<div class="">
+		<div>
 			<span class="hidden lg:block text-2xl font-semibold">
 				<?php the_title(); ?>
 			</span>

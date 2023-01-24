@@ -363,3 +363,131 @@ function get_relative_date( $date = null ) {
 function the_relative_date( $date = null ) {
 	echo esc_html( get_relative_date( $date ) );
 }
+
+/**
+ * Returns the array of tailwind classes for a button.
+ *
+ * @param boolean $filled If true returns a filled button rather than an outlined button.
+ *
+ * @since 1.0.0
+ */
+function get_button_classes( $filled = false ) {
+	if ( $filled ) {
+		return 'block w-fit py-3 px-12 border-2 border-theme-500 bg-theme-500 font-medium text-white transition-all cursor-pointer hover:bg-transparent hover:text-theme-500 focus:bg-transparent focus:text-theme-500';
+	}
+
+	return 'block w-fit py-3 px-12 border-2 border-theme-500 bg-transparent font-medium text-theme-500 transition-all cursor-pointer hover:bg-theme-500 hover:text-white focus:bg-theme-500 focus:text-white';
+}
+
+/**
+ * Creates a link tag from a ACF link array.
+ *
+ * @param string|array $link The ACF link array or the key for the field.
+ *
+ * @param string       $classes Classes to add.
+ *
+ * @return string The link markup.
+ *
+ * @since 1.0.0
+ */
+function create_link( $link, $classes = '' ) {
+	if ( ! is_array( $link ) ) {
+		$link = get_field( $link );
+	}
+
+	if ( $link ) :
+		// Add rel noopener to external links
+		$attr  = '';
+		$parse = wp_parse_url( $link['url'] );
+
+		if ( array_key_exists( 'host', $parse ) && $parse['host'] !== $_SERVER['HTTP_HOST'] ) {
+			$attr .= " rel='noopener' ";
+		}
+
+		$link_url    = $link['url'];
+		$link_title  = $link['title'];
+		$link_target = $link['target'] ? $link['target'] : '_self';
+
+		$html = '<a href="' . esc_url( $link_url ) . '"
+                    target="' . esc_attr( $link_target ) . '"
+                    class="' . $classes . '"
+                    ' . $attr . '>
+                    ' . esc_html( $link_title ) . '
+                </a>';
+
+		return $html;
+
+	else :
+
+		return '';
+
+	endif;
+}
+
+/**
+ * Creates a link tag with the button classes from a ACF link array.
+ *
+ * @param string|array $link The ACF link array or the key for the field.
+ *
+ * @param boolean      $filled If true, the button will be filled. False for outlined button.
+ *
+ * @param string       $classes Classes to add.
+ *
+ * @return string The link markup.
+ *
+ * @since 1.0.0
+ */
+function create_link_button( $link, $filled = false, $classes = '' ) {
+	return create_link( $link, get_button_classes( $filled ) . ' ' . $classes );
+}
+
+/**
+ * Displays the block's attributes.
+ *
+ * @param array $block The block to show attributes for.
+ *
+ * @param array $atts Additional attributes to add.
+ *
+ * @return void
+ *
+ * @since 1.0.0
+ */
+function block_atts( $block, $atts = array() ) {
+	// ID.
+	if ( ! empty( $block['anchor'] ) ) {
+		$atts['id'] = $block['anchor'];
+	}
+
+	// Classes.
+	if ( ! isset( $atts['class'] ) ) {
+		$atts['class'] = '';
+	}
+	$atts['class'] .= ' wp-block-' . sanitize_title( $block['name'] );
+	if ( ! empty( $block['className'] ) ) {
+		$atts['class'] .= ' ' . $block['className'];
+	}
+
+	// Spacing.
+	$atts['class'] .= ' spacing-top-' . get_field( 'spacing_top' );
+	$atts['class'] .= ' spacing-bottom-' . get_field( 'spacing_bottom' );
+
+	// Print attributes.
+	foreach ( $atts as $attr => $value ) {
+		echo esc_attr( $attr ) . '="' . esc_attr( $value ) . '" ';
+	}
+}
+
+/**
+ * Checks if the current block render has a specific style.
+ *
+ * @param array  $block The block to show attributes for.
+ *
+ * @param string $style The name of the style to look for.
+ *
+ * @return bool If the style is on this block.
+ *
+ * @since 1.0.0
+ */
+function block_has_style( $block, $style ) {
+	return str_contains( $block['className'], "is-style-$style" );
+}

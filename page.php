@@ -11,6 +11,12 @@ namespace wrd;
 
 get_header();
 
-the_content();
+?>
+
+<div class="mt-16 mb-24 min-h-[50vh]">
+	<?php the_content(); ?>
+</div>
+
+<?php
 
 get_footer();

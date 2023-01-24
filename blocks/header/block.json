@@ -1,0 +1,8 @@
+{
+	"name": "wrd/header",
+	"title": "Header",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

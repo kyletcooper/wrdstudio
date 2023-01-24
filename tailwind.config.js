@@ -47,11 +47,27 @@ module.exports = {
       },
       backgroundSize: {
         '100%': '100%'
-      }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: 'inherit',
+
+            a: {
+              color: 'rgb(var(--color-theme-500-rgb))',
+              '&:hover': {
+                color: 'rgb(var(--color-theme-600-rgb))',
+              },
+            },
+          },
+        },
+      },
     },
   },
 
   darkMode: 'class',
 
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

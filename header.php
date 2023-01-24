@@ -18,6 +18,10 @@ namespace wrd;
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
+	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf" as="font" type="font/ttf" crossorigin>
+	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf" as="font" type="font/ttf" crossorigin>
+	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
+
 	<?php wp_head(); ?>
 </head>
 
