@@ -131,3 +131,21 @@ function filter_comment_fields( $fields ) {
 	return $fields;
 }
 add_filter( 'comment_form_default_fields', __NAMESPACE__ . '\\filter_comment_fields' );
+
+/**
+ * Disables the block editor for posts
+ *
+ * @param bool    $use_block_editor Whether the post can be edited or not.
+ *
+ * @param WP_Post $post The post being checked.
+ *
+ * @since 1.0.0
+ */
+function filter_block_editor( $use_block_editor, $post ) {
+	if ( 'post' === get_post_type( $post ) ) {
+		return false;
+	}
+
+	return $use_block_editor;
+}
+add_filter( 'use_block_editor_for_post', __NAMESPACE__ . '\\filter_block_editor', 10, 2 );
