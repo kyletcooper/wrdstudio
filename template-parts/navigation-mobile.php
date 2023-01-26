@@ -53,19 +53,19 @@ $top_level_menu_items = get_menu_items_by_location(
 
 			?>
 
-			<li class="py-4 px-8">
+			<li class="p-8">
 
 				<details class="group">
 					<summary class="flex justify-between items-center">
 						<?php the_menu_item( $menu_item, array( 'class' => 'text-lg font-semibold' ) ); ?>
 
-						<div class="p-4 text-gray-400 dark:text-gray-500 transition-transform group-open:rotate-90">
+						<div class="text-gray-400 dark:text-gray-500 transition-transform group-open:rotate-90">
 							<?php the_icon( 'chevron_right' ); ?>
 						</div>
 					</summary>
 
 					<!-- Prominent Items -->
-					<div class="mb-8 space-y-8">
+					<div class="my-8 space-y-8">
 						<?php foreach ( $descripted_children_menu_items as $child_menu_item ) : ?>
 
 							<?php
