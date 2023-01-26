@@ -15,7 +15,7 @@ namespace wrd;
 	<div class="container">
 		<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-12 pt-12 border-t-4 border-theme-500 ">
 
-			<div class="lg:col-span-2 <?php echo esc_attr( block_has_style( $block, 'right' ) ? 'order-1' : '' ); ?>">
+			<div class="lg:col-span-2 <?php echo esc_attr( block_has_style( $block, 'right' ) ? 'md:order-1' : '' ); ?>">
 				<h2 class="text-3xl md:text-5xl font-semibold">
 					<?php the_field( 'title' ); ?>
 				</h2>
