@@ -53,10 +53,10 @@ $top_level_menu_items = get_menu_items_by_location(
 
 			?>
 
-			<li class="p-8">
+			<li class="">
 
 				<details class="group">
-					<summary class="flex justify-between items-center">
+					<summary class="flex p-8 justify-between items-center">
 						<?php the_menu_item( $menu_item, array( 'class' => 'text-lg font-semibold' ) ); ?>
 
 						<div class="text-gray-400 dark:text-gray-500 transition-transform group-open:rotate-90">
@@ -65,7 +65,7 @@ $top_level_menu_items = get_menu_items_by_location(
 					</summary>
 
 					<!-- Prominent Items -->
-					<div class="my-8 space-y-8">
+					<div class="mb-8 px-8 space-y-8">
 						<?php foreach ( $descripted_children_menu_items as $child_menu_item ) : ?>
 
 							<?php
@@ -97,7 +97,7 @@ $top_level_menu_items = get_menu_items_by_location(
 
 					<!-- Non-Prominent Items -->
 					<?php if ( $undescripted_children_menu_items ) : ?>
-						<div>
+						<div class="px-8 mb-6">
 							<h4 class="font-medium mb-2">
 								<?php the_field( 'more_title', $menu_item ); ?>
 							</h4>
