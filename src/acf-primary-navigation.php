@@ -61,11 +61,7 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 						'class' => '',
 						'id'    => '',
 					),
-					'choices'           => array(
-						'red'  => 'Red',
-						'blue' => 'Blue',
-						'pink' => 'Pink',
-					),
+					'choices'           => get_theme_slugs(),
 					'default_value'     => 'blue',
 					'return_format'     => 'value',
 					'multiple'          => 0,
