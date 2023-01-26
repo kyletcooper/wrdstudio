@@ -1,25 +1,18 @@
 <?php
-/**
- * The ACF fields for all blocks.
- *
- * @package wrdstudio
- *
- * @since 1.0.0
- */
 
 if ( function_exists( 'acf_add_local_field_group' ) ) :
 
 	acf_add_local_field_group(
 		array(
-			'key'                   => 'group_63cfc584964aa',
-			'title'                 => 'Block - Spacing Top/Bottom',
+			'key'                   => 'group_63d257829a09c',
+			'title'                 => 'Menu Items - Primary Navigation',
 			'fields'                => array(
 				array(
-					'key'               => 'field_63cfc585614cb',
-					'label'             => 'Spacing Top',
-					'name'              => 'spacing_top',
+					'key'               => 'field_63d25783eaf6d',
+					'label'             => 'More Items Title',
+					'name'              => 'more_title',
 					'aria-label'        => '',
-					'type'              => 'select',
+					'type'              => 'text',
 					'instructions'      => '',
 					'required'          => 0,
 					'conditional_logic' => 0,
@@ -28,26 +21,36 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 						'class' => '',
 						'id'    => '',
 					),
-					'choices'           => array(
-						'none' => 'None',
-						'xs'   => 'Extra Small',
-						'sm'   => 'Small',
-						'md'   => 'Medium',
-						'lg'   => 'Large',
-						'xl'   => 'Extra Large',
-					),
-					'default_value'     => 'md',
-					'return_format'     => 'value',
-					'multiple'          => 0,
-					'allow_null'        => 0,
-					'ui'                => 0,
-					'ajax'              => 0,
+					'default_value'     => 'Learn More',
+					'maxlength'         => '',
 					'placeholder'       => '',
+					'prepend'           => '',
+					'append'            => '',
 				),
 				array(
-					'key'               => 'field_63cfc5c0614cc',
-					'label'             => 'Spacing Bottom',
-					'name'              => 'spacing_bottom',
+					'key'               => 'field_63d25d477fb84',
+					'label'             => 'Is Subtle',
+					'name'              => 'is_subtle',
+					'aria-label'        => '',
+					'type'              => 'true_false',
+					'instructions'      => '',
+					'required'          => 0,
+					'conditional_logic' => 0,
+					'wrapper'           => array(
+						'width' => '',
+						'class' => '',
+						'id'    => '',
+					),
+					'message'           => '',
+					'default_value'     => 0,
+					'ui'                => 0,
+					'ui_on_text'        => '',
+					'ui_off_text'       => '',
+				),
+				array(
+					'key'               => 'field_63d25e2f821ad',
+					'label'             => 'Theme',
+					'name'              => 'theme',
 					'aria-label'        => '',
 					'type'              => 'select',
 					'instructions'      => '',
@@ -59,14 +62,11 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 						'id'    => '',
 					),
 					'choices'           => array(
-						'none' => 'None',
-						'xs'   => 'Extra Small',
-						'sm'   => 'Small',
-						'md'   => 'Medium',
-						'lg'   => 'Large',
-						'xl'   => 'Extra Large',
+						'red'  => 'Red',
+						'blue' => 'Blue',
+						'pink' => 'Pink',
 					),
-					'default_value'     => 'md',
+					'default_value'     => 'blue',
 					'return_format'     => 'value',
 					'multiple'          => 0,
 					'allow_null'        => 0,
@@ -78,9 +78,9 @@ if ( function_exists( 'acf_add_local_field_group' ) ) :
 			'location'              => array(
 				array(
 					array(
-						'param'    => 'block',
+						'param'    => 'nav_menu_item',
 						'operator' => '==',
-						'value'    => 'all',
+						'value'    => 'location/navigation',
 					),
 				),
 			),

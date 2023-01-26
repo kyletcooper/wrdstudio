@@ -26,8 +26,6 @@ function include_src() {
 	include get_template_directory() . '/src/megamenu.php';
 	include get_template_directory() . '/src/search.php';
 	include get_template_directory() . '/src/register-blocks.php';
-	include get_template_directory() . '/src/options-page.php';
-	include get_template_directory() . '/src/blocks-general-acf.php';
 }
 include_src();
 
@@ -119,6 +117,10 @@ function include_plugin_dependencies() {
 			return MY_ACF_URL;
 		}
 	);
+
+	include get_template_directory() . '/src/acf-options-page.php';
+	include get_template_directory() . '/src/acf-blocks-general.php';
+	include get_template_directory() . '/src/acf-primary-navigation.php';
 }
 include_plugin_dependencies();
 
