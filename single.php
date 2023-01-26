@@ -62,11 +62,6 @@ get_header();
 					<?php the_icon( 'share' ); ?>
 					Share
 				</button>
-
-				<a data-bookmark href="<?php echo esc_url( get_the_permalink() ); ?>" rel="sidebar" title="<?php echo esc_attr( get_the_title() ); ?>" class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer">
-					<?php the_icon( 'bookmark' ); ?>
-					Add to Bookmarks
-				</a>
 			</div>
 		</div>
 	</div>

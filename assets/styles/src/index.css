@@ -37,6 +37,10 @@ body {
 	--color-theme-900: rgb(var(--color-theme-900-rgb));
 }
 
+.dark {
+	color-scheme: dark;
+}
+
 @font-face {
 	font-family: "Montserrat";
 	src: url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');

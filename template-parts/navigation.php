@@ -9,6 +9,13 @@
 
 namespace wrd;
 
+$menu_items = get_menu_items_by_location(
+	'navigation',
+	array(
+		'parent_item' => 0,
+	)
+);
+
 ?>
 
 <header>
@@ -21,7 +28,7 @@ namespace wrd;
 				</div>
 
 				<div class="hidden sm:flex items-center gap-6 ml-auto">
-					<a aria-label="<?php esc_attr_e( 'Search', 'wrd' ); ?>" href="<?php echo esc_url( get_search_link( ' ' ) ); ?>" data-search>
+					<a aria-label="<?php esc_attr_e( 'Search', 'wrd' ); ?>" href="<?php echo esc_url( get_search_link( ' ' ) ); ?>" data-dialog-open="searchDialog">
 						<?php the_icon( 'search' ); ?>
 					</a>
 					
@@ -46,15 +53,17 @@ namespace wrd;
 				<?php echo esc_html( get_bloginfo( 'name' ) ); ?>
 			</a>
 
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'navigation',
-					'container'      => false,
-					'menu_id'        => 'megamenu',
-				)
-			);
-			?>
+			<ul class="hidden lg:flex gap-12">
+				<?php foreach ( $menu_items as $menu_item ) : ?>
+					<li class="font-semibold text-theme-500">
+						<?php the_menu_item( $menu_item ); ?>
+					</li>
+				<?php endforeach; ?>
+			</ul>
+
+			<button class="text-theme-500 lg:hidden" data-dialog-open="sidebarDialog">
+				<?php the_icon( 'menu' ); ?>
+			</button>
 		</div>
 	</nav>
 </header>

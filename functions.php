@@ -26,6 +26,8 @@ function include_src() {
 	include get_template_directory() . '/src/megamenu.php';
 	include get_template_directory() . '/src/search.php';
 	include get_template_directory() . '/src/register-blocks.php';
+	include get_template_directory() . '/src/options-page.php';
+	include get_template_directory() . '/src/blocks-general-acf.php';
 }
 include_src();
 

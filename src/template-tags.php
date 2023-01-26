@@ -53,10 +53,33 @@ function get_theme_slugs() {
 	);
 }
 
+global $wrd_color_theme;
+
+/**
+ * Sets the theme in use.
+ *
+ * @param string $slug The slug of the color theme.
+ *
+ * @since 1.0.0
+ */
+function set_theme_slug( $slug ) {
+	global $wrd_color_theme;
+
+	$wrd_color_theme = $slug;
+}
+
 /**
  * Returns the slug of the theme of the page.
+ *
+ * @since 1.0.0
  */
 function get_theme_slug() {
+	global $wrd_color_theme;
+
+	if ( isset( $wrd_color_theme ) ) {
+		return $wrd_color_theme;
+	}
+
 	return 'blue';
 }
 
@@ -71,8 +94,11 @@ function get_theme_slug() {
  */
 function the_theme_icon() {
 	$icons = array(
-		'blue' => 'logo',
-		'pink' => 'logo',
+		'red'    => 'close',
+		'orange' => 'close',
+		'green'  => 'close',
+		'blue'   => 'logo',
+		'pink'   => 'close',
 	);
 
 	$key = 'blue';
@@ -285,7 +311,7 @@ function get_account_link() {
  * @since 1.0.0
  */
 function the_contact_email() {
-	echo 'sales@wrd.studio';
+	the_field( 'contact_email_address', 'option' );
 }
 
 /**
@@ -294,7 +320,7 @@ function the_contact_email() {
  * @since 1.0.0
  */
 function the_contact_phone() {
-	echo '01483 239967';
+	the_field( 'contact_telephone_number', 'option' );
 }
 
 /**
@@ -490,4 +516,99 @@ function block_atts( $block, $atts = array() ) {
  */
 function block_has_style( $block, $style ) {
 	return str_contains( $block['className'], "is-style-$style" );
+}
+
+function get_menu_items_by_location( $location, $args = array() ) {
+	$args = wp_parse_args(
+		$args,
+		array(
+			'has_description' => -1,
+			'parent_item'     => -1,
+		)
+	);
+
+	$locations           = get_nav_menu_locations();
+	$menu                = wp_get_nav_menu_object( $locations[ $location ] );
+	$menu_items          = wp_get_nav_menu_items( $menu );
+	$filtered_menu_items = array();
+
+	foreach ( $menu_items as $menu_item ) {
+		$passes_filters = true;
+
+		$parent_id = (int) $menu_item->menu_item_parent;
+		if ( -1 !== $args['parent_item'] && $parent_id !== $args['parent_item'] ) {
+			$passes_filters = false;
+		}
+
+		$has_description = strlen( trim( $menu_item->description ) ) > 0;
+		if ( -1 !== $args['has_description'] && $args['has_description'] !== $has_description ) {
+			$passes_filters = false;
+		}
+
+		if ( $passes_filters ) {
+			$filtered_menu_items[] = $menu_item;
+		}
+	}
+
+	return $filtered_menu_items;
+}
+
+/**
+ * Outputs the link for a menu item.
+ *
+ * Based on Walker_Nav_Menu::start_el()
+ *
+ * @param WP_Post $menu_item The menu item to create the link for.
+ *
+ * @param array   $atts Additional attributes to add to the link.
+ *
+ * @see https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/
+ *
+ * @since 1.0.0
+ */
+function the_menu_item( $menu_item, $atts = array() ) {
+	$title = $menu_item->title;
+
+	?>
+
+	<a <?php the_menu_item_attrs( $menu_item, $atts ); ?> >
+		<?php echo esc_html( $title ); ?>
+	</a>
+
+	<?php
+}
+
+/**
+ * Outputs the link attributes for a menu item.
+ *
+ * Based on Walker_Nav_Menu::start_el()
+ *
+ * @param WP_Post $menu_item The menu item to create the link for.
+ *
+ * @param array   $atts Additional attributes to add to the link.
+ *
+ * @see https://developer.wordpress.org/reference/classes/walker_nav_menu/start_el/
+ *
+ * @since 1.0.0
+ */
+function the_menu_item_attrs( $menu_item, $atts = array() ) {
+	$atts['title']  = ! empty( $menu_item->attr_title ) ? $menu_item->attr_title : '';
+	$atts['target'] = ! empty( $menu_item->target ) ? $menu_item->target : '';
+	if ( '_blank' === $menu_item->target && empty( $menu_item->xfn ) ) {
+		$atts['rel'] = 'noopener';
+	} else {
+		$atts['rel'] = $menu_item->xfn;
+	}
+	$atts['href']         = ! empty( $menu_item->url ) ? $menu_item->url : '';
+	$atts['aria-current'] = $menu_item->current ? 'page' : '';
+
+	$attributes = '';
+	foreach ( $atts as $attr => $value ) {
+		if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
+			$value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+			$attributes .= ' ' . $attr . '="' . $value . '"';
+		}
+	}
+
+	echo $attributes;
 }

@@ -24,6 +24,7 @@ module.exports = {
         900: 'rgb(var(--color-theme-900-rgb) / <alpha-value>)',
       },
 
+      'inherit': 'inherit',
       'transparent': 'rgb(255 255 255 / 0)',
       'red': '#EF3838',
       'orange': '#F8841E',
@@ -52,6 +53,7 @@ module.exports = {
         DEFAULT: {
           css: {
             color: 'inherit',
+            lineHeight: '2',
 
             a: {
               color: 'rgb(var(--color-theme-500-rgb))',
@@ -59,6 +61,10 @@ module.exports = {
                 color: 'rgb(var(--color-theme-600-rgb))',
               },
             },
+
+            p: {
+              marginBottom: '3rem'
+            }
           },
         },
       },

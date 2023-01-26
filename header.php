@@ -91,4 +91,6 @@ namespace wrd;
 
 		<?php get_template_part( 'template-parts/navigation' ); ?>
 
+		<?php get_template_part( 'template-parts/navigation-mobile' ); ?>
+
 		<main id="primary">

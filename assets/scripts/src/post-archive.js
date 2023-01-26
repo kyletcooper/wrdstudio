@@ -92,6 +92,7 @@ class PostArchive extends LitElement {
 			this.categories.splice(index, 1);
 		}
 
+		this.page = 1; // Changing categories might mean there is no page x.
 		this.requestUpdate('categories');
 		this.getPosts();
 	}
@@ -117,6 +118,18 @@ class PostArchive extends LitElement {
 		this._posts = posts;
 	}
 
+	scrollToTop() {
+		const offset = 25;
+
+		window.scrollTo({
+			behavior: 'smooth',
+			top:
+				this.getBoundingClientRect().top -
+				document.body.getBoundingClientRect().top -
+				50,
+		})
+	}
+
 	hasOlderPosts() {
 		if (this.postsCollection.state.totalPages === null) {
 			return true;
@@ -128,6 +141,7 @@ class PostArchive extends LitElement {
 	showOlderPosts() {
 		if (this.hasOlderPosts()) {
 			this.page++;
+			this.scrollToTop();
 		}
 
 		this.getPosts();
@@ -140,6 +154,7 @@ class PostArchive extends LitElement {
 	showNewerPosts() {
 		if (this.hasNewerPosts()) {
 			this.page--;
+			this.scrollToTop();
 		}
 
 		this.getPosts();

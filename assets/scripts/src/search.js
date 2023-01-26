@@ -1,8 +1,6 @@
 (() => {
-	const dialog = document.querySelector("[data-search-dialog]");
 	const input = document.querySelector("[data-search-dialog-input]");
 	const resultsContainer = document.querySelector("[data-search-dialog-results]");
-	const searchBtns = document.querySelectorAll("[data-search]");
 
 	var abortController = null;
 	var debounceTimer = null;
@@ -60,20 +58,5 @@
 			search(input.value);
 		});
 	});
-
-	dialog.addEventListener('click', e => {
-		if (e.target === dialog) {
-			// Click backdrop to close modal.
-			dialog.close();
-		}
-	});
-
-	searchBtns.forEach(btn => {
-		btn.addEventListener('click', e => {
-			dialog.showModal();
-			e.preventDefault();
-			return false;
-		});
-	})
 
 })();
