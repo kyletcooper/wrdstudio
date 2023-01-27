@@ -47,8 +47,8 @@
 	openButtons.forEach(btn => btn.addEventListener("click", e => {
 		const id = btn.dataset.dialogOpen;
 		const dialog = document.getElementById(id);
-		dialog?.showModal();
 		dialog.inert = false;
+		dialog?.showModal();
 		e.preventDefault();
 		return false;
 	}));
@@ -56,8 +56,8 @@
 	closeButtons.forEach(btn => btn.addEventListener("click", e => {
 		const id = btn.dataset.dialogClose;
 		const dialog = document.getElementById(id);
-		dialog?.close();
 		dialog.inert = true;
+		dialog?.close();
 		e.preventDefault();
 		return false;
 	}));
@@ -66,8 +66,8 @@
 		dialog.addEventListener("click", e => {
 			if (e.target === dialog) {
 				// Click backdrop to close modal.
-				dialog.close();
 				dialog.inert = true;
+				dialog.close();
 			}
 		});
 
