@@ -48,6 +48,7 @@
 		const id = btn.dataset.dialogOpen;
 		const dialog = document.getElementById(id);
 		dialog?.showModal();
+		dialog.inert = false;
 		e.preventDefault();
 		return false;
 	}));
@@ -56,15 +57,22 @@
 		const id = btn.dataset.dialogClose;
 		const dialog = document.getElementById(id);
 		dialog?.close();
+		dialog.inert = true;
 		e.preventDefault();
 		return false;
 	}));
 
-	clickOffDialogs.forEach(dialog => dialog.addEventListener("click", e => {
-		if (e.target === dialog) {
-			// Click backdrop to close modal.
-			dialog.close();
-		}
-	}));
+	clickOffDialogs.forEach(dialog => {
+		dialog.addEventListener("click", e => {
+			if (e.target === dialog) {
+				// Click backdrop to close modal.
+				dialog.close();
+				dialog.inert = true;
+			}
+		});
+
+		dialog.addEventListener("close", e => dialog.inert = true);
+		dialog.addEventListener("cancel", e => dialog.inert = true);
+	});
 
 })();

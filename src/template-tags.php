@@ -612,3 +612,84 @@ function the_menu_item_attrs( $menu_item, $atts = array() ) {
 
 	echo $attributes;
 }
+
+/**
+ * Displays the none prominent (has no description) menu items.
+ *
+ * @param string   $menu_location The theme location for the menu.
+ *
+ * @param int      $parent_item The ID of the parent to filter menu items by. Defaults to -1 (do not filter).
+ *
+ * @param callable $link_callback A function to decide what classes to add to a link. Passed $is_subtle and $is_first_subtle.
+ *
+ * @param callable $li_callback A function to decide what classes to add to a link. Passed $is_subtle and $is_first_subtle.
+ */
+function the_nav_menu_items_nonprominent( $menu_location, $parent_item = -1, $link_callback = null, $li_callback = null ) {
+	$undescripted_children_menu_items = get_menu_items_by_location(
+		$menu_location,
+		array(
+			'has_description' => false,
+			'parent_item'     => $parent_item,
+		)
+	);
+
+	$is_first_subtle = true;
+
+	foreach ( $undescripted_children_menu_items as $menu_item ) {
+		$is_subtle    = get_field( 'is_subtle', $menu_item );
+		$link_classes = $link_callback ? call_user_func( $link_callback, $is_subtle, $is_subtle && $is_first_subtle ) : '';
+		$li_classes   = $li_callback ? call_user_func( $li_callback, $is_subtle, $is_subtle && $is_first_subtle ) : '';
+
+		echo '<li class="' . esc_attr( $li_classes ) . '">';
+		the_menu_item( $menu_item, array( 'class' => $link_classes ) );
+		echo '</li>';
+
+		if ( $is_first_subtle && $is_subtle ) {
+			$is_first_subtle = false;
+		}
+	}
+}
+
+/**
+ * Displays the prominent (has a description) menu items.
+ *
+ * @param string $menu_location The theme location for the menu.
+ *
+ * @param int    $parent_item The ID of the parent to filter menu items by. Defaults to -1 (do not filter).
+ */
+function the_nav_menu_items_prominent( $menu_location, $parent_item = -1 ) {
+	$descripted_children_menu_items = get_menu_items_by_location(
+		$menu_location,
+		array(
+			'has_description' => true,
+			'parent_item'     => $parent_item,
+		)
+	);
+
+	foreach ( $descripted_children_menu_items as $child_menu_item ) :
+		$og_theme = get_theme_slug();
+		set_theme_slug( get_field( 'theme', $child_menu_item ) );
+
+		?>
+
+		<a <?php the_menu_item_attrs( $child_menu_item, array( 'class' => 'group block relative overflow-clip p-6 rounded-md bg-theme-50 dark:bg-theme-900 hover:bg-theme-100 dark:hover:bg-theme-800 transition-colors ' . get_theme_color_class() ) ); ?>>
+			<div class="relative z-10">
+				<h4 class="font-medium text-lg mb-2">
+					<?php echo esc_html( $child_menu_item->title ); ?>
+				</h4>
+				<p class="text-sm">
+					<?php echo esc_html( $child_menu_item->description ); ?>
+				</p>
+			</div>
+
+			<div class="absolute -bottom-2 -right-2 w-1/3 aspect-square [&>svg]:w-full [&>svg]:h-full text-theme-100 dark:text-theme-800 group-hover:text-theme-200 group-hover:dark:text-theme-700 transition-colors opacity-50">
+				<?php the_theme_icon(); ?>
+			</div>
+		</a>
+
+		<?php set_theme_slug( $og_theme ); ?>
+
+		<?php
+
+endforeach;
+}

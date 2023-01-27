@@ -18,7 +18,7 @@ $top_level_menu_items = get_menu_items_by_location(
 
 ?>
 
-<dialog id="sidebarDialog" data-dialog-clickoff class="flex flex-col fixed z-[99999] top-0 bottom-0 right-0 left-12 max-w-[90vw] max-h-screen w-96 h-full m-0 ml-auto p-0 bg-white dark:bg-gray-900 border-l border-gray-300 dark:border-gray-700 divide-y divide-gray-300 dark:divide-gray-700 opacity-0 open:opacity-100 translate-x-8 open:translate-x-0 pointer-events-none open:pointer-events-auto shadow-none open:shadow-2xl transition-all duration-300 backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
+<dialog id="sidebarDialog" data-dialog-clickoff inert class="flex flex-col fixed z-[99999] top-0 bottom-0 right-0 left-12 max-w-[90vw] max-h-screen w-96 h-full m-0 ml-auto p-0 bg-white dark:bg-gray-900 border-l border-gray-300 dark:border-gray-700 divide-y divide-gray-300 dark:divide-gray-700 opacity-0 open:opacity-100 translate-x-8 open:translate-x-0 pointer-events-none open:pointer-events-auto shadow-none open:shadow-2xl transition-all duration-300 backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
 	<header class="py-6 px-8 flex gap-6">
 		<button data-dialog-close="sidebarDialog" class="text-gray-400 dark:text-gray-500">
 			<?php the_icon( 'close' ); ?>
@@ -32,28 +32,7 @@ $top_level_menu_items = get_menu_items_by_location(
 	<ol role="navigation" class="grow overflow-y-auto divide-y divide-gray-300 dark:divide-gray-700">
 
 		<?php foreach ( $top_level_menu_items as $menu_item ) : ?>
-
-			<?php
-
-			$descripted_children_menu_items = get_menu_items_by_location(
-				'navigation',
-				array(
-					'has_description' => true,
-					'parent_item'     => $menu_item->ID,
-				)
-			);
-
-			$undescripted_children_menu_items = get_menu_items_by_location(
-				'navigation',
-				array(
-					'has_description' => false,
-					'parent_item'     => $menu_item->ID,
-				)
-			);
-
-			?>
-
-			<li class="">
+			<li>
 
 				<details class="group">
 					<summary class="flex p-8 justify-between items-center">
@@ -66,69 +45,31 @@ $top_level_menu_items = get_menu_items_by_location(
 
 					<!-- Prominent Items -->
 					<div class="mb-8 px-8 space-y-8">
-						<?php foreach ( $descripted_children_menu_items as $child_menu_item ) : ?>
-
-							<?php
-
-							$og_theme = get_theme_slug();
-							set_theme_slug( get_field( 'theme', $child_menu_item ) );
-
-							?>
-
-							<a <?php the_menu_item_attrs( $child_menu_item, array( 'class' => 'block relative overflow-clip p-6 rounded-md bg-theme-50 dark:bg-theme-900 ' . get_theme_color_class() ) ); ?>>
-								<div class="relative z-10">
-									<h4 class="font-medium text-theme-500 text-lg mb-2">
-										<?php echo esc_html( $child_menu_item->title ); ?>
-									</h4>
-									<p class="text-sm">
-										<?php echo esc_html( $child_menu_item->description ); ?>
-									</p>
-								</div>
-
-								<div class="absolute -bottom-2 -right-2 w-1/3 aspect-square [&>svg]:w-full [&>svg]:h-full text-theme-100 dark:text-theme-800 opacity-50">
-									<?php the_theme_icon(); ?>
-								</div>
-							</a>
-
-							<?php set_theme_slug( $og_theme ); ?>
-
-						<?php endforeach; ?>
+						<?php the_nav_menu_items_prominent( 'navigation', $menu_item->ID ); ?>
 					</div>
 
 					<!-- Non-Prominent Items -->
-					<?php if ( $undescripted_children_menu_items ) : ?>
-						<div class="px-8 mb-6">
-							<h4 class="font-medium mb-2">
-								<?php the_field( 'more_title', $menu_item ); ?>
-							</h4>
+					<div class="px-8 mb-6">
+						<span class="font-medium mb-2">
+							<?php the_field( 'more_title', $menu_item ); ?>
+						</span>
 
-							<ol>
-								<?php
+						<ol>
+							<?php
 
-								$is_first_subtle = true;
+							the_nav_menu_items_nonprominent(
+								'navigation',
+								$menu_item->ID,
+								function( $is_subtle, $is_first_subtle ) {
+									return 'block py-2' . ( $is_subtle ? ' text-gray-500 dark:text-gray-400' : '' ) . ( $is_first_subtle ? ' mt-6' : '' );
+								}
+							)
 
-								foreach ( $undescripted_children_menu_items as $child_menu_item ) :
-									$is_subtle = get_field( 'is_subtle', $child_menu_item );
-
-									?>
-
-									<li class="<?php echo esc_attr( $is_subtle && $is_first_subtle ? 'mt-6' : '' ); ?>">
-										<?php the_menu_item( $child_menu_item, array( 'class' => 'block py-2 ' . ( $is_subtle ? 'text-gray-500 dark:text-gray-400' : '' ) ) ); ?>
-									</li>
-
-									<?php
-
-									if ( $is_first_subtle && $is_subtle ) {
-										$is_first_subtle = false;
-									}
-
-								endforeach;
-
-								?>
-							</ol>
-						</div>
-					<?php endif; ?>
+							?>
+						</ol>
+					</div>
 				</details>
+
 			</li>
 		<?php endforeach; ?>
 	</ol>

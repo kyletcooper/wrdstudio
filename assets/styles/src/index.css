@@ -101,24 +101,30 @@ body {
 	font-display: swap;
 }
 
-/* Mega Menu */
-#megamenu {
-	display: none;
-}
-
-@media (min-width: 1024px) {
-	#megamenu {
-		display: flex;
-		align-items: center;
-		gap: 2.5rem;
-	}
-
-	.megamenu__a--top-level {
-		color: var(--color-theme-500);
-		font-weight: 500;
-	}
-}
-
+/* Custom Utilities */
+.arrow-top::before{
+	--size: 1rem;
+	--color: #fff;
+	--border: #f1f5f9;
+	content: '';
+	display: block;
+	position: absolute;
+	left: var(--arrow-left, 50%);
+	transform: translate(50%, -100%);
+	width: 0;
+	height: 0;
+	filter: drop-shadow(0 -2px 0 var(--border));
+	border-style: solid;
+	border-width: 0 var(--size) var(--size) var(--size);
+	border-color: transparent transparent var(--color) transparent;
+  }
+  
+  .dark .arrow-top::before{
+	--size: 1rem;
+	--color: #0f172a;
+	--border: #1e293b;
+  }
+  
 
 /* Footer Menu */
 .footermenu {
