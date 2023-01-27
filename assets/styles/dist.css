@@ -1736,6 +1736,10 @@ video {
   left: 3rem;
 }
 
+.top-12 {
+  top: 3rem;
+}
+
 .isolate {
   isolation: isolate;
 }

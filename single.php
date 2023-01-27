@@ -53,15 +53,17 @@ get_header();
 		</div>
 
 		<div>
-			<span class="hidden lg:block text-2xl font-semibold">
-				<?php the_title(); ?>
-			</span>
+			<div class="sticky top-12">
+				<span class="hidden lg:block text-2xl font-semibold">
+					<?php the_title(); ?>
+				</span>
 
-			<div class="flex flex-wrap gap-10 mt-4">
-				<button data-share class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer" type="button">
-					<?php the_icon( 'share' ); ?>
-					Share
-				</button>
+				<div class="flex flex-wrap gap-10 mt-4">
+					<button data-share class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer" type="button">
+						<?php the_icon( 'share' ); ?>
+						Share
+					</button>
+				</div>
 			</div>
 		</div>
 	</div>
