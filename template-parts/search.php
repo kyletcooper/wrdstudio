@@ -17,7 +17,7 @@ namespace wrd;
 			<?php the_icon( 'search' ); ?>
 		</span>
 
-		<input data-search-dialog-input autofocus placeholder="<?php esc_attr_e( 'Search...', 'wrd' ); ?>" class="grow bg-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:text-white font-medium text-lg appearance-none focus:outline-none" type='search'>
+		<input data-search-dialog-input autofocus enterkeyhint="<?php esc_html_e( 'Search', 'wrd' ); ?>" placeholder="<?php esc_attr_e( 'Search...', 'wrd' ); ?>" class="grow bg-transparent placeholder:text-gray-400 dark:placeholder:text-gray-500 dark:text-white font-medium text-lg appearance-none focus:outline-none" type='search'>
 
 		<kbd class="px-2 border-gray-300 dark:border-gray-600 border rounded-md text-sm text-gray-400 dark:text-gray-500">ESC</kbd>
 	</label>
