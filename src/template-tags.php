@@ -672,7 +672,7 @@ function the_nav_menu_items_prominent( $menu_location, $parent_item = -1 ) {
 
 		?>
 
-		<a <?php the_menu_item_attrs( $child_menu_item, array( 'class' => 'group block relative overflow-clip p-6 rounded-md bg-theme-50 dark:bg-theme-900 hover:bg-theme-100 dark:hover:bg-theme-800 transition-colors ' . get_theme_color_class() ) ); ?>>
+		<a <?php the_menu_item_attrs( $child_menu_item, array( 'class' => 'block relative overflow-clip p-6 rounded-md bg-theme-50 dark:bg-theme-900 hover:bg-theme-100 dark:hover:bg-theme-800 transition-colors [&:hover_svg]:text-theme-200 dark:[&:hover_svg]:text-theme-700 ' . get_theme_color_class() ) ); ?>>
 			<div class="relative z-10">
 				<h4 class="font-medium text-lg mb-2">
 					<?php echo esc_html( $child_menu_item->title ); ?>
@@ -682,7 +682,7 @@ function the_nav_menu_items_prominent( $menu_location, $parent_item = -1 ) {
 				</p>
 			</div>
 
-			<div class="absolute -bottom-2 -right-2 w-1/3 aspect-square [&>svg]:w-full [&>svg]:h-full text-theme-100 dark:text-theme-800 group-hover:text-theme-200 group-hover:dark:text-theme-700 transition-colors opacity-50">
+			<div class="absolute -bottom-2 -right-2 w-1/3 aspect-square [&>svg]:w-full [&>svg]:h-full [&>svg]:transition-colors text-theme-100 dark:text-theme-800 opacity-50">
 				<?php the_theme_icon(); ?>
 			</div>
 		</a>
