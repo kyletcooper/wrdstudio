@@ -68,7 +68,7 @@ $menu_items = get_menu_items_by_location(
 
 						?>
 
-						<dialog data-megamenu="<?php echo esc_attr( $i ); ?>" class="block bg-white dark:bg-gray-900 fixed z-40 m-0 arrow-top border border-gray-100 dark:border-gray-800 rounded-md p-0 w-[700px] transition-[opacity,shadow,transform] duration-300 pointer-events-none open:pointer-events-auto translate-y-8 open:translate-y-0 opacity-0 open:opacity-100 shadow-none open:shadow-xl" >
+						<dialog inert data-megamenu="<?php echo esc_attr( $i ); ?>" class="block bg-white dark:bg-gray-900 fixed z-40 m-0 arrow-top border border-gray-100 dark:border-gray-800 rounded-md p-0 w-[700px] transition-[opacity,shadow,transform] duration-300 pointer-events-none open:pointer-events-auto translate-y-8 open:translate-y-0 opacity-0 open:opacity-100 shadow-none open:shadow-xl" >
 							<div class="grid grid-cols-5">
 								
 								<!-- Prominent Items -->
