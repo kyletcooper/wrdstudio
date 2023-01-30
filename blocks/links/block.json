@@ -1,0 +1,8 @@
+{
+	"name": "wrd/links",
+	"title": "Arrow Links",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

@@ -33,13 +33,9 @@ namespace wrd;
 				<span class="flex items-center gap-4 mt-8 text-theme-500 font-medium">
 					<?php esc_html_e( 'Read more', 'wrd' ); ?>
 
-					<svg class="transition-transform group-hover:translate-x-3" xmlns="http://www.w3.org/2000/svg" width="33.85" height="15.252" viewBox="0 0 33.85 15.252">
-						<g id="Group_3283" data-name="Group 3283" transform="translate(-399 -646.086)">
-							<line id="Line_156" data-name="Line 156" x2="31.436" transform="translate(400 653.712)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-							<line id="Line_157" data-name="Line 157" x2="6.212" y2="6.212" transform="translate(425.224 647.5)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-							<line id="Line_158" data-name="Line 158" y1="6.212" x2="6.212" transform="translate(425.224 653.712)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-						</g>
-					</svg>
+					<div class="transition-transform group-hover:translate-x-3">
+						<?php the_icon( 'arrow_right' ); ?>
+					</div>
 				</span>
 			</div>
 		</div>

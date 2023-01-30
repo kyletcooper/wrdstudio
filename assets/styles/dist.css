@@ -112,7 +112,7 @@ body {
 
 /* Custom Utilities */
 
-.arrow-top::before{
+.arrow-top::before {
   --size: 1rem;
   --color: #fff;
   --border: #f1f5f9;
@@ -129,7 +129,7 @@ body {
   border-color: transparent transparent var(--color) transparent;
 }
 
-.dark .arrow-top::before{
+.dark .arrow-top::before {
   --size: 1rem;
   --color: #0f172a;
   --border: #1e293b;
@@ -166,6 +166,116 @@ body {
 .socialicons svg {
   width: 2rem;
   height: 2rem;
+}
+
+/* WPCF7 */
+
+.wpcf7-form {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.wpcf7-form label {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.wpcf7-form input,
+.wpcf7-form textarea {
+  border: 2px solid rgb(15 23 42);
+  background: none;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.dark .wpcf7-form input,
+.dark .wpcf7-form textarea {
+  border-color: rgb(100 116 139);
+}
+
+.wpcf7-form input:focus,
+.wpcf7-form textarea:focus {
+  outline: none;
+  border-bottom-color: var(--color-theme-500);
+}
+
+.wpcf7-form input[type="submit"] {
+  background: var(--color-theme-500);
+  border-color: var(--color-theme-500);
+  color: #fff;
+  cursor: pointer;
+  transition: all 150ms ease-in-out;
+  padding: 0.5rem 2rem;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-form input[type="submit"]:focus {
+  background: transparent;
+  border-color: var(--color-theme-500);
+  color: var(--color-theme-500);
+}
+
+.wpcf7-form.submitting input[type="submit"] {
+  padding-right: 3rem;
+}
+
+.wpcf7-spinner {
+  position: relative;
+  right: 0.75rem;
+  transform: translateX(-100%) translateY(25%);
+  margin: 0;
+  background: none;
+}
+
+.wpcf7-spinner::before {
+  background-color: var(--color-theme-500);
+}
+
+.wpcf7 form .wpcf7-response-output {
+  --output-color: var(--color-theme-500);
+  --output-bg: rgb(var(--color-theme-500-rgb) / 0.1);
+  margin: 0;
+  padding: 2rem;
+  max-width: -moz-max-content;
+  max-width: max-content;
+  background: linear-gradient(90deg, var(--output-bg), rgb(255 255 255 / 0));
+  border: none !important;
+  border-left: 3px solid var(--output-color) !important;
+  font-weight: 500;
+}
+
+.dark .wpcf7 form .wpcf7-response-output {
+  border-color: rgb(100 116 139);
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+  --output-color: #46b450;
+  --output-bg: rgb(70 180 80 / 0.1);
+}
+
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+  --output-color: #dc3232;
+  --output-bg: rgb(220 50 50 / 0.1);
+}
+
+.wpcf7 form.spam .wpcf7-response-output {
+  --output-color: #f56e28;
+  --output-bg: rgb(245 110 40 / 0.1);
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+  --output-color: #ffb900;
+  --output-bg: rgb(255 185 0 / 0.1);
+}
+
+.wpcf7-not-valid-tip {
+  font-size: small;
+  margin-top: 0.5rem
 }
 
 /* Default Posts Pagination */
@@ -1724,6 +1834,10 @@ video {
   right: 0px;
 }
 
+.top-12 {
+  top: 3rem;
+}
+
 .-bottom-2 {
   bottom: -0.5rem;
 }
@@ -1734,10 +1848,6 @@ video {
 
 .left-12 {
   left: 3rem;
-}
-
-.top-12 {
-  top: 3rem;
 }
 
 .isolate {
@@ -2044,6 +2154,34 @@ video {
   height: 1rem;
 }
 
+.h-8 {
+  height: 2rem;
+}
+
+.h-auto {
+  height: auto;
+}
+
+.h-64 {
+  height: 16rem;
+}
+
+.h-48 {
+  height: 12rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+.h-24 {
+  height: 6rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
 .max-h-screen {
   max-height: 100vh;
 }
@@ -2111,6 +2249,18 @@ video {
 
 .w-1\/4 {
   width: 25%;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.w-24 {
+  width: 6rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .min-w-full {
@@ -2485,6 +2635,10 @@ video {
        break-after: column;
 }
 
+.auto-cols-max {
+  grid-auto-columns: max-content;
+}
+
 .grid-flow-row {
   grid-auto-flow: row;
 }
@@ -2732,6 +2886,20 @@ video {
 
 .gap-y-8 {
   row-gap: 2rem;
+}
+
+.gap-x-4 {
+  -moz-column-gap: 1rem;
+       column-gap: 1rem;
+}
+
+.gap-y-4 {
+  row-gap: 1rem;
+}
+
+.gap-x-8 {
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
 
 .space-y-8 > :not([hidden]) ~ :not([hidden]) {
@@ -3287,6 +3455,10 @@ video {
 
 .bg-top {
   background-position: top;
+}
+
+.bg-center {
+  background-position: center;
 }
 
 .bg-repeat {
@@ -4484,11 +4656,6 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.group:hover .group-hover\:text-theme-200 {
-  --tw-text-opacity: 1;
-  color: rgb(var(--color-theme-200-rgb) / var(--tw-text-opacity));
-}
-
 .prose-headings\:text-ellipsis :is(:where(h1, h2, h3, h4, h5, h6, th):not(:where([class~="not-prose"] *))) {
   text-overflow: ellipsis;
 }
@@ -5176,11 +5343,6 @@ video {
   background-color: rgb(var(--color-theme-900-rgb) / var(--tw-bg-opacity));
 }
 
-.group:hover .dark .group-hover\:dark\:text-theme-700 {
-  --tw-text-opacity: 1;
-  color: rgb(var(--color-theme-700-rgb) / var(--tw-text-opacity));
-}
-
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
@@ -5724,6 +5886,10 @@ video {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .md\:grid-cols-\[1fr_auto\] {
+    grid-template-columns: 1fr auto;
+  }
+
   .md\:gap-8 {
     gap: 2rem;
   }
@@ -5746,6 +5912,11 @@ video {
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .md\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
   }
 }
 
@@ -6009,6 +6180,11 @@ video {
     line-height: 1;
   }
 
+  .lg\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
   .lg\:text-7xl {
     font-size: 4.5rem;
     line-height: 1;
@@ -6016,6 +6192,12 @@ video {
 
   .dark .dark\:lg\:hover\:\[paint-order\:markers\]:hover {
     paint-order: markers;
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -6053,11 +6235,6 @@ video {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-}
-
-.\[\&\:hover_svg\]\:text-theme-700:hover svg {
-  --tw-text-opacity: 1;
-  color: rgb(var(--color-theme-700-rgb) / var(--tw-text-opacity));
 }
 
 .\[\&\:hover_svg\]\:text-theme-200:hover svg {

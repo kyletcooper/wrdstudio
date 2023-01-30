@@ -1,0 +1,8 @@
+{
+	"name": "wrd/testimonial",
+	"title": "Testimonial",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

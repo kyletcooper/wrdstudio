@@ -1,0 +1,8 @@
+{
+	"name": "wrd/form",
+	"title": "Form",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

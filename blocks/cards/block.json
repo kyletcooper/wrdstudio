@@ -1,0 +1,8 @@
+{
+	"name": "wrd/cards",
+	"title": "Cards",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

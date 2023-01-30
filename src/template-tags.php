@@ -12,13 +12,14 @@
  *
  * @param string $name The name of the icon.
  *
+ * @param string $classes Classes to add the to SVG element.
+ *
  * @return void
  *
  * @since 1.0.0
  */
-function the_icon( string $name ) {
-	$name_sanitized = sanitize_title( $name );
-	include get_template_directory() . "/assets/icons/$name_sanitized.svg";
+function the_icon( string $name, string $classes = '' ) {
+	echo get_icon( $name, $classes );
 }
 
 /**
@@ -26,14 +27,22 @@ function the_icon( string $name ) {
  *
  * @param string $name The name of the icon.
  *
+ * @param string $classes Classes to add the to SVG element.
+ *
  * @return void
  *
  * @since 1.0.0
  */
-function get_icon( string $name ) {
+function get_icon( string $name, string $classes = '' ) {
 	ob_start();
-	the_icon( $name );
-	return ob_get_clean();
+
+	$name_sanitized = sanitize_title( $name );
+	include get_template_directory() . "/assets/icons/$name_sanitized.svg";
+
+	$icon = ob_get_clean();
+	$icon = str_replace( '<svg', '<svg class="' . $classes . '"', $icon );
+
+	return $icon;
 }
 
 /**
@@ -515,6 +524,10 @@ function block_atts( $block, $atts = array() ) {
  * @since 1.0.0
  */
 function block_has_style( $block, $style ) {
+	if ( ! isset( $block['className'] ) ) {
+		return false;
+	}
+
 	return str_contains( $block['className'], "is-style-$style" );
 }
 

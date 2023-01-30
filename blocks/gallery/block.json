@@ -1,0 +1,8 @@
+{
+	"name": "wrd/gallery",
+	"title": "Masonry Gallery",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
