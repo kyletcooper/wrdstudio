@@ -16,7 +16,7 @@ if ( post_password_required() || ! comments_open() ) {
 
 ?>
 
-<div>
+<div id="comments">
 	<div class="bg-theme-500 h-1 rounded-full mb-12"></div>
 
 	<h2 class="text-4xl font-semibold">

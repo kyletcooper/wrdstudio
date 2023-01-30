@@ -63,6 +63,11 @@ get_header();
 						<?php the_icon( 'share' ); ?>
 						Share
 					</button>
+
+					<a href="#comments" class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer">
+						<?php the_icon( 'chat_bubble' ); ?>
+						<?php echo esc_html( get_comments_number() . __( ' Comments', 'wrd' ) ); ?>
+					</a>
 				</div>
 			</div>
 		</div>

@@ -46,8 +46,14 @@ get_template_part( '/template-parts/search' );
 		);
 		?>
 
-		<p class="mt-12 text-gray-600 dark:text-gray-400">
-			Copyright © <?php echo esc_html( gmdate( 'Y' ) ); ?>. All rights reserved. <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Privacy Policy</a>
-		</p>
+		<div class="flex justify-between flex-wrap mt-12 text-gray-600 dark:text-gray-400">
+			<p>
+				Copyright © <?php echo esc_html( gmdate( 'Y' ) ); ?>. All rights reserved. <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Privacy Policy</a>
+			</p>
+
+			<p>
+				Proudly powered by <a href="https://wordpress.org" rel="noopener">WordPress</a>.
+			</p>
+		</div>
 	</nav>
 </footer>
