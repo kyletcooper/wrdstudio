@@ -5,8 +5,11 @@
   "main": "index.js",
   "scripts": {
     "watch": "npm run-script watch:tailwind & npm run-script watch:webpack",
-    "watch:webpack": "npx webpack",
-    "watch:tailwind": "npx tailwindcss -i ./assets/styles/src/index.css -o ./assets/styles/dist.css --watch"
+    "watch:webpack": "npx webpack watch",
+    "watch:tailwind": "npx tailwindcss -i ./assets/styles/src/index.css -o ./assets/styles/dist.css --watch",
+    "build": "npm run-script build:tailwind & npm run-script build:webpack",
+    "build:webpack": "npx webpack build",
+    "build:tailwind": "npx tailwindcss -i ./assets/styles/src/index.css -o ./assets/styles/dist.css --minify"
   },
   "author": "",
   "license": "ISC",

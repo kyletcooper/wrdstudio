@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: "production",
-    watch: true,
+    watch: false,
 
     entry: path.resolve(__dirname, 'assets/scripts/src/index.js'),
 
