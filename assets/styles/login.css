@@ -115,5 +115,5 @@ p.message {
 }
 
 .wp-hide-pw {
-	display: none !important;
+	margin-top: calc(0.5rem + 1px) !important;
 }
