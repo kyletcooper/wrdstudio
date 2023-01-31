@@ -1,0 +1,8 @@
+{
+	"name": "wrd/download",
+	"title": "Download",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
