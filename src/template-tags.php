@@ -107,11 +107,11 @@ function get_theme_slug() {
  */
 function the_theme_icon() {
 	$icons = array(
-		'red'    => 'close',
-		'orange' => 'close',
-		'green'  => 'close',
+		'red'    => 'logo',
+		'orange' => 'logo',
+		'green'  => 'logo',
 		'blue'   => 'logo',
-		'pink'   => 'close',
+		'pink'   => 'logo',
 	);
 
 	$key = 'blue';
