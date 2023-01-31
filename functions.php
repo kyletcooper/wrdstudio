@@ -172,6 +172,7 @@ function include_plugin_dependencies() {
 	include get_template_directory() . '/src/acf-options-page.php';
 	include get_template_directory() . '/src/acf-blocks-general.php';
 	include get_template_directory() . '/src/acf-primary-navigation.php';
+	include get_template_directory() . '/src/acf-page-theme.php';
 }
 include_plugin_dependencies();
 

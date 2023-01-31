@@ -89,6 +89,10 @@ function get_theme_slug() {
 		return $wrd_color_theme;
 	}
 
+	if ( get_field( 'page_theme' ) ) {
+		return get_field( 'page_theme' );
+	}
+
 	return 'blue';
 }
 
