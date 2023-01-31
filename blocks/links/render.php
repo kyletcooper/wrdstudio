@@ -29,7 +29,7 @@ $colors = array( 'blue', 'green', 'orange' );
 					<h2 class="flex items-center gap-8 text-3xl font-semibold arrow-link mb-4">
 						<?php the_sub_field( 'title' ); ?>
 
-						<div class="transition-transform group-hover:translate-x-3 text-theme-500">
+						<div class="transition-transform group-hover:translate-x-3 text-theme-500 motion-reduce:group-hover:transform-none">
 							<?php the_icon( 'arrow_right', 'h-8 w-12' ); ?>
 						</div>
 					</h2>

@@ -127,7 +127,7 @@ function megamenu_link_text( array $sorted_menu_items, stdClass $args ) {
 	}
 
 	foreach ( $sorted_menu_items as $k => $object ) {
-		$object->title = get_icon( strtolower( $object->title ) );
+		$object->title = get_icon( strtolower( $object->title ) ) . '<div class="sr-only">' . $object->title . '</div>';
 	}
 
 	return $sorted_menu_items;

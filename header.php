@@ -22,13 +22,36 @@ namespace wrd;
 	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf" as="font" type="font/ttf" crossorigin>
 	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
 
+	<style id="font-faces">
+		@font-face {
+			font-family: "Montserrat";
+			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+			font-weight: 400;
+			font-display: swap;
+		}
+
+		@font-face {
+			font-family: "Montserrat";
+			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
+			font-weight: 500;
+			font-display: swap;
+		}
+
+		@font-face {
+			font-family: "Montserrat";
+			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Semibold.ttf') format('truetype');
+			font-weight: 600;
+			font-display: swap;
+		}
+	</style>
+
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class( array( 'bg-white text-gray-900 dark:bg-gray-900 dark:text-white', get_theme_color_class() ) ); ?>>
+<body id="body" <?php body_class( array( 'bg-white text-gray-900 dark:bg-gray-900 dark:text-white', get_theme_color_class() ) ); ?>>
 	<?php wp_body_open(); ?>
 
-	<script>
+	<script id="dark-mode">
 		window.wrd = window.wrd || {};
 
 		window.wrd.theme = {
@@ -77,7 +100,7 @@ namespace wrd;
 		window.wrd.theme.refresh();
 	</script>
 
-	<style>
+	<style id="css-urls">
 		:root{
 			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid.svg' ); ?>');
 		}
@@ -87,10 +110,10 @@ namespace wrd;
 	</style>
 
 	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
-		<a class="sr-only focus:not-sr-only focus:absolute focus:z-10 focus:bg-theme-500 focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
+		<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-theme-500 focus:text-white focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
 
+		<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
+		
 		<?php get_template_part( 'template-parts/navigation' ); ?>
-
-		<?php get_template_part( 'template-parts/navigation-mobile' ); ?>
 
 		<main id="primary">

@@ -16,6 +16,7 @@ namespace wrd;
  */
 define( 'WRDSTUDIO_VERSION', '1.0.0' );
 
+
 /**
  * Includes the source files.
  *
@@ -26,8 +27,10 @@ function include_src() {
 	include get_template_directory() . '/src/megamenu.php';
 	include get_template_directory() . '/src/search.php';
 	include get_template_directory() . '/src/register-blocks.php';
+	include get_template_directory() . '/src/login.php';
 }
 include_src();
+
 
 /**
  * Enqueues all assets required.
@@ -48,6 +51,33 @@ function enqueue_assets() {
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
 
+
+/**
+ * Removes unneccessary script/styles from being loaded.
+ *
+ * @since 1.0.0
+ */
+function dequeue_assets() {
+	// Block Styles.
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+	wp_deregister_style( 'classic-theme-styles' );
+	wp_dequeue_style( 'classic-theme-styles' );
+
+	// Dummy Content Generator.
+	wp_dequeue_script( 'wp_dummy_content_generator' );
+	wp_dequeue_style( 'wp_dummy_content_generator' );
+
+	// JQuery (cannot be removed, wp-api depends on this. Might be worth removing the wp-api dependency?).
+	// wp_dequeue_script( 'jquery' );.
+	// wp_deregister_script( 'jquery' );.
+}
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\dequeue_assets' );
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+
 /**
  * Enqueues all assets required for the block editor.
  *
@@ -59,55 +89,23 @@ function enqueue_block_editor_assets() {
 add_action( 'enqueue_block_editor_assets', __NAMESPACE__ . '\\enqueue_block_editor_assets' );
 
 /**
- * Enqueues all assets required for the login page.
+ * Disables the block editor for posts
+ *
+ * @param bool    $use_block_editor Whether the post can be edited or not.
+ *
+ * @param WP_Post $post The post being checked.
  *
  * @since 1.0.0
  */
-function enqueue_login_assets() {
-	wp_enqueue_style( 'wrdstudio-login', get_template_directory_uri() . '/assets/styles/login.css', array(), WRDSTUDIO_VERSION );
+function filter_block_editor( $use_block_editor, $post ) {
+	if ( 'post' === get_post_type( $post ) ) {
+		return false;
+	}
 
-	?>
-
-	<style type="text/css">
-		:root{
-			--logo-url: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/icons/logo.svg');
-			--grid-url: url('<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/bg-grid.svg');
-		}
-	</style>
-
-	<?php
+	return $use_block_editor;
 }
-add_action( 'login_enqueue_scripts', __NAMESPACE__ . '\\enqueue_login_assets' );
+add_filter( 'use_block_editor_for_post', __NAMESPACE__ . '\\filter_block_editor', 10, 2 );
 
-/**
- * Filters the login logo link URL.
- *
- * @since 1.0.0
- */
-function login_logo_url() {
-	return home_url();
-}
-add_filter( 'login_headerurl', __NAMESPACE__ . '\\login_logo_url' );
-
-/**
- * Filters the login link separator.
- *
- * @since 1.0.0
- */
-function login_link_separator() {
-	return '';
-}
-add_filter( 'login_link_separator', __NAMESPACE__ . '\\login_link_separator' );
-
-/**
- * Filters the login logo title.
- *
- * @since 1.0.0
- */
-function login_logo_title() {
-	return get_bloginfo( 'name' );
-}
-add_filter( 'login_headertext', __NAMESPACE__ . '\\login_logo_title' );
 
 /**
  * Registers the theme's support level for WordPress features.
@@ -149,6 +147,7 @@ function add_theme_supports() {
 }
 add_action( 'after_setup_theme', __NAMESPACE__ . '\\add_theme_supports' );
 
+
 /**
  * Includes any plugin files required to work.
  *
@@ -176,6 +175,7 @@ function include_plugin_dependencies() {
 }
 include_plugin_dependencies();
 
+
 /**
  * Filters the fields in the comment form.
  *
@@ -187,21 +187,3 @@ function filter_comment_fields( $fields ) {
 	return $fields;
 }
 add_filter( 'comment_form_default_fields', __NAMESPACE__ . '\\filter_comment_fields' );
-
-/**
- * Disables the block editor for posts
- *
- * @param bool    $use_block_editor Whether the post can be edited or not.
- *
- * @param WP_Post $post The post being checked.
- *
- * @since 1.0.0
- */
-function filter_block_editor( $use_block_editor, $post ) {
-	if ( 'post' === get_post_type( $post ) ) {
-		return false;
-	}
-
-	return $use_block_editor;
-}
-add_filter( 'use_block_editor_for_post', __NAMESPACE__ . '\\filter_block_editor', 10, 2 );

@@ -11,11 +11,15 @@ namespace wrd;
 
 ?>
 
-			</main> <!-- #primary -->
+			</main>
+
+			<?php get_template_part( 'template-parts/navigation-mobile' ); ?>
+
+			<?php get_template_part( '/template-parts/search' ); ?>
 
 			<?php get_template_part( 'template-parts/footer' ); ?>
 
-		</div> <!-- #page -->
+		</div>
 
 		<?php wp_footer(); ?>
 

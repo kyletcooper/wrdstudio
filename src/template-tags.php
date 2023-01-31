@@ -691,9 +691,9 @@ function the_nav_menu_items_prominent( $menu_location, $parent_item = -1 ) {
 
 		<a <?php the_menu_item_attrs( $child_menu_item, array( 'class' => 'block relative overflow-clip p-6 rounded-md bg-theme-50 dark:bg-theme-900 hover:bg-theme-100 dark:hover:bg-theme-800 transition-colors [&:hover_svg]:text-theme-200 dark:[&:hover_svg]:text-theme-700 ' . get_theme_color_class() ) ); ?>>
 			<div class="relative z-10">
-				<h4 class="font-medium text-lg mb-2">
+				<span class="font-medium text-lg mb-2">
 					<?php echo esc_html( $child_menu_item->title ); ?>
-				</h4>
+				</span>
 				<p class="text-sm">
 					<?php echo esc_html( $child_menu_item->description ); ?>
 				</p>

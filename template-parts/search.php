@@ -11,7 +11,7 @@ namespace wrd;
 
 ?>
 
-<dialog id="searchDialog" inert data-dialog-clickoff class="bg-white dark:bg-gray-900 scale-95 opacity-0 pointer-events-none open:pointer-events-auto open:scale-100 open:shadow-2xl open:opacity-100 fixed inset-y-12 inset-x-4 mt-0 flex flex-col shadow-none border-gray-300 dark:border-gray-700 border rounded-md p-0 w-full max-w-2xl transition-all backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
+<dialog id="search" inert data-dialog-clickoff class="bg-white dark:bg-gray-900 scale-95 opacity-0 pointer-events-none open:pointer-events-auto open:scale-100 open:shadow-2xl open:opacity-100 fixed inset-y-12 inset-x-4 mt-0 flex flex-col shadow-none border-gray-300 dark:border-gray-700 border rounded-md p-0 w-full max-w-2xl transition-all backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
 	<label class="flex items-center gap-4 py-3 px-5">
 		<span class="hidden md:block dark:text-white">
 			<?php the_icon( 'search' ); ?>

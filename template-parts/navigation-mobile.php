@@ -18,9 +18,9 @@ $top_level_menu_items = get_menu_items_by_location(
 
 ?>
 
-<dialog id="sidebarDialog" data-dialog-clickoff inert class="flex flex-col fixed z-[99999] top-0 bottom-0 right-0 left-12 max-w-[90vw] max-h-screen w-96 h-full m-0 ml-auto p-0 bg-white dark:bg-gray-900 border-l border-gray-300 dark:border-gray-700 divide-y divide-gray-300 dark:divide-gray-700 opacity-0 open:opacity-100 translate-x-8 open:translate-x-0 pointer-events-none open:pointer-events-auto shadow-none open:shadow-2xl transition-all duration-300 backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
+<dialog id="nav-mobile" data-dialog-clickoff inert class="flex flex-col fixed z-[99999] top-0 bottom-0 right-0 left-12 max-w-[90vw] max-h-screen w-96 h-full m-0 ml-auto p-0 bg-white dark:bg-gray-900 border-l border-gray-300 dark:border-gray-700 divide-y divide-gray-300 dark:divide-gray-700 opacity-0 open:opacity-100 translate-x-8 motion-reduce:translate-x-0 open:translate-x-0 pointer-events-none open:pointer-events-auto shadow-none open:shadow-2xl transition-all duration-300 backdrop:backdrop-blur-sm backdrop:bg-gray-900/30">
 	<header class="py-6 px-8 flex gap-6">
-		<button data-dialog-close="sidebarDialog" class="text-gray-400 dark:text-gray-500">
+		<button data-dialog-close="nav-mobile" class="text-gray-400 dark:text-gray-500"aria-label="<?php esc_html_e( 'Close Navigation', 'wrd' ); ?>">
 			<?php the_icon( 'close' ); ?>
 		</button>
 
@@ -29,7 +29,7 @@ $top_level_menu_items = get_menu_items_by_location(
 		</h2>
 	</header>
 
-	<ol role="navigation" class="grow overflow-y-auto divide-y divide-gray-300 dark:divide-gray-700">
+	<ol class="grow overflow-y-auto divide-y divide-gray-300 dark:divide-gray-700">
 
 		<?php foreach ( $top_level_menu_items as $menu_item ) : ?>
 			<li>
