@@ -72,10 +72,25 @@ function dequeue_assets() {
 	// wp_dequeue_script( 'jquery' );.
 	// wp_deregister_script( 'jquery' );.
 }
-add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\dequeue_assets' );
+add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\dequeue_assets', 11 );
 
 remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+/**
+ * Removes unneccessary script/style from wpcf7 being loaded on page they're not used on.
+ *
+ * @see https://contactform7.com/loading-javascript-and-stylesheet-only-when-it-is-necessary/
+ *
+ * @since 1.0.0
+ */
+function dequeue_wpcf7_assets() {
+	if ( ! is_page() || ! has_block( 'wrd/form' ) ) {
+		add_filter( 'wpcf7_load_js', '__return_false' );
+		add_filter( 'wpcf7_load_css', '__return_false' );
+	}
+}
+add_action( 'wp_head', __NAMESPACE__ . '\\dequeue_wpcf7_assets', 0 );
 
 
 /**
