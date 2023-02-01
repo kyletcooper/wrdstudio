@@ -16,8 +16,7 @@ namespace wrd;
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
-
+	
 	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf" as="font" type="font/ttf" crossorigin>
 	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf" as="font" type="font/ttf" crossorigin>
 	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
@@ -28,6 +27,7 @@ namespace wrd;
 			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 			font-weight: 400;
 			font-display: swap;
+
 		}
 
 		@font-face {
