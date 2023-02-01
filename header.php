@@ -43,6 +43,15 @@ namespace wrd;
 			font-weight: 600;
 			font-display: swap;
 		}
+
+		:root{
+			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid.svg' ); ?>');
+			--bg-grid-white-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid-white.svg' ); ?>');
+		}
+
+		.dark{
+			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid-dark.svg' ); ?>');
+		}
 	</style>
 
 	<?php wp_head(); ?>
@@ -99,15 +108,6 @@ namespace wrd;
 
 		window.wrd.theme.refresh();
 	</script>
-
-	<style id="css-urls">
-		:root{
-			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid.svg' ); ?>');
-		}
-		.dark{
-			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid-dark.svg' ); ?>');
-		}
-	</style>
 
 	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
 		<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-theme-500 focus:text-white focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>

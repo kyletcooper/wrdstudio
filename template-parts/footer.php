@@ -11,7 +11,7 @@ namespace wrd;
 
 ?>
 
-<div id="callout" class="bg-theme-500 bg-grid bg-100% bg-no-repeat text-white mt-12">
+<div id="callout" class="bg-theme-500 bg-grid-white bg-100% bg-no-repeat text-white mt-12">
 	<div class="container py-16">
 		<div class="flex items-end justify-between flex-wrap gap-12">
 			<div>
