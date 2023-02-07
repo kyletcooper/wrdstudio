@@ -1,0 +1,8 @@
+{
+	"name": "wrd/post-grid",
+	"title": "Post Grid",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

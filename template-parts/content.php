@@ -20,6 +20,12 @@ namespace wrd;
 
 		<div class="col-span-12 md:col-span-6 lg:col-span-8 flex items-center md:py-8">
 			<div>
+				<?php if ( get_category_labels() ) : ?>
+					<div class="uppercase text-xs text-gray-500 mb-2">
+						<?php the_category_labels(); ?>
+					</div>
+				<?php endif; ?>
+
 				<h2 class="text-3xl font-semibold">
 					<?php the_title(); ?>
 				</h2>

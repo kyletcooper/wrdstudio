@@ -7,8 +7,8 @@
 }
 
 ::selection {
-	background: var(--color-theme-100);
-	color: var(--color-theme-800);
+	background: var(--color-theme-100, #BBDFFF);
+	color: var(--color-theme-800, #004A8B);
 }
 
 .theme-red {

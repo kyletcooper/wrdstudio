@@ -710,3 +710,32 @@ function the_nav_menu_items_prominent( $menu_location, $parent_item = -1 ) {
 
 endforeach;
 }
+
+/**
+ * Outputs the categories as a string without links.
+ *
+ * @since 1.0.0
+ */
+function the_category_labels() {
+	echo esc_html( get_category_labels() );
+}
+
+/**
+ * Returns the categories as a string without links.
+ *
+ * @since 1.0.0
+ */
+function get_category_labels() {
+	$cats = get_the_category();
+	$str  = '';
+
+	foreach ( $cats as $i => $cat ) {
+		if ( 0 !== $i ) {
+			$str .= esc_html( ', ' );
+		}
+
+		$str .= esc_html( $cat->name );
+	}
+
+	return $str;
+}

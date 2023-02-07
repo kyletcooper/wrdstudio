@@ -1,0 +1,8 @@
+{
+	"name": "wrd/featured-post",
+	"title": "Featured Post",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
