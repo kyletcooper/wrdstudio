@@ -1,0 +1,121 @@
+{
+	"types": [
+		{
+			"type": "Author",
+			"label": "Author",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g><rect width='24' height='24' fill='none'/></g><g><path d='M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,4A3.5,3.5,0,1,1,8.5,9.5,3.5,3.5,0,0,1,12,6Zm0,14a8.008,8.008,0,0,1-6.14-2.88,9.951,9.951,0,0,1,12.28,0A8.008,8.008,0,0,1,12,20Z' fill='currentColor'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"label": "Type",
+					"type": "select",
+					"required": true,
+					"default": "Person",
+					"options": [
+						{
+							"value": "Person",
+							"label": "Person"
+						},
+						{
+							"value": "Organisation",
+							"label": "Organisation"
+						}
+					]
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"type": "text",
+					"feature": "strong"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"feature": "weak"
+				}
+			]
+		},
+		{
+			"type": "Article",
+			"label": "Article",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"label": "Article Type",
+					"type": "select",
+					"default": "Article",
+					"required": true,
+					"options": [
+						{
+							"value": "Article",
+							"label": "Generic Article"
+						},
+						{
+							"value": "NewsArticle",
+							"label": "News Article"
+						},
+						{
+							"value": "BlogPosting",
+							"label": "Blog Post"
+						}
+					]
+				},
+				{
+					"property": "headline",
+					"label": "Headline",
+					"type": "text"
+				},
+				{
+					"property": "description",
+					"label": "Description",
+					"type": "text"
+				},
+				{
+					"property": "author",
+					"label": "Author",
+					"type": "Schema:Author",
+					"repeatable": true
+				},
+				{
+					"property": "publisher",
+					"label": "Publisher",
+					"type": "Schema:Author"
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"type": "url",
+					"repeatable": true
+				},
+				{
+					"property": "datePublished",
+					"label": "Data Published",
+					"type": "datetime"
+				},
+				{
+					"property": "dateModified",
+					"label": "Data Modified",
+					"type": "datetime"
+				}
+			],
+			"links": [
+				{
+					"label": "Schema.org's Documentation for Articles",
+					"url": ""
+				},
+				{
+					"label": "Google's Structured Data Guide for Articles",
+					"url": ""
+				}
+			]
+		},
+		{
+			"type": "Course",
+			"label": "Course",
+			"generatable": true
+		}
+	]
+}

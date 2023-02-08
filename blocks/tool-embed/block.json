@@ -1,0 +1,8 @@
+{
+	"name": "wrd/tool-embed",
+	"title": "Tool Embed",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
