@@ -1,5 +1,5 @@
 const shouldIncludeInSchema = value => {
-	if (typeof value === undefined || typeof value === null) {
+	if (typeof value === 'undefined' || value === null) {
 		// Don't include not-included values
 		return false;
 	}
@@ -9,7 +9,13 @@ const shouldIncludeInSchema = value => {
 		return false;
 	}
 
-	if (typeof value === 'object') {
+	if (Array.isArray(value)) {
+		if (value.length === 0) {
+			return false;
+		}
+	}
+
+	if (typeof value === 'object' && !Array.isArray(value)) {
 		const subOject = objectToSchemaObject(value);
 		const subObjectKeys = Object.keys(subOject);
 
@@ -28,7 +34,11 @@ export const objectToSchemaObject = (original) => {
 	Object.keys(original).map(key => {
 		let value = original[key];
 
-		if (typeof value === 'object') {
+		if (Array.isArray(value)) {
+			value = value.filter(shouldIncludeInSchema);
+		}
+
+		if (typeof value === 'object' && !Array.isArray(value)) {
 			value = objectToSchemaObject(value);
 		}
 
@@ -41,6 +51,5 @@ export const objectToSchemaObject = (original) => {
 }
 
 export const objectToSchemaMarkup = (original) => {
-	// console.log(original);
 	return '<script type="application/ld+json">\n' + JSON.stringify(objectToSchemaObject(original), null, "\t") + '\n</script>';
 }

@@ -1,7 +1,7 @@
 {
 	"types": [
 		{
-			"type": "Author",
+			"type": "Schema:Author",
 			"label": "Author",
 			"icon": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g><rect width='24' height='24' fill='none'/></g><g><path d='M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,4A3.5,3.5,0,1,1,8.5,9.5,3.5,3.5,0,0,1,12,6Zm0,14a8.008,8.008,0,0,1-6.14-2.88,9.951,9.951,0,0,1,12.28,0A8.008,8.008,0,0,1,12,20Z' fill='currentColor'/></g></svg>",
 			"generatable": false,
@@ -38,8 +38,10 @@
 			]
 		},
 		{
-			"type": "Article",
+			"type": "Schema:Article",
 			"label": "Article",
+			"thumbnail": "http://localhost/wrdstudio/wp-content/uploads/2023/02/Article.png",
+			"description": "Feature your news, sports and blog articles in a rich format in Google search.",
 			"generatable": true,
 			"properties": [
 				{
@@ -93,29 +95,33 @@
 				{
 					"property": "datePublished",
 					"label": "Data Published",
-					"type": "datetime"
+					"type": "datetime-local"
 				},
 				{
 					"property": "dateModified",
 					"label": "Data Modified",
-					"type": "datetime"
+					"type": "datetime-local"
 				}
 			],
 			"links": [
 				{
 					"label": "Schema.org's Documentation for Articles",
-					"url": ""
+					"url": "https://schema.org/Article"
 				},
 				{
 					"label": "Google's Structured Data Guide for Articles",
-					"url": ""
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/article"
 				}
 			]
 		},
 		{
-			"type": "Course",
-			"label": "Course",
-			"generatable": true
+			"type": "Schema:Book",
+			"label": "Book",
+			"thumbnail": "http://localhost/wrdstudio/wp-content/uploads/2023/02/Book.png",
+			"description": "Allow Google search visitors to view structured data for books.",
+			"generatable": true,
+			"properties": [],
+			"links": []
 		}
 	]
 }

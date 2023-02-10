@@ -1,83 +1,32 @@
-import React, { useState } from "react"
-import ClipboardButton from "./ClipboardButton";
+import React, { Fragment, useState } from "react"
 
-import Input from "./Input"
-import InputWrapper from "./InputWrapper";
-import schema from './schemas.json'
-import { getSchemaTypeFromInputType } from "./InputHelpers";
-import { objectToSchemaMarkup } from "./schemaValidator";
+import schema from './schemaTypes.json'
+import SchemaTypePicker from "./schemaTypePicker";
+import SchemaBuilder from "./SchemaBuilder";
 
 export default function App() {
-	const defaultSchemaObject = { "@context": "https://schema.org", };
 	const [schemaType, setSchemaType] = useState();
-	const [formValues, setFormValues] = useState(defaultSchemaObject);
 
-	const schemaTypeOptions = schema.types.filter(type => type.generatable).map(type => {
-		return {
-			label: type.label,
-			value: "Schema:" + type.type,
-		}
-	})
-
-	const schemaTypeObject = getSchemaTypeFromInputType(schemaType);
-	const schemaMarkup = objectToSchemaMarkup(formValues);
-
-	const resetSchema = (schemaType) => {
-		setSchemaType(schemaType)
-		setFormValues(defaultSchemaObject)
-	}
+	const generatableSchemaTypes = schema.types.filter(type => type.generatable);
 
 	return (
-		<div className="grid lg:grid-cols-2 gap-12">
-			<fieldset>
-				<InputWrapper label="Schema Type" type="select" help="Choose one of the structured data types that Google supports." required>
-					<Input type="select" value={schemaType} options={schemaTypeOptions} onChange={resetSchema} placeholder='Choose a Schema Type...' />
-				</InputWrapper>
+		<div className="bg-white border border-gray-300 shadow rounded-2xl p-8 lg:p-12 dark:bg-gray-900 dark:border-gray-800">
+			{
+				!schemaType ?
+					<Fragment>
+						<h2 className="text-4xl font-semibold mb-4">
+							Choose a Structured Data Type
+						</h2>
 
-				<hr className="my-12 border-gray-300" />
+						<p className="text-gray-700 dark:text-gray-400 max-w-xl mb-12">
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget consequat ante, sit amet laoreet lorem. Mauris mattis arcu sit amet elementum luctus. Donec rutrum volutpat nulla, id ultrices ligula congue non. Etiam cursus ex dolor, et auctor neque faucibus sit amet.
+						</p>
 
-				{schemaType &&
-					<Input
-						value={formValues}
-						onChange={setFormValues}
-						type={schemaType}
-						forceOpen
-					/>
-				}
-			</fieldset>
-
-			<div>
-				<div className="sticky top-16 [.admin-bar_&]:top-24">
-					<code className="block bg-gray-800 rounded-md text-white font-mono max-h-[50vh] overflow-x-hidden overflow-y-auto">
-						<header className="bg-gray-900 text-sm py-2 px-6">
-							<h2>Schema Output</h2>
-						</header>
-
-						<pre className="block p-6">{schemaMarkup}</pre>
-					</code>
-
-					<div className="grid gap-6 xl:grid-cols-2 mt-6">
-						<div>
-							<ClipboardButton content={schemaMarkup} />
-						</div>
-
-						{schemaTypeObject?.links?.length &&
-							<div>
-								<h2 className="text-lg font-semibold mb-2">Learn more about this schema type</h2>
-								<ul class="flex flex-col gap-2">
-									{schemaTypeObject?.links.map(link =>
-										<li>
-											<a href={link.href} target="_blank" className="text-theme-500 text-medium">
-												{link.label}
-											</a>
-										</li>
-									)}
-								</ul>
-							</div>
-						}
-					</div>
-				</div>
-			</div>
+						<SchemaTypePicker types={generatableSchemaTypes} onChange={setSchemaType} />
+					</Fragment>
+					:
+					<SchemaBuilder {...{ schemaType, setSchemaType }}></SchemaBuilder>
+			}
 		</div>
-	);
+	)
 }
