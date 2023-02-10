@@ -1566,16 +1566,16 @@ video {
   margin-left: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-1 {
   margin-top: 0.25rem;
 }
 
 .mt-2 {
   margin-top: 0.5rem;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
 }
 
 .box-border {
@@ -1935,6 +1935,17 @@ video {
 
 .animate-pulse {
   animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping {
+  animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
 .cursor-text {
@@ -2907,16 +2918,6 @@ video {
   border-color: rgb(241 245 249 / var(--tw-border-opacity));
 }
 
-.border-gray-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(30 41 59 / var(--tw-border-opacity));
-}
-
-.border-theme-600 {
-  --tw-border-opacity: 1;
-  border-color: rgb(var(--color-theme-600-rgb) / var(--tw-border-opacity));
-}
-
 .bg-theme-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--color-theme-500-rgb) / var(--tw-bg-opacity));
@@ -2969,11 +2970,6 @@ video {
 .bg-\[rgb\(255\2c 0\2c 0\)\] {
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-theme-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-theme-900-rgb) / var(--tw-bg-opacity));
 }
 
 .bg-grid {
@@ -3135,18 +3131,6 @@ video {
   padding: 0.25rem;
 }
 
-.p-12 {
-  padding: 3rem;
-}
-
-.p-2 {
-  padding: 0.5rem;
-}
-
-.p-3 {
-  padding: 0.75rem;
-}
-
 .p-4 {
   padding: 1rem;
 }
@@ -3219,16 +3203,6 @@ video {
 .py-5 {
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
-}
-
-.py-0 {
-  padding-top: 0px;
-  padding-bottom: 0px;
-}
-
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
 }
 
 .pt-4 {
@@ -3717,6 +3691,10 @@ video {
   outline-style: double;
 }
 
+.outline-offset-4 {
+  outline-offset: 4px;
+}
+
 .ring {
   --tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
   --tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
@@ -3736,6 +3714,14 @@ video {
 .ring-theme-100 {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(var(--color-theme-100-rgb) / var(--tw-ring-opacity));
+}
+
+.ring-opacity-0 {
+  --tw-ring-opacity: 0;
+}
+
+.ring-offset-4 {
+  --tw-ring-offset-width: 4px;
 }
 
 .ring-offset-blue {
@@ -4694,11 +4680,6 @@ body {
   border-color: rgb(var(--color-theme-600-rgb) / var(--tw-border-opacity));
 }
 
-.hover\:border-theme-500:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(var(--color-theme-500-rgb) / var(--tw-border-opacity));
-}
-
 .hover\:border-theme-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(var(--color-theme-300-rgb) / var(--tw-border-opacity));
@@ -4849,6 +4830,10 @@ body {
 
 .focus\:ring-theme-500\/25:focus {
   --tw-ring-color: rgb(var(--color-theme-500-rgb) / 0.25);
+}
+
+.focus\:ring-opacity-0:focus {
+  --tw-ring-opacity: 0;
 }
 
 .hover\:focus\:text-center:focus:hover {
@@ -6183,14 +6168,6 @@ body {
     gap: 2rem;
   }
 
-  .md\:p-12 {
-    padding: 3rem;
-  }
-
-  .md\:p-8 {
-    padding: 2rem;
-  }
-
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -6251,10 +6228,6 @@ body {
 
   .lg\:grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
-  }
-
-  .lg\:flex-row-reverse {
-    flex-direction: row-reverse;
   }
 
   .lg\:prose-lg {
@@ -6563,30 +6536,6 @@ body {
   top: 6rem;
 }
 
-.\[\&\:has\(button\)\]\:cursor-pointer:has(button) {
-  cursor: pointer;
-}
-
-.\[\&\:has\(button\)\]\:hover\:border-theme-500:hover:has(button) {
-  --tw-border-opacity: 1;
-  border-color: rgb(var(--color-theme-500-rgb) / var(--tw-border-opacity));
-}
-
-.\[\&\:has\(button\)\]\:hover\:bg-theme-50:hover:has(button) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-theme-50-rgb) / var(--tw-bg-opacity));
-}
-
-.\[\&\:has\(button\)\]\:hover\:text-theme-500:hover:has(button) {
-  --tw-text-opacity: 1;
-  color: rgb(var(--color-theme-500-rgb) / var(--tw-text-opacity));
-}
-
-.dark .dark\:\[\&\:has\(button\)\]\:hover\:bg-theme-900:hover:has(button) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-theme-900-rgb) / var(--tw-bg-opacity));
-}
-
 .\[\&\:has\(\.inputSchemaOpenButton\)\]\:cursor-pointer:has(.inputSchemaOpenButton) {
   cursor: pointer;
 }
@@ -6609,8 +6558,4 @@ body {
 .dark .dark\:\[\&\:has\(\.inputSchemaOpenButton\)\]\:hover\:bg-theme-900:hover:has(.inputSchemaOpenButton) {
   --tw-bg-opacity: 1;
   background-color: rgb(var(--color-theme-900-rgb) / var(--tw-bg-opacity));
-}
-
-.labelWrapper:has(.inputSchemaOpenButton)>.\[\.labelWrapper\:has\(\.inputSchemaOpenButton\)\>\&\]\:hidden {
-  display: none;
 }
