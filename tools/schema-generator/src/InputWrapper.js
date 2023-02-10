@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import InputSchema from "./InputSchema";
 import InputSelect from "./InputSelect";
 import InputDefault from "./InputDefault";
-import { isInputTypeSchema } from "./InputHelpers";
+import { isInputTypeSchema } from "./schema-helpers";
 
 export default function Input(props) {
 	const handleChange = (value) => {

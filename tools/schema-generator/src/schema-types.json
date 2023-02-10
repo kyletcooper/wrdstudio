@@ -120,8 +120,39 @@
 			"thumbnail": "http://localhost/wrdstudio/wp-content/uploads/2023/02/Book.png",
 			"description": "Allow Google search visitors to view structured data for books.",
 			"generatable": true,
-			"properties": [],
-			"links": []
+			"properties": [
+				{
+					"property": "@id",
+					"label": "ID",
+					"required": true,
+					"help": "A unique identifier for the book, unique to your organisation. May be a URL."
+				},
+				{
+					"property": "@type",
+					"default": "Book",
+					"type": "text"
+				},
+				{
+					"property": "author",
+					"label": "Author",
+					"type": "Schema:Author",
+					"repeatable": true
+				},
+				{
+					"property": "name",
+					"label": "Name"
+				}
+			],
+			"links": [
+				{
+					"label": "Schema.org's Documentation for Books",
+					"url": "https://schema.org/Book"
+				},
+				{
+					"label": "Google's Structured Data Guide for Books",
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/book"
+				}
+			]
 		}
 	]
 }

@@ -1,9 +1,9 @@
-import React from "react"
+import React, { useEffect } from "react"
 
 export default function InputDefault({
-	type = '',
 	value = '',
 	placeholder = '',
+	type = '',
 	onChange = () => { }
 }) {
 	return (

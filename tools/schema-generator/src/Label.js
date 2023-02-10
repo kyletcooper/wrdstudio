@@ -12,7 +12,7 @@ export default function Label({
 	const [isShowHelp, setIsShowHelp] = useState(false);
 
 	if (type === 'hidden') {
-		return null;
+		return children;
 	}
 
 	return (

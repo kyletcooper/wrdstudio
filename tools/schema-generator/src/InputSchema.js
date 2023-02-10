@@ -4,7 +4,7 @@ import Input from "./InputWrapper";
 import Label from "./Label";
 import Button from "./Button";
 import IconButton from "./IconButton";
-import { getSchemaTypeFromInputType } from "./InputHelpers";
+import { getSchemaTypeFromInputType } from "./schema-helpers";
 
 export default function InputSchema({
 	type = 'Schema:Article',

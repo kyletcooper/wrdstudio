@@ -1,5 +1,5 @@
 import React from "react"
-import { isInputTypeSchema, getSchemaTypeFromInputType } from "./InputHelpers";
+import { isInputTypeSchema, getSchemaTypeFromInputType } from "./schema-helpers";
 
 export default function InputIcon({
 	type = ''

@@ -3,22 +3,21 @@ import React, { useState } from "react"
 import Input from "./InputWrapper"
 import Button from "./Button";
 import ClipboardButton from "./ClipboardButton"
-import { getSchemaTypeFromInputType } from "./InputHelpers";
-import { objectToSchemaMarkup } from "./schemaValidator";
+import { getDefaultSchemaObject, objectToSchemaMarkup, getSchemaTypeFromInputType } from "./schema-helpers";
 
 export default function SchemaBuilder({
 	schemaType = '',
 	setSchemaType = () => { },
 }) {
-	const defaultSchemaObject = { "@context": "https://schema.org", };
-	const [formValues, setFormValues] = useState(defaultSchemaObject);
+	const defaultSchemaObject = getDefaultSchemaObject(schemaType);
+	const [userSchema, setUserSchema] = useState(defaultSchemaObject);
 
 	const schemaTypeObject = getSchemaTypeFromInputType(schemaType);
-	const schemaMarkup = objectToSchemaMarkup(formValues);
+	const schemaMarkup = objectToSchemaMarkup(userSchema);
 
 	const resetSchema = () => {
 		setSchemaType(undefined)
-		setFormValues(defaultSchemaObject)
+		setUserSchema(defaultSchemaObject)
 	}
 
 	return (
@@ -36,8 +35,8 @@ export default function SchemaBuilder({
 				<fieldset className="mt-10">
 					{schemaType &&
 						<Input
-							value={formValues}
-							onChange={setFormValues}
+							value={userSchema}
+							onChange={setUserSchema}
 							type={schemaType}
 							forceOpen
 						/>
@@ -66,7 +65,7 @@ export default function SchemaBuilder({
 								<ul className="flex flex-col gap-2">
 									{schemaTypeObject?.links.map((link, index) =>
 										<li key={index}>
-											<a href={link.href} target="_blank" className="text-theme-500 text-medium">
+											<a href={link.url} target="_blank" className="text-theme-500 text-medium">
 												{link.label}
 											</a>
 										</li>

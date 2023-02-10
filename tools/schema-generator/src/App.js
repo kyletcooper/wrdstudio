@@ -1,13 +1,11 @@
 import React, { Fragment, useState } from "react"
 
-import schema from './schemaTypes.json'
 import SchemaTypePicker from "./schemaTypePicker";
 import SchemaBuilder from "./SchemaBuilder";
+import { getGeneratableSchemaTypes } from "./schema-helpers";
 
 export default function App() {
 	const [schemaType, setSchemaType] = useState();
-
-	const generatableSchemaTypes = schema.types.filter(type => type.generatable);
 
 	return (
 		<div className="bg-white border border-gray-300 shadow rounded-2xl p-8 lg:p-12 dark:bg-gray-900 dark:border-gray-800">
@@ -22,7 +20,7 @@ export default function App() {
 							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget consequat ante, sit amet laoreet lorem. Mauris mattis arcu sit amet elementum luctus. Donec rutrum volutpat nulla, id ultrices ligula congue non. Etiam cursus ex dolor, et auctor neque faucibus sit amet.
 						</p>
 
-						<SchemaTypePicker types={generatableSchemaTypes} onChange={setSchemaType} />
+						<SchemaTypePicker types={getGeneratableSchemaTypes()} onChange={setSchemaType} />
 					</Fragment>
 					:
 					<SchemaBuilder {...{ schemaType, setSchemaType }}></SchemaBuilder>

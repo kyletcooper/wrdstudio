@@ -2,12 +2,10 @@ import React, { useEffect } from "react"
 
 export default function InputSelect({
 	value = '',
-	options = [],
 	placeholder = '',
+	options = [],
 	onChange = () => { },
 }) {
-	useEffect(() => onChange(value), []);
-
 	return (
 		<select
 			value={value}
