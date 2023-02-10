@@ -49,7 +49,7 @@ export default function SchemaBuilder({
 				<div className="sticky top-16 [.admin-bar_&]:top-24">
 					<code className="block bg-gray-800 dark:bg-gray-700 rounded-md text-white font-mono max-h-[50vh] overflow-y-auto">
 						<header className="bg-gray-900 dark:bg-gray-800 text-sm py-2 px-6">
-							<h2>Schema Output</h2>
+							<h2 className="font-semibold">Schema Output</h2>
 						</header>
 
 						<pre className="block p-6 whitespace-pre-wrap">{schemaMarkup}</pre>
