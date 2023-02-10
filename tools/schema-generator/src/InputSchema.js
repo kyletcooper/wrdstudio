@@ -86,7 +86,7 @@ export default function InputSchema({
 												value={value}
 												onChange={newVal => setPropertyValue(property, newVal, valueIndex)}
 											/>
-											<IconButton className="ml-auto" onClick={() => removeAdditionalProperty(property, valueIndex)}>
+											<IconButton label={"Remove " + property.label} className="ml-auto" onClick={() => removeAdditionalProperty(property, valueIndex)}>
 												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
 													<path d="M0,0H24V24H0Z" fill="none" />
 													<path d="M19,13H5V11H19Z" fill="currentColor" />
