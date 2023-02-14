@@ -1,27 +1,202 @@
 {
 	"types": [
 		{
-			"type": "Schema:Author",
-			"label": "Author",
+			"type": "Schema:QuantitativeValue",
+			"label": "Quantitative Value",
+			"icon": "",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "QuantitativeValue"
+				},
+				{
+					"property": "maxValue",
+					"label": "Max Value",
+					"type": "number",
+					"required": true
+				},
+				{
+					"property": "minValue",
+					"label": "Min Value",
+					"type": "number",
+					"required": true
+				},
+				{
+					"property": "unitCode",
+					"label": "Unit Code",
+					"required": true,
+					"help": "E.g. day/dd"
+				}
+			]
+		},
+		{
+			"type": "Schema:MonetaryAmount",
+			"label": "Monetary Amount",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><path d='M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M12.88,17.76V19h-1.75v-1.29 c-0.74-0.18-2.39-0.77-3.02-2.96l1.65-0.67c0.06,0.22,0.58,2.09,2.4,2.09c0.93,0,1.98-0.48,1.98-1.61c0-0.96-0.7-1.46-2.28-2.03 c-1.1-0.39-3.35-1.03-3.35-3.31c0-0.1,0.01-2.4,2.62-2.96V5h1.75v1.24c1.84,0.32,2.51,1.79,2.66,2.23l-1.58,0.67 c-0.11-0.35-0.59-1.34-1.9-1.34c-0.7,0-1.81,0.37-1.81,1.39c0,0.95,0.86,1.31,2.64,1.9c2.4,0.83,3.01,2.05,3.01,3.45 C15.9,17.17,13.4,17.67,12.88,17.76z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "MonetaryAmount"
+				},
+				{
+					"property": "value",
+					"label": "Value",
+					"type": "number",
+					"required": true
+				},
+				{
+					"property": "currency",
+					"label": "Currency",
+					"required": true
+				}
+			]
+		},
+		{
+			"type": "Schema:DefinedRegion",
+			"label": "Defined Region",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "DefinedRegion"
+				},
+				{
+					"property": "addressCountry",
+					"label": "Country",
+					"required": true,
+					"help": "The 2-digit country code, in ISO 3166-1 format."
+				},
+				{
+					"property": "addressRegion",
+					"label": "Region",
+					"help": "2- or 3-digit ISO 3166-2 subdivision code, without country prefix. Currently, Google Search only supports the US, Australia, and Japan."
+				},
+				{
+					"property": "postalCode",
+					"label": "Postal Code",
+					"help": "Google supports Australia, Canada, and the US. Only include one of Postal Code or Region."
+				}
+			]
+		},
+		{
+			"type": "Schema:ItemList",
+			"label": "List",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ItemList"
+				},
+				{
+					"property": "itemListElement",
+					"label": "Item",
+					"type": "Schema:ListItem",
+					"repeatable": true
+				}
+			]
+		},
+		{
+			"type": "Schema:ListItem",
+			"label": "Item",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ListItem"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "position",
+					"label": "Position",
+					"type": "number",
+					"required": true,
+					"feature": "weak"
+				},
+				{
+					"property": "item",
+					"label": "Item",
+					"required": true
+				}
+			]
+		},
+		{
+			"type": "Schema:ListItemAll",
+			"label": "Full Item",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2l-5.5 9h11z'/><circle cx='17.5' cy='17.5' r='4.5'/><path d='M3 13.5h8v8H3z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ListItem"
+				},
+				{
+					"property": "position",
+					"label": "Position",
+					"type": "number",
+					"feature": "strong"
+				},
+				{
+					"property": "item",
+					"label": "Item",
+					"type": [
+						"Schema:Book",
+						"Schema:Movie",
+						"Schema:Recipe",
+						"Schema:LocalBusiness"
+					]
+				}
+			]
+		},
+		{
+			"type": "Schema:ListItemSummary",
+			"label": "Summary Item",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2l-5.5 9h11z'/><circle cx='17.5' cy='17.5' r='4.5'/><path d='M3 13.5h8v8H3z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ListItem"
+				},
+				{
+					"property": "position",
+					"label": "Position",
+					"type": "number",
+					"feature": "strong"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url"
+				}
+			]
+		},
+		{
+			"type": "Schema:Person",
+			"label": "Person",
 			"icon": "<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><g><rect width='24' height='24' fill='none'/></g><g><path d='M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,4A3.5,3.5,0,1,1,8.5,9.5,3.5,3.5,0,0,1,12,6Zm0,14a8.008,8.008,0,0,1-6.14-2.88,9.951,9.951,0,0,1,12.28,0A8.008,8.008,0,0,1,12,20Z' fill='currentColor'/></g></svg>",
 			"generatable": false,
 			"properties": [
 				{
 					"property": "@type",
-					"label": "Type",
-					"type": "select",
-					"required": true,
-					"default": "Person",
-					"options": [
-						{
-							"value": "Person",
-							"label": "Person"
-						},
-						{
-							"value": "Organisation",
-							"label": "Organisation"
-						}
-					]
+					"type": "hidden",
+					"default": "Person"
 				},
 				{
 					"property": "name",
@@ -34,6 +209,947 @@
 					"label": "URL",
 					"type": "url",
 					"feature": "weak"
+				},
+				{
+					"property": "sameAs",
+					"label": "Same as",
+					"type": "url",
+					"help": "Reference to a webpage that disambiguates the person, e.g. a Wikipedia article."
+				}
+			]
+		},
+		{
+			"type": "Schema:GeoCoordinates",
+			"label": "Coordinates",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm6.93 6h-2.95c-.32-1.25-.78-2.45-1.38-3.56 1.84.63 3.37 1.91 4.33 3.56zM12 4.04c.83 1.2 1.48 2.53 1.91 3.96h-3.82c.43-1.43 1.08-2.76 1.91-3.96zM4.26 14C4.1 13.36 4 12.69 4 12s.1-1.36.26-2h3.38c-.08.66-.14 1.32-.14 2 0 .68.06 1.34.14 2H4.26zm.82 2h2.95c.32 1.25.78 2.45 1.38 3.56-1.84-.63-3.37-1.9-4.33-3.56zm2.95-8H5.08c.96-1.66 2.49-2.93 4.33-3.56C8.81 5.55 8.35 6.75 8.03 8zM12 19.96c-.83-1.2-1.48-2.53-1.91-3.96h3.82c-.43 1.43-1.08 2.76-1.91 3.96zM14.34 14H9.66c-.09-.66-.16-1.32-.16-2 0-.68.07-1.35.16-2h4.68c.09.65.16 1.32.16 2 0 .68-.07 1.34-.16 2zm.25 5.56c.6-1.11 1.06-2.31 1.38-3.56h2.95c-.96 1.65-2.49 2.93-4.33 3.56zM16.36 14c.08-.66.14-1.32.14-2 0-.68-.06-1.34-.14-2h3.38c.16.64.26 1.31.26 2s-.1 1.36-.26 2h-3.38z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "GeoCoordinates"
+				},
+				{
+					"property": "latitude",
+					"label": "Latitude",
+					"type": "number",
+					"feature": "strong"
+				},
+				{
+					"property": "longitude",
+					"label": "Longitude",
+					"type": "number",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:OpeningHoursSpecification",
+			"label": "OpeningHoursSpecification",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z'/><path d='M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "OpeningHoursSpecification"
+				},
+				{
+					"property": "dayOfWeek",
+					"label": "Days of the Week",
+					"repeatable": true
+				},
+				{
+					"property": "opens",
+					"label": "Opens",
+					"type": "time",
+					"feature": "strong"
+				},
+				{
+					"property": "closes",
+					"label": "Closes",
+					"type": "time",
+					"feature": "strong"
+				},
+				{
+					"property": "validFrom",
+					"label": "Closes",
+					"help": "In the YYYY-MM-DD format."
+				},
+				{
+					"property": "validThrough",
+					"label": "Closes",
+					"help": "In the YYYY-MM-DD format."
+				}
+			]
+		},
+		{
+			"type": "Schema:NutritionInformation",
+			"label": "Nutrition Information",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M8.1 13.34l2.83-2.83L3.91 3.5c-1.56 1.56-1.56 4.09 0 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "NutritionInformation"
+				},
+				{
+					"property": "calories",
+					"label": "Calories",
+					"required": true
+				}
+			]
+		},
+		{
+			"type": "Schema:Organisation",
+			"label": "Organisation",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 7V3H2v18h20V7H12zM6 19H4v-2h2v2zm0-4H4v-2h2v2zm0-4H4V9h2v2zm0-4H4V5h2v2zm4 12H8v-2h2v2zm0-4H8v-2h2v2zm0-4H8V9h2v2zm0-4H8V5h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2V9h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Organisation"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"type": "text",
+					"feature": "strong"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"feature": "weak"
+				},
+				{
+					"property": "sameAs",
+					"label": "Same as",
+					"type": "url",
+					"help": "Reference to a webpage that disambiguates the organisation, e.g. a Wikipedia article."
+				}
+			]
+		},
+		{
+			"type": "Schema:PostalAddress",
+			"label": "Postal Address",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "PostalAddress"
+				},
+				{
+					"property": "streetAddress",
+					"label": "Street Address",
+					"feature": "strong"
+				},
+				{
+					"property": "addressLocality",
+					"label": "Locality"
+				},
+				{
+					"property": "postalCode",
+					"label": "Postal Code"
+				},
+				{
+					"property": "addressRegion",
+					"label": "Region"
+				},
+				{
+					"property": "addressCountry",
+					"label": "Country",
+					"help": "Recommended to be the ISO 3166-1 2-character country code."
+				}
+			]
+		},
+		{
+			"type": "Schema:Place",
+			"label": "Place",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Place"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"type": "text",
+					"feature": "strong"
+				},
+				{
+					"property": "address",
+					"label": "Address",
+					"type": "Schema:PostalAddress"
+				}
+			]
+		},
+		{
+			"type": "Schema:VirtualLocation",
+			"label": "Virtual Location",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "VirtualLocation"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"type": "text",
+					"feature": "strong"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"feature": "weak"
+				}
+			]
+		},
+		{
+			"type": "Schema:Offer",
+			"label": "Offer",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='m21.41 11.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Offer"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"type": "text",
+					"feature": "strong"
+				},
+				{
+					"property": "availability",
+					"label": "Availability",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/PreSale",
+							"label": "Pre-sale"
+						},
+						{
+							"value": "https://schema.org/PreOrder",
+							"label": "Pre-order"
+						},
+						{
+							"value": "https://schema.org/InStock",
+							"label": "In Stock"
+						},
+						{
+							"value": "https://schema.org/InStoreOnly",
+							"label": "In Store Only"
+						},
+						{
+							"value": "https://schema.org/OnlineOnly",
+							"label": "Online Only"
+						},
+						{
+							"value": "https://schema.org/LimitedAvailability",
+							"label": "Limited Availability"
+						},
+						{
+							"value": "https://schema.org/BackOrder",
+							"label": "On Back-order"
+						},
+						{
+							"value": "https://schema.org/OutOfStock",
+							"label": "Out of Stock"
+						},
+						{
+							"value": "https://schema.org/SoldOut",
+							"label": "Sold Out"
+						},
+						{
+							"value": "https://schema.org/Discontinued",
+							"label": "Discontinued"
+						}
+					]
+				},
+				{
+					"property": "price",
+					"label": "Price",
+					"type": "number",
+					"feature": "weak"
+				},
+				{
+					"property": "priceCurrency",
+					"label": "Price Currency",
+					"feature": "weak",
+					"help": "The 3-letter ISO 4217 currency code."
+				},
+				{
+					"property": "validFrom",
+					"label": "Valid From",
+					"type": "datetime-local"
+				},
+				{
+					"property": "priceValidUntil",
+					"label": "Valid Until",
+					"type": "datetime-local"
+				},
+				{
+					"property": "itemCondition",
+					"label": "Condition",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/NewCondition",
+							"label": "New"
+						},
+						{
+							"value": "https://schema.org/RefurbishedCondition",
+							"label": "Refurbished"
+						},
+						{
+							"value": "https://schema.org/UsedCondition",
+							"label": "Used"
+						}
+					]
+				},
+				{
+					"property": "shippingDetails",
+					"label": "Shipping Details",
+					"type": "Schema:OfferShippingDetails",
+					"repeatable": true
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url"
+				}
+			]
+		},
+		{
+			"type": "Schema:OfferShippingDetails",
+			"label": "Shipping Details",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "OfferShippingDetails"
+				},
+				{
+					"property": "deliveryTime",
+					"label": "Delivery Time",
+					"type": "Schema:ShippingDeliveryTime"
+				},
+				{
+					"property": "shippingDestination",
+					"label": "Destination",
+					"type": "Schema:DefinedRegion"
+				},
+				{
+					"property": "shippingRate",
+					"label": "Shipping Rate",
+					"type": "Schema:MonetaryAmount"
+				}
+			]
+		},
+		{
+			"type": "Schema:ShippingDeliveryTime",
+			"label": "Shipping Delivery Time",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ShippingDeliveryTime"
+				},
+				{
+					"property": "handlingTime",
+					"label": "Handling Time",
+					"type": "Schema:QuantitativeValue"
+				},
+				{
+					"property": "transitTime",
+					"label": "Transit Time",
+					"type": "Schema:QuantitativeValue"
+				}
+			]
+		},
+		{
+			"type": "Schema:SizeSpecification",
+			"label": "Size Specification",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M3 5v4h2V5h4V3H5c-1.1 0-2 .9-2 2zm2 10H3v4c0 1.1.9 2 2 2h4v-2H5v-4zm14 4h-4v2h4c1.1 0 2-.9 2-2v-4h-2v4zm0-16h-4v2h4v4h2V5c0-1.1-.9-2-2-2z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "SizeSpecification"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "sizeGroup",
+					"label": "Size Group",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/WearableSizeGroupRegular",
+							"label": "Regular"
+						},
+						{
+							"value": "https://schema.org/WearableSizeGroupPetite",
+							"label": "Petite"
+						},
+						{
+							"value": "https://schema.org/WearableSizeGroupPlus",
+							"label": "Plus"
+						},
+						{
+							"value": "https://schema.org/WearableSizeGroupTall",
+							"label": "Tall"
+						},
+						{
+							"value": "https://schema.org/WearableSizeGroupBig",
+							"label": "Big"
+						},
+						{
+							"value": "https://schema.org/WearableSizeGroupMaternity",
+							"label": "Maternity"
+						}
+					]
+				},
+				{
+					"property": "sizeSystem",
+					"label": "Size System",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/WearableSizeSystemAU",
+							"label": "Australian"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemBR",
+							"label": "Brazillian"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemCN",
+							"label": "Chinese"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemDE",
+							"label": "Germany"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemEurope",
+							"label": "Europe"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemFR",
+							"label": "France"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemIT",
+							"label": "Italy"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemJP",
+							"label": "Japan"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemMX",
+							"label": "Mexico"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemUK",
+							"label": "United Kingdom"
+						},
+						{
+							"value": "https://schema.org/WearableSizeSystemUS",
+							"label": "United States"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Schema:EnergyConsumptionDetails",
+			"label": "Energy Consumption Details",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><g><path d='M12,3c-4.8,0-9,3.86-9,9c0,2.12,0.74,4.07,1.97,5.61L3,19.59L4.41,21l1.97-1.97C7.93,20.26,9.88,21,12,21 c2.3,0,4.61-0.88,6.36-2.64C20.12,16.61,21,14.3,21,12l0-9L12,3z M15.83,12.26l-5.16,4.63c-0.16,0.15-0.41,0.14-0.56-0.01 c-0.14-0.14-0.16-0.36-0.04-0.52l2.44-3.33l-4.05-0.4c-0.44-0.04-0.63-0.59-0.3-0.89l5.16-4.63c0.16-0.15,0.41-0.14,0.56,0.01 c0.14,0.14,0.16,0.36,0.04,0.52l-2.44,3.33l4.05,0.4C15.98,11.41,16.16,11.96,15.83,12.26z'/></g></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "EnergyConsumptionDetails"
+				},
+				{
+					"property": "hasEnergyEfficiencyCategory",
+					"label": "Energy Effeciency Category",
+					"type": "select",
+					"required": true,
+					"feature": "strong",
+					"options": [
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA3Plus",
+							"label": "EU Energy Efficiency Class A+++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA2Plus",
+							"label": "EU Energy Efficiency Class A++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA1Plus",
+							"label": "EU Energy Efficiency Class A+"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA",
+							"label": "EU Energy Efficiency Class A"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryB",
+							"label": "EU Energy Efficiency Class B"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryC",
+							"label": "EU Energy Efficiency Class C"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryD",
+							"label": "EU Energy Efficiency Class D"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryE",
+							"label": "EU Energy Efficiency Class E"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryF",
+							"label": "EU Energy Efficiency Class F"
+						}
+					]
+				},
+				{
+					"property": "energyEfficiencyScaleMin",
+					"label": "Lowest Effeciency Class",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA3Plus",
+							"label": "EU Energy Efficiency Class A+++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA2Plus",
+							"label": "EU Energy Efficiency Class A++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA1Plus",
+							"label": "EU Energy Efficiency Class A+"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA",
+							"label": "EU Energy Efficiency Class A"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryB",
+							"label": "EU Energy Efficiency Class B"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryC",
+							"label": "EU Energy Efficiency Class C"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryD",
+							"label": "EU Energy Efficiency Class D"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryE",
+							"label": "EU Energy Efficiency Class E"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryF",
+							"label": "EU Energy Efficiency Class F"
+						}
+					]
+				},
+				{
+					"property": "energyEfficiencyScaleMax",
+					"label": "Highest Effeciency Class",
+					"type": "select",
+					"options": [
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA3Plus",
+							"label": "EU Energy Efficiency Class A+++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA2Plus",
+							"label": "EU Energy Efficiency Class A++"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA1Plus",
+							"label": "EU Energy Efficiency Class A+"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryA",
+							"label": "EU Energy Efficiency Class A"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryB",
+							"label": "EU Energy Efficiency Class B"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryC",
+							"label": "EU Energy Efficiency Class C"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryD",
+							"label": "EU Energy Efficiency Class D"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryE",
+							"label": "EU Energy Efficiency Class E"
+						},
+						{
+							"value": "https://schema.org/EUEnergyEfficiencyCategoryF",
+							"label": "EU Energy Efficiency Class F"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Schema:PeopleAudience",
+			"label": "Size Specification",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><rect fill='none' height='24' width='24'/><g><path d='M12,12.75c1.63,0,3.07,0.39,4.24,0.9c1.08,0.48,1.76,1.56,1.76,2.73L18,18H6l0-1.61c0-1.18,0.68-2.26,1.76-2.73 C8.93,13.14,10.37,12.75,12,12.75z M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1 C4.76,14.04,4.39,14,4,14c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85 C21.93,14.21,20.99,14,20,14c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M12,6c1.66,0,3,1.34,3,3 c0,1.66-1.34,3-3,3s-3-1.34-3-3C9,7.34,10.34,6,12,6z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "PeopleAudience"
+				},
+				{
+					"property": "suggestedGender",
+					"label": "Suggested Gender",
+					"feature": "strong",
+					"type": "select",
+					"options": [
+						{
+							"value": "Female",
+							"label": "Female"
+						},
+						{
+							"value": "Male",
+							"label": "Male"
+						},
+						{
+							"value": "Unisex",
+							"label": "Unisex"
+						}
+					]
+				},
+				{
+					"property": "suggestedMinAge",
+					"label": "Suggested Min Age",
+					"type": "number"
+				},
+				{
+					"property": "suggestedMaxAge",
+					"label": "Suggested Max Age",
+					"type": "number"
+				}
+			]
+		},
+		{
+			"type": "Schema:Brand",
+			"label": "Brand",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><path d='M23,12l-2.44-2.79l0.34-3.69l-3.61-0.82L15.4,1.5L12,2.96L8.6,1.5L6.71,4.69L3.1,5.5L3.44,9.2L1,12l2.44,2.79l-0.34,3.7 l3.61,0.82L8.6,22.5l3.4-1.47l3.4,1.46l1.89-3.19l3.61-0.82l-0.34-3.69L23,12z M10.09,16.72l-3.8-3.81l1.48-1.48l2.32,2.33 l5.85-5.87l1.48,1.48L10.09,16.72z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Brand"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:ReadAction",
+			"label": "Read Book",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><rect fill='none' height='24' width='24'/><path d='M11.71,17.99C8.53,17.84,6,15.22,6,12c0-3.31,2.69-6,6-6c3.22,0,5.84,2.53,5.99,5.71l-2.1-0.63C15.48,9.31,13.89,8,12,8 c-2.21,0-4,1.79-4,4c0,1.89,1.31,3.48,3.08,3.89L11.71,17.99z M22,12c0,0.3-0.01,0.6-0.04,0.9l-1.97-0.59C20,12.21,20,12.1,20,12 c0-4.42-3.58-8-8-8s-8,3.58-8,8s3.58,8,8,8c0.1,0,0.21,0,0.31-0.01l0.59,1.97C12.6,21.99,12.3,22,12,22C6.48,22,2,17.52,2,12 C2,6.48,6.48,2,12,2S22,6.48,22,12z M18.23,16.26L22,15l-10-3l3,10l1.26-3.77l4.27,4.27l1.98-1.98L18.23,16.26z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"feature": "strong",
+					"default": "https://schema.org/ReadAction",
+					"preview": "Read"
+				},
+				{
+					"property": "target",
+					"label": "URL",
+					"type": "url",
+					"feature": "weak",
+					"help": "The webpage on your site where the user can read the book."
+				}
+			]
+		},
+		{
+			"type": "Schema:BorrowAction",
+			"label": "Borrow Book",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><rect fill='none' height='24' width='24'/><path d='M11.71,17.99C8.53,17.84,6,15.22,6,12c0-3.31,2.69-6,6-6c3.22,0,5.84,2.53,5.99,5.71l-2.1-0.63C15.48,9.31,13.89,8,12,8 c-2.21,0-4,1.79-4,4c0,1.89,1.31,3.48,3.08,3.89L11.71,17.99z M22,12c0,0.3-0.01,0.6-0.04,0.9l-1.97-0.59C20,12.21,20,12.1,20,12 c0-4.42-3.58-8-8-8s-8,3.58-8,8s3.58,8,8,8c0.1,0,0.21,0,0.31-0.01l0.59,1.97C12.6,21.99,12.3,22,12,22C6.48,22,2,17.52,2,12 C2,6.48,6.48,2,12,2S22,6.48,22,12z M18.23,16.26L22,15l-10-3l3,10l1.26-3.77l4.27,4.27l1.98-1.98L18.23,16.26z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"feature": "strong",
+					"default": "https://schema.org/BorrowAction",
+					"preview": "Borrow"
+				},
+				{
+					"property": "target",
+					"label": "URL",
+					"type": "url",
+					"feature": "weak",
+					"help": "The webpage on your site where a visitor can borrow the book."
+				}
+			]
+		},
+		{
+			"type": "Schema:SeekToAction",
+			"label": "Seek Action",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "SeekToAction"
+				},
+				{
+					"property": "startOffset-input",
+					"label": "Start Offset Input",
+					"help": "The placeholder string that Google will identify as your timestamp structure and then replace with the number of seconds to skip to."
+				},
+				{
+					"property": "target",
+					"label": "Target",
+					"type": "url",
+					"help": "The URL of the page that contains this VideoObject, including a placeholder in the URL structure that indicates where Google can insert the number of seconds to skip to in the video.",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:EntryPoint",
+			"label": "Entry Point",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><path d='M0,0h24v24H0V0z' fill='none'/></g><g><path d='M19,19V5c0-1.1-0.9-2-2-2H7C5.9,3,5,3.9,5,5v14H3v2h18v-2H19z M15,13h-2v-2h2V13z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "EntryPoint"
+				},
+				{
+					"property": "urlTemplate",
+					"label": "URL Template",
+					"type": "url",
+					"help": "The urlTemplate must be a string in this format: search_handler_uri{search_term_string}",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:SearchAction",
+			"label": "Search Action",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "SearchAction"
+				},
+				{
+					"property": "query-input",
+					"label": "Query Input",
+					"help": "Use the literal string required name = search-term, or whatever placeholder you used in target. Make sure that both placeholder values match."
+				},
+				{
+					"property": "target",
+					"label": "Target",
+					"type": "Schema:EntryPoint",
+					"feature": "strong",
+					"help": "The urlTemplate must be a string in this format: search_handler_uri{search_term_string}"
+				}
+			]
+		},
+		{
+			"type": "Schema:InteractionCounterType",
+			"label": "Interaction Counter Type",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><rect fill='none' height='24' width='24'/><path d='M11.71,17.99C8.53,17.84,6,15.22,6,12c0-3.31,2.69-6,6-6c3.22,0,5.84,2.53,5.99,5.71l-2.1-0.63C15.48,9.31,13.89,8,12,8 c-2.21,0-4,1.79-4,4c0,1.89,1.31,3.48,3.08,3.89L11.71,17.99z M22,12c0,0.3-0.01,0.6-0.04,0.9l-1.97-0.59C20,12.21,20,12.1,20,12 c0-4.42-3.58-8-8-8s-8,3.58-8,8s3.58,8,8,8c0.1,0,0.21,0,0.31-0.01l0.59,1.97C12.6,21.99,12.3,22,12,22C6.48,22,2,17.52,2,12 C2,6.48,6.48,2,12,2S22,6.48,22,12z M18.23,16.26L22,15l-10-3l3,10l1.26-3.77l4.27,4.27l1.98-1.98L18.23,16.26z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"label": "Interaction Type",
+					"type": "select",
+					"feature": "strong",
+					"options": [
+						{
+							"value": "WatchAction",
+							"label": "Watch Action"
+						}
+					]
+				}
+			]
+		},
+		{
+			"type": "Schema:InteractionCounter",
+			"label": "Interaction Counter",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><rect fill='none' height='24' width='24'/><path d='M11.71,17.99C8.53,17.84,6,15.22,6,12c0-3.31,2.69-6,6-6c3.22,0,5.84,2.53,5.99,5.71l-2.1-0.63C15.48,9.31,13.89,8,12,8 c-2.21,0-4,1.79-4,4c0,1.89,1.31,3.48,3.08,3.89L11.71,17.99z M22,12c0,0.3-0.01,0.6-0.04,0.9l-1.97-0.59C20,12.21,20,12.1,20,12 c0-4.42-3.58-8-8-8s-8,3.58-8,8s3.58,8,8,8c0.1,0,0.21,0,0.31-0.01l0.59,1.97C12.6,21.99,12.3,22,12,22C6.48,22,2,17.52,2,12 C2,6.48,6.48,2,12,2S22,6.48,22,12z M18.23,16.26L22,15l-10-3l3,10l1.26-3.77l4.27,4.27l1.98-1.98L18.23,16.26z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "InteractionCounter"
+				},
+				{
+					"property": "interactionType",
+					"label": "Interaction Type",
+					"type": "Schema:InteractionCounterType"
+				},
+				{
+					"property": "userInteractionCount",
+					"label": "User Interaction Count",
+					"type": "number"
+				}
+			]
+		},
+		{
+			"type": "Schema:BroadcastEvent",
+			"label": "Broadcast Event",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><path d='M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M9.5,16.5v-9l7,4.5L9.5,16.5z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "BroadcastEvent"
+				},
+				{
+					"property": "startDate",
+					"label": "Start Date",
+					"type": "datetime-local"
+				},
+				{
+					"property": "endDate",
+					"label": "End Date",
+					"type": "datetime-local"
+				},
+				{
+					"property": "isLiveBroadcast",
+					"label": "Is a Live Broadcast",
+					"type": "boolean"
+				}
+			]
+		},
+		{
+			"type": "Schema:Clip",
+			"label": "Clip",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><path d='M12,2C6.48,2,2,6.48,2,12s4.48,10,10,10s10-4.48,10-10S17.52,2,12,2z M9.5,16.5v-9l7,4.5L9.5,16.5z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Clip"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong",
+					"type": "datetime-local"
+				},
+				{
+					"property": "startOffset",
+					"label": "Start Offset",
+					"type": "number",
+					"feature": "weak"
+				},
+				{
+					"property": "endOffset",
+					"label": "End Offset",
+					"type": "number"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"help": "A URL that points to the start time of the clip."
+				}
+			]
+		},
+		{
+			"type": "Schema:Question",
+			"label": "Question",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M19 2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-6 16h-2v-2h2v2zm2.07-7.75-.9.92C13.45 11.9 13 12.5 13 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Question"
+				},
+				{
+					"property": "name",
+					"label": "Question",
+					"feature": "strong"
+				},
+				{
+					"property": "acceptedAnswer",
+					"label": "Answer",
+					"type": "Schema:Answer"
+				}
+			]
+		},
+		{
+			"type": "Schema:Answer",
+			"label": "Answer",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Answer"
+				},
+				{
+					"property": "text",
+					"label": "Text",
+					"feature": "strong"
 				}
 			]
 		},
@@ -78,13 +1194,19 @@
 				{
 					"property": "author",
 					"label": "Author",
-					"type": "Schema:Author",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					],
 					"repeatable": true
 				},
 				{
 					"property": "publisher",
 					"label": "Publisher",
-					"type": "Schema:Author"
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					]
 				},
 				{
 					"property": "image",
@@ -117,6 +1239,7 @@
 		{
 			"type": "Schema:Book",
 			"label": "Book",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><g><g><path d='M17.5,4.5c-1.95,0-4.05,0.4-5.5,1.5c-1.45-1.1-3.55-1.5-5.5-1.5S2.45,4.9,1,6v14.65c0,0.65,0.73,0.45,0.75,0.45 C3.1,20.45,5.05,20,6.5,20c1.95,0,4.05,0.4,5.5,1.5c1.35-0.85,3.8-1.5,5.5-1.5c1.65,0,3.35,0.3,4.75,1.05 C22.66,21.26,23,20.86,23,20.6V6C21.51,4.88,19.37,4.5,17.5,4.5z M21,18.5c-1.1-0.35-2.3-0.5-3.5-0.5c-1.7,0-4.15,0.65-5.5,1.5V8 c1.35-0.85,3.8-1.5,5.5-1.5c1.2,0,2.4,0.15,3.5,0.5V18.5z'/></g></g></g></svg>",
 			"thumbnail": "http://localhost/wrdstudio/wp-content/uploads/2023/02/Book.png",
 			"description": "Allow Google search visitors to view structured data for books.",
 			"generatable": true,
@@ -130,17 +1253,98 @@
 				{
 					"property": "@type",
 					"default": "Book",
-					"type": "text"
+					"type": "hidden"
+				},
+				{
+					"property": "bookFormat",
+					"label": "Format",
+					"type": "select",
+					"required": true,
+					"default": "https://schema.org/AudiobookFormat",
+					"options": [
+						{
+							"value": "https://schema.org/AudiobookFormat",
+							"label": "Audio Book"
+						},
+						{
+							"value": "https://schema.org/EBook",
+							"label": "E-Book"
+						},
+						{
+							"value": "https://schema.org/Hardcover",
+							"label": "Hardcover"
+						},
+						{
+							"value": "https://schema.org/Paperback",
+							"label": "Paperback"
+						}
+					]
+				},
+				{
+					"property": "inLanguage",
+					"label": "Language",
+					"required": true,
+					"default": "en",
+					"help": "Use a two-letter code from ISO 639-1."
+				},
+				{
+					"property": "isbn",
+					"label": "ISBN Number",
+					"required": true,
+					"help": "The ISBN-13 of the edition."
+				},
+				{
+					"property": "potentialAction",
+					"label": "Potential Action",
+					"required": true,
+					"type": [
+						"Schema:ReadAction",
+						"Schema:BorrowAction"
+					]
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong"
 				},
 				{
 					"property": "author",
 					"label": "Author",
-					"type": "Schema:Author",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					],
 					"repeatable": true
 				},
 				{
-					"property": "name",
-					"label": "Name"
+					"property": "contributors",
+					"label": "Contributors",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					],
+					"repeatable": true
+				},
+				{
+					"property": "bookEdition",
+					"label": "Edition"
+				},
+				{
+					"property": "datePublished",
+					"label": "Date Published",
+					"type": "datetime-local"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"help": "The webpage on your site where the book is described."
+				},
+				{
+					"property": "sameAs",
+					"label": "Same as",
+					"type": "url",
+					"help": "Reference to a webpage that disambiguates the person/organisation, e.g. a Wikipedia article."
 				}
 			],
 			"links": [
@@ -151,6 +1355,1961 @@
 				{
 					"label": "Google's Structured Data Guide for Books",
 					"url": "https://developers.google.com/search/docs/appearance/structured-data/book"
+				}
+			]
+		},
+		{
+			"type": "Schema:BreadcrumbList",
+			"label": "Breadcrumbs",
+			"description": "Display a breadcrumbs navigation to indicates the page's position in your site hierarchy.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"default": "BreadcrumbList",
+					"type": "hidden"
+				},
+				{
+					"property": "itemListElement",
+					"label": "Item",
+					"type": "Schema:ListItem",
+					"repeatable": "true"
+				}
+			],
+			"links": [
+				{
+					"label": "Google's Structured Data Guide for Breadcrumbs",
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/breadcrumb"
+				},
+				{
+					"label": "Schema.org's Documentation for Books",
+					"url": "https://schema.org/BreadcrumbList"
+				}
+			]
+		},
+		{
+			"type": "Schema:Carousel",
+			"label": "Carousel",
+			"thumbnail": "",
+			"description": "Display a sequence or gallery of results from a single site. Can be used to showcase Recipes, Courses, Restaurants & Movies.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ItemList"
+				},
+				{
+					"property": "itemListElement",
+					"label": "Carousel Items",
+					"type": [
+						"Schema:ListItemAll",
+						"Schema:ListItemSummary"
+					],
+					"repeatable": true
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/carousel",
+					"label": "Google's Structured Data Guide for Carousels"
+				},
+				{
+					"url": "https://schema.org/ItemList",
+					"label": "Schema.org's Documentation for ItemLists"
+				}
+			]
+		},
+		{
+			"type": "Schema:Course",
+			"label": "Course",
+			"thumbnail": "",
+			"description": "Show-off your site's educational courses in a provider-specific list. You can include the title, provider and a description to entice searchers.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Course"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true
+				},
+				{
+					"property": "description",
+					"label": "Description",
+					"required": true
+				},
+				{
+					"property": "provider",
+					"label": "Provider",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					]
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"help": "The webpage on your site where the course is described."
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/course",
+					"label": "Google's Structured Data Guide for Courses"
+				},
+				{
+					"url": "https://schema.org/Course",
+					"label": "Schema.org's Documentation for Courses"
+				}
+			]
+		},
+		{
+			"type": "Schema:Event",
+			"label": "Event",
+			"thumbnail": "",
+			"description": "Have your events appear in more locations with an interactive rich result for concerts, festivals and more.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Event"
+				},
+				{
+					"property": "location",
+					"label": "Location",
+					"type": [
+						"Schema:Place",
+						"Schema:VirtualLocation"
+					],
+					"required": true
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true
+				},
+				{
+					"property": "startDate",
+					"label": "Start Date",
+					"type": "datetime-local",
+					"required": true
+				},
+				{
+					"property": "endDate",
+					"label": "End Date",
+					"type": "datetime-local"
+				},
+				{
+					"property": "description",
+					"label": "Description"
+				},
+				{
+					"property": "eventAttendanceMode",
+					"label": "Attendance Mode",
+					"type": "select",
+					"default": "https://schema.org/OfflineEventAttendanceMode",
+					"options": [
+						{
+							"value": "https://schema.org/OfflineEventAttendanceMode",
+							"label": "In-person Attendance"
+						},
+						{
+							"value": "https://schema.org/OnlineEventAttendanceMode",
+							"label": "Online Attendance"
+						},
+						{
+							"value": "https://schema.org/MixedEventAttendanceMode",
+							"label": "Online & In-person Attendance"
+						}
+					]
+				},
+				{
+					"property": "eventStatus",
+					"label": "Event Status",
+					"type": "select",
+					"default": "https://schema.org/EventScheduled",
+					"options": [
+						{
+							"value": "https://schema.org/EventCancelled",
+							"label": "Cancelled"
+						},
+						{
+							"value": "https://schema.org/EventMovedOnline",
+							"label": "Moved Online"
+						},
+						{
+							"value": "https://schema.org/EventPostponed",
+							"label": "Postponed"
+						},
+						{
+							"value": "https://schema.org/EventRescheduled",
+							"label": "Rescheduled"
+						},
+						{
+							"value": "https://schema.org/EventScheduled",
+							"label": "Scheduled"
+						}
+					]
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"type": "url",
+					"repeatable": true
+				},
+				{
+					"property": "offers",
+					"label": "Offers",
+					"type": "Schema:Offer",
+					"repeatable": true
+				},
+				{
+					"property": "organizer",
+					"label": "Organizer",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					]
+				},
+				{
+					"property": "performer",
+					"label": "Performer",
+					"type": "Schema:Person"
+				},
+				{
+					"property": "previousStartDate",
+					"label": "Previous Start Date",
+					"type": "datetime-local"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/event",
+					"label": "Google's Structured Data Guide for Events"
+				},
+				{
+					"url": "https://schema.org/Event",
+					"label": "Schema.org's Documentation for Events"
+				}
+			]
+		},
+		{
+			"type": "Schema:FAQPage",
+			"label": "FAQ",
+			"thumbnail": "",
+			"description": "Get specific search rich results for your Frequently Asked Questions age, containing a list of questions and authored answers around a topic.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "FAQPage"
+				},
+				{
+					"property": "mainEntity",
+					"label": "Question",
+					"type": "Schema:Question",
+					"repeatable": true
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/faqpage",
+					"label": "Google's Structured Data Guide for FAQ Pages"
+				},
+				{
+					"url": "https://schema.org/FAQPage",
+					"label": "Schema.org's Documentation for FAQ Pages"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToSection",
+			"label": "Section",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToSection"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong"
+				},
+				{
+					"property": "itemListElement",
+					"label": "Step",
+					"type": "Schema:HowToStep",
+					"repeatable": true
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToStep",
+			"label": "Step",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M2 17h2v.5H3v1h1v.5H2v1h3v-4H2v1zm1-9h1V4H2v1h1v3zm-1 3h1.8L2 13.1v.9h3v-1H3.2L5 10.9V10H2v1zm5-6v2h14V5H7zm0 14h14v-2H7v2zm0-6h14v-2H7v2z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToStep"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong"
+				},
+				{
+					"property": "text",
+					"label": "Step Description"
+				},
+				{
+					"property": "itemListElement",
+					"label": "Direction",
+					"type": [
+						"Schema:HowToDirection",
+						"Schema:HowToTip"
+					],
+					"repeatable": true
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"type": "url",
+					"repeatable": true
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url"
+				},
+				{
+					"property": "video",
+					"label": "Video",
+					"type": "Schema:VideoObject"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToSupply",
+			"label": "Supply",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/><path d='M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-8 4c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2zm2-6c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm4 6c0 .55-.45 1-1 1s-1-.45-1-1V8h2v2z'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToSupply"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToTool",
+			"label": "Tool",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path clip-rule='evenodd' d='M0 0h24v24H0z' fill='none'/><path d='M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToTool"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToDirection",
+			"label": "Direction",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><rect fill='none' height='24' width='24'/></g><g><path d='M3.8,12.18c-0.2-0.86-0.3-1.76-0.3-2.68c0-2.84,0.99-5.45,2.63-7.5L7.2,3.07C5.82,4.85,5,7.08,5,9.5 c0,0.88,0.11,1.74,0.32,2.56l1.62-1.62L8,11.5L4.5,15L1,11.5l1.06-1.06L3.8,12.18z M13.85,11.62l-2.68-5.37 c-0.37-0.74-1.27-1.04-2.01-0.67C8.41,5.96,8.11,6.86,8.48,7.6l4.81,9.6L10.05,18c-0.33,0.09-0.59,0.33-0.7,0.66L9,19.78l6.19,2.25 c0.5,0.17,1.28,0.02,1.75-0.22l5.51-2.75c0.89-0.45,1.32-1.48,1-2.42l-1.43-4.27c-0.27-0.82-1.04-1.37-1.9-1.37h-4.56 c-0.31,0-0.62,0.07-0.89,0.21L13.85,11.62'/></g></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToDirection"
+				},
+				{
+					"property": "text",
+					"label": "Text",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowToTip",
+			"label": "Tip",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M9 21c0 .5.4 1 1 1h4c.6 0 1-.5 1-1v-1H9v1zm3-19C8.1 2 5 5.1 5 9c0 2.4 1.2 4.5 3 5.7V17c0 .5.4 1 1 1h6c.6 0 1-.5 1-1v-2.3c1.8-1.3 3-3.4 3-5.7 0-3.9-3.1-7-7-7z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowToTip"
+				},
+				{
+					"property": "text",
+					"label": "Text",
+					"feature": "strong"
+				}
+			]
+		},
+		{
+			"type": "Schema:HowTo",
+			"label": "How To Guide",
+			"thumbnail": "",
+			"description": "Walk users through a series of steps to complete a task. You can enrich your guide with video, images and organised steps.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "HowTo"
+				},
+				{
+					"property": "step",
+					"label": "Step",
+					"required": true,
+					"type": [
+						"Schema:HowToStep",
+						"Schema:HowToSection"
+					],
+					"repeatable": true
+				},
+				{
+					"property": "estimatedCost",
+					"label": "Estimated Cost"
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"type": "url",
+					"repeatable": true
+				},
+				{
+					"property": "supply",
+					"label": "Supply",
+					"type": "Schema:HowToSupply",
+					"repeatable": true
+				},
+				{
+					"property": "tool",
+					"label": "Tool",
+					"type": "Schema:HowToTool",
+					"repeatable": true
+				},
+				{
+					"property": "totalTime",
+					"label": "Duration",
+					"help": "Use the ISO 8601 duration format."
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/how-to",
+					"label": "Google's Structured Data Guide for How To Guides"
+				},
+				{
+					"url": "https://schema.org/HowTo",
+					"label": "Schema.org's Documentation for How To Guides"
+				}
+			]
+		},
+		{
+			"type": "Schema:ImageObject",
+			"label": "Image Metadata",
+			"thumbnail": "",
+			"description": "Get more powerful and accurate results in Google Images for your images by highlighting details such as ownership, credit and licensing.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "ImageObject"
+				},
+				{
+					"property": "contentURL",
+					"label": "URL",
+					"type": "url",
+					"required": true
+				},
+				{
+					"property": "creator",
+					"label": "Creator",
+					"type": [
+						"Schema:Organisation",
+						"Schema:Person"
+					]
+				},
+				{
+					"property": "creditText",
+					"label": "Credit Text"
+				},
+				{
+					"property": "copyrightNotice",
+					"label": "Copyright Notice"
+				},
+				{
+					"property": "license",
+					"label": "License",
+					"type": "url"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/image-license-metadata",
+					"label": "Google's Structured Data Guide for Image Metadata"
+				},
+				{
+					"url": "https://schema.org/ImageObject",
+					"label": "Schema.org's Documentation for Image Objects"
+				}
+			]
+		},
+		{
+			"type": "Schema:LocalBusiness",
+			"label": "Local Business",
+			"thumbnail": "",
+			"description": "Enrich your business' Google knowlegde panel with opening hours, ratings, directions and booking actions.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"label": "Type",
+					"type": "select",
+					"required": true,
+					"options": [
+						{
+							"value": "AnimalShelter",
+							"label": "Animal Shelter"
+						},
+						{
+							"value": "ArchiveOrganization",
+							"label": "Archive Organization"
+						},
+						{
+							"value": "AutomotiveBusiness",
+							"label": "Automotive Business"
+						},
+						{
+							"value": "AutoBodyShop",
+							"label": "Auto Body Shop"
+						},
+						{
+							"value": "AutoDealer",
+							"label": "Auto Dealer"
+						},
+						{
+							"value": "AutoPartsStore",
+							"label": "Auto Parts Store"
+						},
+						{
+							"value": "AutoRental",
+							"label": "Auto Rental"
+						},
+						{
+							"value": "AutoRepair",
+							"label": "Auto Repair"
+						},
+						{
+							"value": "AutoWash",
+							"label": "Auto Wash"
+						},
+						{
+							"value": "GasStation",
+							"label": "Gas Station"
+						},
+						{
+							"value": "MotorcycleDealer",
+							"label": "Motorcycle Dealer"
+						},
+						{
+							"value": "MotorcycleRepair",
+							"label": "Motorcycle Repair"
+						},
+						{
+							"value": "ChildCare",
+							"label": "Child Care"
+						},
+						{
+							"value": "Dentist",
+							"label": "Dentist"
+						},
+						{
+							"value": "DryCleaningOrLaundry",
+							"label": "Dry Cleaning or Laundry"
+						},
+						{
+							"value": "EmergencyService",
+							"label": "Emergency Service"
+						},
+						{
+							"value": "FireStation",
+							"label": "Fire Station"
+						},
+						{
+							"value": "Hospital",
+							"label": "Hospital"
+						},
+						{
+							"value": "PoliceStation",
+							"label": "Police Station"
+						},
+						{
+							"value": "EmploymentAgency",
+							"label": "Employment Agency"
+						},
+						{
+							"value": "EntertainmentBusiness",
+							"label": "Entertainment Business"
+						},
+						{
+							"value": "AdultEntertainment",
+							"label": "Adult Entertainment"
+						},
+						{
+							"value": "AmusementPark",
+							"label": "Amusement Park"
+						},
+						{
+							"value": "ArtGallery",
+							"label": "Art Gallery"
+						},
+						{
+							"value": "Casino",
+							"label": "Casino"
+						},
+						{
+							"value": "ComedyClub",
+							"label": "Comedy Club"
+						},
+						{
+							"value": "MovieTheater",
+							"label": "Movie Theater"
+						},
+						{
+							"value": "NightClub",
+							"label": "Night Club"
+						},
+						{
+							"value": "FinancialService",
+							"label": "Financial Service"
+						},
+						{
+							"value": "AccountingService",
+							"label": "Accounting Service"
+						},
+						{
+							"value": "AutomatedTeller",
+							"label": "Automated Teller"
+						},
+						{
+							"value": "BankOrCreditUnion",
+							"label": "Bank or Credit Union"
+						},
+						{
+							"value": "InsuranceAgency",
+							"label": "Insurance Agency"
+						},
+						{
+							"value": "FoodEstablishment",
+							"label": "Food Establishment"
+						},
+						{
+							"value": "Bakery",
+							"label": "Bakery"
+						},
+						{
+							"value": "BarOrPub",
+							"label": "Bar or Pub"
+						},
+						{
+							"value": "Brewery",
+							"label": "Brewery"
+						},
+						{
+							"value": "CafeOrCoffeeShop",
+							"label": "Cafe or Coffee Shop"
+						},
+						{
+							"value": "Distillery",
+							"label": "Distillery"
+						},
+						{
+							"value": "FastFoodRestaurant",
+							"label": "Fast Food Restaurant"
+						},
+						{
+							"value": "IceCreamShop",
+							"label": "Ice Cream Shop"
+						},
+						{
+							"value": "Restaurant",
+							"label": "Restaurant"
+						},
+						{
+							"value": "Winery",
+							"label": "Winery"
+						},
+						{
+							"value": "GovernmentOffice",
+							"label": "Government Office"
+						},
+						{
+							"value": "PostOffice",
+							"label": "Post Office"
+						},
+						{
+							"value": "HealthAndBeautyBusiness",
+							"label": "Health and Beauty Business"
+						},
+						{
+							"value": "BeautySalon",
+							"label": "BeautySalon"
+						},
+						{
+							"value": "DaySpa",
+							"label": "Day Spa"
+						},
+						{
+							"value": "HairSalon",
+							"label": "Hair Salon"
+						},
+						{
+							"value": "HealthClub",
+							"label": "Health Club"
+						},
+						{
+							"value": "NailSalon",
+							"label": "Nail Salon"
+						},
+						{
+							"value": "TattooParlor",
+							"label": "Tattoo Parlor"
+						},
+						{
+							"value": "HomeAndConstructionBusiness",
+							"label": "Home and Construction Business"
+						},
+						{
+							"value": "Electrician",
+							"label": "Electrician"
+						},
+						{
+							"value": "GeneralContractor",
+							"label": "General Contractor"
+						},
+						{
+							"value": "HVACBusiness",
+							"label": "HVAC Business"
+						},
+						{
+							"value": "HousePainter",
+							"label": "House Painter"
+						},
+						{
+							"value": "Locksmith",
+							"label": "Locksmith"
+						},
+						{
+							"value": "MovingCompany",
+							"label": "Moving Company"
+						},
+						{
+							"value": "Plumber",
+							"label": "Plumber"
+						},
+						{
+							"value": "RoofingContractor",
+							"label": "Roofing Contractor"
+						},
+						{
+							"value": "InternetCafe",
+							"label": "Internet Cafe"
+						},
+						{
+							"value": "LegalService  ",
+							"label": "Legal Service  "
+						},
+						{
+							"value": "Attorney",
+							"label": "Attorney"
+						},
+						{
+							"value": "Notary",
+							"label": "Notary"
+						},
+						{
+							"value": "Library",
+							"label": "Library"
+						},
+						{
+							"value": "LodgingBusiness",
+							"label": "LodgingBusiness"
+						},
+						{
+							"value": "BedAndBreakfast",
+							"label": "Bed and Breakfast"
+						},
+						{
+							"value": "Campground",
+							"label": "Campground"
+						},
+						{
+							"value": "Hostel",
+							"label": "Hostel"
+						},
+						{
+							"value": "Hotel",
+							"label": "Hotel"
+						},
+						{
+							"value": "Motel",
+							"label": "Motel"
+						},
+						{
+							"value": "Resort",
+							"label": "Resort"
+						},
+						{
+							"value": "MedicalBusiness",
+							"label": "Medical Business"
+						},
+						{
+							"value": "CommunityHealth",
+							"label": "Community Health"
+						},
+						{
+							"value": "Dentist",
+							"label": "Dentist"
+						},
+						{
+							"value": "Dermatology",
+							"label": "Dermatology"
+						},
+						{
+							"value": "DietNutrition",
+							"label": "Diet Nutrition"
+						},
+						{
+							"value": "Emergency",
+							"label": "Emergency"
+						},
+						{
+							"value": "Geriatric",
+							"label": "Geriatric"
+						},
+						{
+							"value": "Gynecologic",
+							"label": "Gynecologic"
+						},
+						{
+							"value": "MedicalClinic",
+							"label": "MedicalClinic"
+						},
+						{
+							"value": "Midwifery",
+							"label": "Midwifery"
+						},
+						{
+							"value": "Nursing",
+							"label": "Nursing"
+						},
+						{
+							"value": "Obstetric",
+							"label": "Obstetric"
+						},
+						{
+							"value": "Oncologic",
+							"label": "Oncologic"
+						},
+						{
+							"value": "Optician",
+							"label": "Optician"
+						},
+						{
+							"value": "Optometric",
+							"label": "Optometric"
+						},
+						{
+							"value": "Otolaryngologic",
+							"label": "Otolaryngologic"
+						},
+						{
+							"value": "Pediatric",
+							"label": "Pediatric"
+						},
+						{
+							"value": "Pharmacy",
+							"label": "Pharmacy"
+						},
+						{
+							"value": "Physician",
+							"label": "Physician"
+						},
+						{
+							"value": "Physiotherapy",
+							"label": "Physiotherapy"
+						},
+						{
+							"value": "PlasticSurgery",
+							"label": "PlasticSurgery"
+						},
+						{
+							"value": "Podiatric",
+							"label": "Podiatric"
+						},
+						{
+							"value": "PrimaryCare",
+							"label": "PrimaryCare"
+						},
+						{
+							"value": "Psychiatric",
+							"label": "Psychiatric"
+						},
+						{
+							"value": "PublicHealth",
+							"label": "Public Health"
+						},
+						{
+							"value": "ProfessionalService",
+							"label": "Professional Service"
+						},
+						{
+							"value": "RadioStation",
+							"label": "Radio Station"
+						},
+						{
+							"value": "RealEstateAgent",
+							"label": "Real Estate Agent"
+						},
+						{
+							"value": "RecyclingCenter",
+							"label": "Recycling Center"
+						},
+						{
+							"value": "SelfStorage",
+							"label": "Self Storage"
+						},
+						{
+							"value": "ShoppingCenter",
+							"label": "ShoppingCenter"
+						},
+						{
+							"value": "SportsActivityLocation",
+							"label": "Sports Activity Location"
+						},
+						{
+							"value": "BowlingAlley",
+							"label": "Bowling Alley"
+						},
+						{
+							"value": "ExerciseGym",
+							"label": "Exercise Gym"
+						},
+						{
+							"value": "GolfCourse",
+							"label": "Golf Course"
+						},
+						{
+							"value": "HealthClub",
+							"label": "Health Club"
+						},
+						{
+							"value": "Public Swimming Pool",
+							"label": "Public Swimming Pool"
+						},
+						{
+							"value": "SkiResort",
+							"label": "Ski Resort"
+						},
+						{
+							"value": "SportsClub",
+							"label": "Sports Club"
+						},
+						{
+							"value": "StadiumOrArena",
+							"label": "Stadium or Arena"
+						},
+						{
+							"value": "TennisComplex",
+							"label": "Tennis Complex"
+						},
+						{
+							"value": "Store",
+							"label": "Store"
+						},
+						{
+							"value": "AutoPartsStore",
+							"label": "Auto Parts Store"
+						},
+						{
+							"value": "BikeStore",
+							"label": "Bike Store"
+						},
+						{
+							"value": "BookStore",
+							"label": "Book Store"
+						},
+						{
+							"value": "ClothingStore",
+							"label": "Clothing Store"
+						},
+						{
+							"value": "ComputerStore",
+							"label": "Computer Store"
+						},
+						{
+							"value": "ConvenienceStore",
+							"label": "Convenience Store"
+						},
+						{
+							"value": "DepartmentStore",
+							"label": "Department Store"
+						},
+						{
+							"value": "ElectronicsStore",
+							"label": "Electronics Store"
+						},
+						{
+							"value": "Florist",
+							"label": "Florist"
+						},
+						{
+							"value": "FurnitureStore",
+							"label": "Furniture Store"
+						},
+						{
+							"value": "GardenStore",
+							"label": "Garden Store"
+						},
+						{
+							"value": "GroceryStore",
+							"label": "Grocery Store"
+						},
+						{
+							"value": "HardwareStore",
+							"label": "Hardware Store"
+						},
+						{
+							"value": "HobbyShop",
+							"label": "Hobby Shop"
+						},
+						{
+							"value": "HomeGoodsStore",
+							"label": "HomeGoods Store"
+						},
+						{
+							"value": "JewelryStore",
+							"label": "Jewelry Store"
+						},
+						{
+							"value": "LiquorStore",
+							"label": "Liquor Store"
+						},
+						{
+							"value": "MensClothingStore",
+							"label": "Mens Clothing Store"
+						},
+						{
+							"value": "MobilePhoneStore",
+							"label": "Mobile Phone Store"
+						},
+						{
+							"value": "MovieRentalStore",
+							"label": "Movie Rental Store"
+						},
+						{
+							"value": "MusicStore",
+							"label": "Music Store"
+						},
+						{
+							"value": "OfficeEquipmentStore",
+							"label": "Office Equipment Store"
+						},
+						{
+							"value": "OutletStore",
+							"label": "Outlet Store"
+						},
+						{
+							"value": "PawnShop",
+							"label": "Pawn Shop"
+						},
+						{
+							"value": "PetStore",
+							"label": "Pet Store"
+						},
+						{
+							"value": "ShoeStore",
+							"label": "Shoe Store"
+						},
+						{
+							"value": "SportingGoodsStore",
+							"label": "Sporting Goods Store"
+						},
+						{
+							"value": "TireShop",
+							"label": "Tire Shop"
+						},
+						{
+							"value": "ToyStore",
+							"label": "Toy Store"
+						},
+						{
+							"value": "WholesaleStore",
+							"label": "Wholesale Store"
+						},
+						{
+							"value": "TelevisionStation",
+							"label": "Television Station"
+						},
+						{
+							"value": "TouristInformationCenter",
+							"label": "Tourist Information Center"
+						},
+						{
+							"value": "TravelAgency",
+							"label": "Travel Agency"
+						}
+					]
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true
+				},
+				{
+					"property": "address",
+					"label": "Address",
+					"type": "Schema:PostalAddress",
+					"required": true
+				},
+				{
+					"property": "aggregateRating",
+					"label": "Rating",
+					"type": "Schema:AggregateRating"
+				},
+				{
+					"property": "geo",
+					"label": "Coordinates",
+					"type": "Schema:GeoCoordinates"
+				},
+				{
+					"property": "menu",
+					"label": "Menu",
+					"type": "url"
+				},
+				{
+					"property": "openingHoursSpecification",
+					"label": "Opening Hours",
+					"type": "Schema:OpeningHoursSpecification",
+					"repeatable": true
+				},
+				{
+					"property": "priceRange",
+					"label": "Price Range"
+				},
+				{
+					"property": "review",
+					"label": "Review",
+					"type": "Schema:Review"
+				},
+				{
+					"property": "servesCuisine",
+					"label": "Serves Cuisine"
+				},
+				{
+					"property": "telephone",
+					"label": "Telephone",
+					"type": "tel"
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/local-business",
+					"label": "Google's Structured Data Guide for Local Businesses"
+				},
+				{
+					"url": "https://schema.org/LocalBusiness",
+					"label": "Schema.org's Documentation for Local Businesses"
+				}
+			]
+		},
+		{
+			"type": "Schema:Movie",
+			"label": "Movie",
+			"thumbnail": "",
+			"description": "Help users explore lists of movies and provide details like the title, director and images of the film.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Movie"
+				},
+				{
+					"property": "name",
+					"label": "URL",
+					"required": true
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"type": "url",
+					"required": true,
+					"repeatable": true
+				},
+				{
+					"property": "aggregateRating",
+					"label": "Aggregate Rating",
+					"type": "Schema:AggregateRating"
+				},
+				{
+					"property": "dateCreated",
+					"label": "Release Date",
+					"type": "datetime-local"
+				},
+				{
+					"property": "director",
+					"label": "Director",
+					"type": "Schema:Person"
+				},
+				{
+					"property": "review",
+					"label": "Review",
+					"type": "Schema:Review"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/movie",
+					"label": "Google's Structured Data Guide for Movies"
+				},
+				{
+					"url": "https://schema.org/Movie",
+					"label": "Schema.org's Documentation for Movies"
+				}
+			]
+		},
+		{
+			"type": "Schema:Rating",
+			"label": "Rating",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M0 0h24v24H0z' fill='none'/><path d='M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Rating"
+				},
+				{
+					"property": "ratingValue",
+					"label": "Rating",
+					"type": "number",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "bestRating",
+					"label": "Best Score Allowed",
+					"type": "number"
+				},
+				{
+					"property": "worstRating",
+					"label": "Worst Score Allowed",
+					"type": "number"
+				}
+			]
+		},
+		{
+			"type": "Schema:AggregateRating",
+			"label": "Aggregate Rating",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><path d='M0 0h24v24H0z' fill='none'/><path d='M0 0h24v24H0z' fill='none'/><path d='M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/></svg>",
+			"generatable": false,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "AggregateRating"
+				},
+				{
+					"property": "ratingValue",
+					"label": "Rating",
+					"type": "number",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "ratingCount",
+					"label": "Rating Count",
+					"type": "number",
+					"required": true
+				},
+				{
+					"property": "reviewCount",
+					"label": "Review Count",
+					"type": "number",
+					"required": true
+				},
+				{
+					"property": "bestRating",
+					"label": "Best Score Allowed",
+					"type": "number"
+				},
+				{
+					"property": "worstRating",
+					"label": "Worst Score Allowed",
+					"type": "number"
+				}
+			]
+		},
+		{
+			"type": "Schema:Review",
+			"icon": "<svg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' height='24px' viewBox='0 0 24 24' width='24px' fill='currentColor'><g><path d='M0,0h24v24H0V0z' fill='none'/></g><g><path d='M20,2H4C2.9,2,2,2.9,2,4v18l4-4h14c1.1,0,2-0.9,2-2V4C22,2.9,21.1,2,20,2z M13.57,11.57L12,15l-1.57-3.43L7,10l3.43-1.57 L12,5l1.57,3.43L17,10L13.57,11.57z'/></g></svg>",
+			"label": "Review",
+			"thumbnail": "",
+			"description": "Include a short snippet from a review or rating in reference to a book, recipe, movie, product and more.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Review"
+				},
+				{
+					"property": "author",
+					"label": "Author",
+					"type": [
+						"Schema:Person",
+						"Schema:Organisation"
+					],
+					"required": true
+				},
+				{
+					"property": "reviewBody",
+					"label": "Review Body",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "reviewRating",
+					"label": "Rating",
+					"type": [
+						"Schema:Rating",
+						"Schema:AggregateRating"
+					],
+					"required": true
+				},
+				{
+					"property": "datePublished",
+					"label": "Date Published",
+					"type": "datetime-local"
+				},
+				{
+					"property": "negativeNotes",
+					"label": "Negative Notes",
+					"type": "Schema:ItemList"
+				},
+				{
+					"property": "positiveNotes",
+					"label": "Positive Notes",
+					"type": "Schema:ItemList"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/review-snippet",
+					"label": "Google's Structured Data Guide for Reviews"
+				},
+				{
+					"url": "https://schema.org/Review",
+					"label": "Schema.org's Documentation for Reviews"
+				}
+			]
+		},
+		{
+			"type": "Schema:OrganisationLogo",
+			"label": "Organisation Logo",
+			"description": "Share your organisation's logo with visitors in search results and the knowledge panel.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Organisation"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "logo",
+					"label": "Logo",
+					"type": "url",
+					"required": true
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"required": true
+				},
+				{
+					"property": "description",
+					"label": "Description"
+				},
+				{
+					"property": "telephone",
+					"label": "Telephone",
+					"type": "tel"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/logo",
+					"label": "Google's Structured Data Guide for Organisations"
+				},
+				{
+					"url": "https://schema.org/Organization",
+					"label": "Schema.org's Documentation for Organisations"
+				}
+			]
+		},
+		{
+			"type": "Schema:Product",
+			"label": "Product",
+			"description": "Integrate powerful rich result options such as product snippets, the shopping knowledge panel, Google images and popular products.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Product"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"required": true,
+					"repeatable": true
+				},
+				{
+					"property": "offers",
+					"label": "Offers",
+					"type": "Schema:Offer",
+					"required": true,
+					"repeatable": true
+				},
+				{
+					"property": "aggregateRating",
+					"label": "Aggregate Rating",
+					"type": "Schema:AggregateRating"
+				},
+				{
+					"property": "audience",
+					"label": "Audience",
+					"type": "Schema:PeopleAudience"
+				},
+				{
+					"property": "brand",
+					"label": "Brand",
+					"type": "Schema:Brand"
+				},
+				{
+					"property": "color",
+					"label": "Color"
+				},
+				{
+					"property": "description",
+					"label": "Description"
+				},
+				{
+					"property": "gtin",
+					"label": "GTIN"
+				},
+				{
+					"property": "hasEnergyConsumptionDetails",
+					"label": "Energy Consumption Details",
+					"type": "Schema:EnergyConsumptionDetails"
+				},
+				{
+					"property": "inProductGroupWithID",
+					"label": "In Product Group with ID"
+				},
+				{
+					"property": "material",
+					"label": "Material"
+				},
+				{
+					"property": "mpn",
+					"label": "Manufacturer Part Number"
+				},
+				{
+					"property": "pattern",
+					"label": "Pattern"
+				},
+				{
+					"property": "review",
+					"label": "Review",
+					"type": "Schema:Review"
+				},
+				{
+					"property": "size",
+					"label": "Size",
+					"type": "Schema:SizeSpecification"
+				},
+				{
+					"property": "sku",
+					"label": "SKU"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/product",
+					"label": "Google's Structured Data Guide for Products"
+				},
+				{
+					"url": "https://schema.org/Product",
+					"label": "Schema.org's Documentation for Products"
+				}
+			]
+		},
+		{
+			"type": "Schema:Recipe",
+			"label": "Recipe",
+			"description": "Teach visitors how to prepare and cook your best recipes with special rich result highlighting.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Recipe"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "image",
+					"label": "Image",
+					"required": true,
+					"repeatable": true
+				},
+				{
+					"property": "aggregateRating",
+					"label": "Aggregate Rating",
+					"type": "Schema:AggregateRating"
+				},
+				{
+					"property": "author",
+					"label": "Author",
+					"type": [
+						"Schema:Organisation",
+						"Schema:Person"
+					]
+				},
+				{
+					"property": "cookTime",
+					"label": "Cook Time",
+					"help": "Use the ISO 8601 duration format."
+				},
+				{
+					"property": "datePublished",
+					"label": "Date Published",
+					"type": "datetime-local"
+				},
+				{
+					"property": "description",
+					"label": "Description"
+				},
+				{
+					"property": "keywords",
+					"label": "Keywords"
+				},
+				{
+					"property": "nutrition",
+					"label": "Nutrition",
+					"type": "Schema:NutritionInformation"
+				},
+				{
+					"property": "prepTime",
+					"label": "Prep Time",
+					"help": "Use the ISO 8601 duration format."
+				},
+				{
+					"property": "recipeCategory",
+					"label": "Category"
+				},
+				{
+					"property": "recipeCuisine",
+					"label": "Cuisine"
+				},
+				{
+					"property": "recipeIngredient",
+					"label": "Ingredient",
+					"repeatable": true
+				},
+				{
+					"property": "recipeInstructions",
+					"label": "Instructions",
+					"type": [
+						"Schema:HowToSection",
+						"Schema:HowToStep"
+					],
+					"repeatable": true
+				},
+				{
+					"property": "recipeYield",
+					"label": "Yield",
+					"repeatable": true
+				},
+				{
+					"property": "totalTime",
+					"label": "Total Time",
+					"help": "Use the ISO 8601 duration format."
+				},
+				{
+					"property": "video",
+					"label": "Video",
+					"type": "Schema:VideoObject"
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/recipe",
+					"label": "Google's Structured Data Guide for Recipes"
+				},
+				{
+					"url": "https://schema.org/Recipe",
+					"label": "Schema.org's Documentation for Recipes"
+				}
+			]
+		},
+		{
+			"type": "Schema:Video",
+			"label": "Video",
+			"description": "Direct Google on the best way to display your video content with captioned chapters and live broadcast badges.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "Video"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true,
+					"feature": "strong"
+				},
+				{
+					"property": "description",
+					"label": "Description",
+					"required": true
+				},
+				{
+					"property": "thumbnailURL",
+					"label": "Thumbnail",
+					"type": "url",
+					"required": true
+				},
+				{
+					"property": "uploadDate",
+					"label": "Upload Date",
+					"type": "datetime-local",
+					"required": true
+				},
+				{
+					"property": "contentUrl",
+					"label": "Content URL",
+					"type": "url"
+				},
+				{
+					"property": "duration",
+					"label": "Duration",
+					"help": "The duration of the video in ISO 8601 format."
+				},
+				{
+					"property": "embedUrl",
+					"label": "Embed URL",
+					"type": "url"
+				},
+				{
+					"property": "expires",
+					"label": "Expiry Date",
+					"type": "datetime-local"
+				},
+				{
+					"property": "hasPart",
+					"label": "Clip",
+					"type": "Schema:Clip",
+					"repeatable": true
+				},
+				{
+					"property": "interactionStatistic",
+					"label": "Interaction Statistic",
+					"type": "Schema:InteractionCounter"
+				},
+				{
+					"property": "publication",
+					"label": "Publication",
+					"type": "Schema:BroadcastEvent"
+				},
+				{
+					"property": "potentialAction",
+					"label": "Potential Action",
+					"type": "Schema:SeekToAction"
+				},
+				{
+					"property": "regionsAllowed",
+					"label": "Regions Allowed",
+					"help": "Specify the countries in ISO 3166 format with a space or comma as a delimiter."
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/video",
+					"label": "Google's Structured Data Guide for Videos"
+				},
+				{
+					"url": "https://schema.org/Video",
+					"label": "Schema.org's Documentation for Videos"
+				}
+			]
+		},
+		{
+			"type": "Schema:SoftwareApplication",
+			"label": "Software App (beta)",
+			"description": "Display information about your software app such as ratings, platform and a link.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"label": "Type",
+					"required": true,
+					"type": "select",
+					"default": "SoftwareApplication",
+					"options": [
+						{
+							"value": "SoftwareApplication",
+							"label": "Software Application"
+						},
+						{
+							"value": "MobileApplication",
+							"label": "Mobile Application"
+						},
+						{
+							"value": "WebApplication",
+							"label": "Web Application"
+						}
+					]
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true
+				},
+				{
+					"property": "offer",
+					"label": "Offer",
+					"type": "Schema:Offer",
+					"required": true
+				},
+				{
+					"property": "aggregateRating",
+					"label": "Aggregate Rating",
+					"type": "Schema:AggregateRating",
+					"required": true
+				},
+				{
+					"property": "applicationCategory",
+					"label": "Category",
+					"type": "select",
+					"options": [
+						{
+							"value": "GameApplication",
+							"label": "Game"
+						},
+						{
+							"value": "SocialNetworkingApplication",
+							"label": "Social Networking"
+						},
+						{
+							"value": "TravelApplication",
+							"label": "Travel"
+						},
+						{
+							"value": "ShoppingApplication",
+							"label": "Shopping"
+						},
+						{
+							"value": "SportsApplication",
+							"label": "Sports"
+						},
+						{
+							"value": "LifestyleApplication",
+							"label": "Lifestyle"
+						},
+						{
+							"value": "BusinessApplication",
+							"label": "Business"
+						},
+						{
+							"value": "DesignApplication",
+							"label": "Design"
+						},
+						{
+							"value": "DeveloperApplication",
+							"label": "Developer"
+						},
+						{
+							"value": "DriverApplication",
+							"label": "Driver"
+						},
+						{
+							"value": "EducationalApplication",
+							"label": "Educational"
+						},
+						{
+							"value": "HealthApplication",
+							"label": "Health"
+						},
+						{
+							"value": "FinanceApplication",
+							"label": "Finance"
+						},
+						{
+							"value": "SecurityApplication",
+							"label": "Security"
+						},
+						{
+							"value": "BrowserApplication",
+							"label": "Browser"
+						},
+						{
+							"value": "CommunicationApplication",
+							"label": "Communication"
+						},
+						{
+							"value": "DesktopEnhancementApplication",
+							"label": "Desktop Enhancement"
+						},
+						{
+							"value": "EntertainmentApplication",
+							"label": "Entertainment"
+						},
+						{
+							"value": "MultimediaApplication",
+							"label": "Multimedia"
+						},
+						{
+							"value": "HomeApplication",
+							"label": "Home"
+						},
+						{
+							"value": "UtilitiesApplication",
+							"label": "Utilities"
+						},
+						{
+							"value": "ReferenceApplication",
+							"label": "Reference"
+						}
+					]
+				},
+				{
+					"property": "operatingSystem",
+					"label": "Operating System",
+					"help": "Comma seperated."
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/software-app",
+					"label": "Google's Structured Data Guide for Software Apps"
+				},
+				{
+					"url": "https://schema.org/SoftwareApplication",
+					"label": "Schema.org's Documentation for Software Applications"
+				}
+			]
+		},
+		{
+			"type": "Schema:WebSite",
+			"label": "Website (Sitelinks Searchbox)",
+			"description": "Integrate your website's own search box directly into Google results so users can quickly find what they're looking for on your site.",
+			"generatable": true,
+			"properties": [
+				{
+					"property": "@type",
+					"type": "hidden",
+					"default": "WebSite"
+				},
+				{
+					"property": "name",
+					"label": "Name",
+					"required": true
+				},
+				{
+					"property": "url",
+					"label": "URL",
+					"type": "url",
+					"required": true
+				},
+				{
+					"property": "alternateName",
+					"label": "Alternate Name"
+				},
+				{
+					"property": "potentialAction",
+					"label": "Sitelinks Searchbox",
+					"type": "Schema:SearchAction",
+					"repeatable": true
+				}
+			],
+			"links": [
+				{
+					"url": "https://developers.google.com/search/docs/appearance/structured-data/sitelinks-searchbox",
+					"label": "Google's Structured Data Guide for Sitelinks Searchboxes"
+				},
+				{
+					"url": "https://developers.google.com/search/docs/appearance/site-names",
+					"label": "Google's Structured Data Guide for Site Names"
+				},
+				{
+					"url": "https://schema.org/WebSite",
+					"label": "Schema.org's Documentation for Software Websites"
 				}
 			]
 		}

@@ -9,7 +9,8 @@ export function getGeneratableSchemaTypes() {
 }
 
 export function isInputTypeSchema(inputType) {
-	return inputType?.startsWith('Schema:');
+	// We only allow multiple types if the types are all schemas.
+	return Array.isArray(inputType) || inputType?.startsWith('Schema:');
 }
 
 export function getSchemaTypeFromInputType(inputType) {
@@ -27,18 +28,20 @@ const shouldIncludeInSchema = value => {
 		return false;
 	}
 
-	if (Array.isArray(value)) {
-		if (value.length === 0) {
-			return false;
-		}
-	}
-
 	if (typeof value === 'object' && !Array.isArray(value)) {
 		const subOject = objectToSchemaObject(value);
 		const subObjectKeys = Object.keys(subOject);
 
-		if (subObjectKeys.length === 1 && subObjectKeys.includes('@type')) {
+		if (subObjectKeys.length === 0 || (subObjectKeys.length === 1 && subObjectKeys.includes('@type'))) {
 			// Sub object that only has a type and no other details.
+			return false;
+		}
+	}
+
+	if (Array.isArray(value)) {
+		value = arrayToSchemaArray(value);
+
+		if (value.length === 0) {
 			return false;
 		}
 	}
@@ -46,41 +49,74 @@ const shouldIncludeInSchema = value => {
 	return true;
 }
 
+export const arrayToSchemaArray = (original) => {
+	return original.map(item => typeof item === 'object' && !Array.isArray(original) ? objectToSchemaObject(item) : item).filter(shouldIncludeInSchema);
+}
+
 export const objectToSchemaObject = (original) => {
 	let newObject = {};
 
-	Object.keys(original).map(key => {
-		let value = original[key];
+	if (typeof original === 'object' && original !== null && !Array.isArray(original)) {
+		Object.keys(original).map(key => {
+			let value = original[key];
 
-		if (Array.isArray(value)) {
-			value = value.filter(shouldIncludeInSchema);
-		}
+			if (Array.isArray(value)) {
+				value = arrayToSchemaArray(value);
+			}
 
-		if (typeof value === 'object' && !Array.isArray(value)) {
-			value = objectToSchemaObject(value);
-		}
+			if (typeof value === 'object' && !Array.isArray(value)) {
+				value = objectToSchemaObject(value);
+			}
 
-		if (shouldIncludeInSchema(value)) {
-			newObject[key] = value;
-		}
-	})
+			if (shouldIncludeInSchema(value)) {
+				newObject[key] = value;
+			}
+		})
+	}
 
 	return newObject;
 }
 
 export const objectToSchemaMarkup = (original) => {
-	return '<script type="application/ld+json">\n' + JSON.stringify(objectToSchemaObject(original), null, "\t") + '\n</script>';
+	const schemaObject = objectToSchemaObject(original);
+	return '<script type="application/ld+json">\n' + JSON.stringify(schemaObject, null, "\t") + '\n</script>';
 }
 
-export const getDefaultSchemaObject = (schemaType) => {
+export const getDefaultSchemaObject = (schemaType, depth = 0) => {
 	const schemaTypeObject = getSchemaTypeFromInputType(schemaType);
-	let defaultSchemaObject = { "@context": "https://schema.org", };
+	let defaultSchemaObject = {};
 
-	// We don't currently go into sub-schema objects since they won't be included if the user doesn't provide any data on them.
+	if (depth === 0) {
+		defaultSchemaObject["@context"] = "https://schema.org"
+	}
+
+	if (!schemaTypeObject) {
+		return defaultSchemaObject;
+	}
+
 	schemaTypeObject.properties.forEach(property => {
-		if (property.hasOwnProperty('default')) {
-			defaultSchemaObject[property.property] = property.default;
+		let propertyDefault;
+
+		// Recursively get sub-object defaults
+		if (isInputTypeSchema(property.type)) {
+			let type = property.type;
+
+			// Sub-object may have multiple allowed types, default to the first
+			if (Array.isArray(type)) {
+				type = type[0];
+			}
+
+			propertyDefault = getDefaultSchemaObject(type, depth + 1)
 		}
+		else if (property.hasOwnProperty('default')) {
+			propertyDefault = property.default;
+		}
+
+		if (property.repeatable) {
+			propertyDefault = [propertyDefault]
+		}
+
+		defaultSchemaObject[property.property] = propertyDefault;
 	})
 
 	return defaultSchemaObject

@@ -181,6 +181,16 @@ body {
 	margin-bottom: 18rem;
 }
 
+.bg-pattern-grid {
+	--foreground: rgb(var(--color-theme-100-rgb) / 0.3);
+	--background: rgb(var(--color-theme-50-rgb));
+	--size: 2.5rem;
+	background-color: var(--background);
+	background-image: linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(to right, var(--foreground) 1px, var(--background) 1px);
+	background-size: var(--size) var(--size);
+	background-position: calc(-0.5 * var(--size)) calc(-0.5 * var(--size));
+}
+
 
 /* Arrows */
 .arrow-top::before {

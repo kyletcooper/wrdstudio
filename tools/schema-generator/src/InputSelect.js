@@ -9,7 +9,7 @@ export default function InputSelect({
 	return (
 		<select
 			value={value}
-			className="w-full bg-transparent py-4 focus:ring-0 focus:outline-none"
+			className="h-16 w-full bg-transparent p-4 focus:ring-0 focus:outline-none"
 			onChange={e => onChange(e.target.value)}
 		>
 			<option value="" disabled={typeof value !== 'null' && typeof value !== 'undefined'}>

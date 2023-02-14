@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 import InputSchema from "./InputSchema";
 import InputSelect from "./InputSelect";
 import InputDefault from "./InputDefault";
+import InputBoolean from "./InputBoolean";
 import { isInputTypeSchema } from "./schema-helpers";
 
 export default function Input(props) {
@@ -19,6 +20,9 @@ export default function Input(props) {
 	switch (props.type) {
 		case 'select':
 			return (<InputSelect {...props} onChange={handleChange} />);
+
+		case 'boolean':
+			return (<InputBoolean {...props} onChange={handleChange} />)
 
 		default:
 			return (<InputDefault {...props} onChange={handleChange} />);

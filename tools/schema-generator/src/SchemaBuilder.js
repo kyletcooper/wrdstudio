@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-import Input from "./InputWrapper"
+import Input from "./Input";
 import Button from "./Button";
 import ClipboardButton from "./ClipboardButton"
 import { getDefaultSchemaObject, objectToSchemaMarkup, getSchemaTypeFromInputType } from "./schema-helpers";
@@ -32,7 +32,7 @@ export default function SchemaBuilder({
 					Choose new Schema Type
 				</Button>
 
-				<fieldset className="mt-10">
+				<div className="mt-10">
 					{schemaType &&
 						<Input
 							value={userSchema}
@@ -41,7 +41,7 @@ export default function SchemaBuilder({
 							forceOpen
 						/>
 					}
-				</fieldset>
+				</div>
 			</div>
 
 			<div>
