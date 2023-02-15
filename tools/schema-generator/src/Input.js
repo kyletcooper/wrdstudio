@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import InputSchema from "./InputSchema";
 import InputSelect from "./InputSelect";
@@ -7,24 +7,18 @@ import InputBoolean from "./InputBoolean";
 import { isInputTypeSchema } from "./schema-helpers";
 
 export default function Input(props) {
-	const handleChange = (value) => {
-		if (typeof props.onChange === 'function') {
-			props.onChange(value);
-		}
-	}
-
 	if (isInputTypeSchema(props.type)) {
-		return (<InputSchema {...props} onChange={handleChange} />);
+		return (<InputSchema {...props} />);
 	}
 
 	switch (props.type) {
 		case 'select':
-			return (<InputSelect {...props} onChange={handleChange} />);
+			return (<InputSelect {...props} />);
 
 		case 'boolean':
-			return (<InputBoolean {...props} onChange={handleChange} />)
+			return (<InputBoolean {...props} />)
 
 		default:
-			return (<InputDefault {...props} onChange={handleChange} />);
+			return (<InputDefault {...props} />);
 	}
 }

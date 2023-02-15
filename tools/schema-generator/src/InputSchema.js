@@ -1,12 +1,14 @@
-import React, { useState, useRef, useEffect, Fragment } from "react"
+import React, { useState, useRef, useEffect, useContext } from "react"
 
 import Input from "./Input";
 import Label from "./Label";
 import Button from "./Button";
 import IconButton from "./IconButton";
+import useClickOff from "./useClickOff";
 import { getDefaultSchemaObject, getSchemaTypeFromInputType, isInputTypeSchema } from "./schema-helpers";
 
 export default function InputSchema({
+	propertyPath = "",
 	type = 'Schema:Article',
 	value = {},
 	forceOpen = false,
@@ -15,23 +17,8 @@ export default function InputSchema({
 	const [selectedTypeIndex, setSelectedTypeIndex] = useState(0);
 
 	const schemaType = getSchemaTypeFromInputType(Array.isArray(type) ? type[selectedTypeIndex] : type);
-	const [isOpen, setIsOpen] = useState(false);
-	const ref = useRef(null);
-
-	// Click outside to close
-	useEffect(() => {
-		const handleClickOutside = (event) => {
-			if (ref.current && !ref.current.contains(event.target)) {
-				setIsOpen(false);
-			}
-		};
-
-		document.addEventListener('click', handleClickOutside, true);
-
-		return () => {
-			document.removeEventListener('click', handleClickOutside, true);
-		};
-	}, []);
+	const clickOffRef = useRef(null);
+	const [isOpen, setIsOpen] = useClickOff(clickOffRef);
 
 	const getPropertyValue = (property) => {
 		if (typeof value[property.property] === 'undefined') {
@@ -119,7 +106,7 @@ export default function InputSchema({
 	if (isOpen || forceOpen) {
 		return (
 
-			<fieldset ref={ref}>
+			<fieldset ref={clickOffRef}>
 				{getTypeSwitchers()}
 
 				<div className={(forceOpen ? "" : "p-6") + " grid gap-8"}>
@@ -129,12 +116,16 @@ export default function InputSchema({
 								<div key={propertyIndex}>
 									{
 										getPropertyValue(property).map((value, valueIndex) => (
-											<Label {...{ ...property, label: valueIndex ? "" : property.label }} key={valueIndex}>
+											<Label
+												{...{ ...property, label: valueIndex ? "" : property.label }}
+												key={valueIndex}
+											>
 												<div className="relative">
 													<Input
 														{...property}
 														value={value}
 														onChange={newVal => setPropertyValue(property, newVal, valueIndex)}
+														propertyPath={propertyPath + property.property}
 													/>
 													<IconButton label={"Remove " + property.label} className="absolute top-0 right-1 text-gray-500 hover:text-red" onClick={() => removeAdditionalProperty(property, valueIndex)}>
 														<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -154,7 +145,10 @@ export default function InputSchema({
 						}
 						else {
 							return (
-								<Label {...property} key={propertyIndex}>
+								<Label
+									{...property}
+									key={propertyIndex}
+								>
 									<Input
 										{...property}
 										value={getPropertyValue(property)}
@@ -172,7 +166,7 @@ export default function InputSchema({
 	else {
 		return (
 
-			<button onClick={() => setIsOpen(!isOpen)} className="inputSchemaOpenButton h-16 w-full">
+			<button onClick={() => setIsOpen(!isOpen)} className="h-16 w-full hover:bg-theme-50 hover:text-theme-500">
 				<div className="flex items-center gap-2 p-4 max-w-sm overflow-clip">
 					{schemaType?.properties?.filter(prop => prop.feature).map((property, index) => {
 						let previewLabel = property.preview || value[property.property] || property.label;

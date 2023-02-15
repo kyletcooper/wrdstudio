@@ -5,6 +5,7 @@ export default function InputSelect({
 	placeholder = '',
 	options = [],
 	onChange = () => { },
+	onFocus = () => { },
 }) {
 	return (
 		<select

@@ -38,7 +38,7 @@ export default function Label({
 				</div>
 			}
 
-			<div className="mb-3 font-medium rounded border bg-white border-gray-300 dark:bg-gray-900 dark:border-gray-800 focus-within:border-theme-500 ring-0 focus-within:ring-2 ring-theme-100 dark:ring-theme-900 transition-all [&:has(.inputSchemaOpenButton)]:cursor-pointer [&:has(.inputSchemaOpenButton)]:hover:bg-theme-50 [&:has(.inputSchemaOpenButton)]:hover:text-theme-500 [&:has(.inputSchemaOpenButton)]:hover:border-theme-500 dark:[&:has(.inputSchemaOpenButton)]:hover:bg-theme-900">
+			<div className="mb-3 font-medium rounded border bg-white border-gray-300 dark:bg-gray-900 dark:border-gray-800 focus-within:border-theme-500 ring-0 focus-within:ring-2 ring-theme-100 dark:ring-theme-900 transition-all">
 				{children}
 			</div>
 

@@ -2,7 +2,9 @@ import React, { useState } from "react"
 
 import Input from "./Input";
 import Button from "./Button";
-import ClipboardButton from "./ClipboardButton"
+import ClipboardButton from "./ClipboardButton";
+import LinkList from "./LinkList";
+import SchemaPreview from "./SchemaPreview";
 import { getDefaultSchemaObject, objectToSchemaMarkup, getSchemaTypeFromInputType } from "./schema-helpers";
 
 export default function SchemaBuilder({
@@ -46,33 +48,25 @@ export default function SchemaBuilder({
 
 			<div>
 				<div className="sticky top-16 [.admin-bar_&]:top-24">
-					<code className="block bg-gray-800 dark:bg-gray-700 rounded-md text-white font-mono max-h-[50vh] overflow-y-auto">
-						<header className="bg-gray-900 dark:bg-gray-800 text-sm py-2 px-6">
-							<h2 className="font-semibold">Schema Output</h2>
-						</header>
+					<SchemaPreview markup={schemaMarkup} />
 
-						<pre className="block p-6 whitespace-pre-wrap">{schemaMarkup}</pre>
-					</code>
-
-					<div className="grid gap-6 xl:grid-cols-2 mt-6">
+					<div className="grid gap-12 mt-6">
 						<div>
 							<ClipboardButton content={schemaMarkup} />
 						</div>
 
-						{schemaTypeObject?.links?.length > 0 &&
-							<div>
-								<h2 className="text-lg font-semibold mb-2">Learn more about this schema type</h2>
-								<ul className="flex flex-col gap-2">
-									{schemaTypeObject?.links.map((link, index) =>
-										<li key={index}>
-											<a href={link.url} target="_blank" className="text-theme-500 text-medium">
-												{link.label}
-											</a>
-										</li>
-									)}
-								</ul>
-							</div>
-						}
+						<LinkList title="Learn more about this Schema Type" links={schemaTypeObject?.links} />
+
+						<LinkList title="Validate your Schema Markup" links={[
+							{
+								url: "https://validator.schema.org/",
+								label: "Schema.org Markup Validator"
+							},
+							{
+								url: "https://search.google.com/test/rich-result",
+								label: "Google's Rich Results Test"
+							}
+						]} />
 					</div>
 				</div>
 			</div>

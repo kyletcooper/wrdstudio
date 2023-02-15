@@ -4,6 +4,7 @@ import IconButton from "./IconButton";
 export default function InputBoolean({
 	value = null,
 	onChange = () => { },
+	onFocus = () => { },
 }) {
 	const [checked, setChecked] = useState(value);
 

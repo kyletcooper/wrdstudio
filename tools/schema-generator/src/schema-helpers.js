@@ -50,7 +50,7 @@ const shouldIncludeInSchema = value => {
 }
 
 export const arrayToSchemaArray = (original) => {
-	return original.map(item => typeof item === 'object' && !Array.isArray(original) ? objectToSchemaObject(item) : item).filter(shouldIncludeInSchema);
+	return original.map(parseSchemaValue).filter(shouldIncludeInSchema);
 }
 
 export const objectToSchemaObject = (original) => {
@@ -58,15 +58,7 @@ export const objectToSchemaObject = (original) => {
 
 	if (typeof original === 'object' && original !== null && !Array.isArray(original)) {
 		Object.keys(original).map(key => {
-			let value = original[key];
-
-			if (Array.isArray(value)) {
-				value = arrayToSchemaArray(value);
-			}
-
-			if (typeof value === 'object' && !Array.isArray(value)) {
-				value = objectToSchemaObject(value);
-			}
+			let value = parseSchemaValue(original[key]);
 
 			if (shouldIncludeInSchema(value)) {
 				newObject[key] = value;
@@ -75,6 +67,22 @@ export const objectToSchemaObject = (original) => {
 	}
 
 	return newObject;
+}
+
+export const parseSchemaValue = (value) => {
+	if (typeof value === 'string') {
+		return value.trim();
+	}
+
+	if (Array.isArray(value)) {
+		return arrayToSchemaArray(value);
+	}
+
+	if (typeof value === 'object' && !Array.isArray(value)) {
+		return objectToSchemaObject(value);
+	}
+
+	return value;
 }
 
 export const objectToSchemaMarkup = (original) => {

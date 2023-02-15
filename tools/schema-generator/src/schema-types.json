@@ -1260,7 +1260,6 @@
 					"label": "Format",
 					"type": "select",
 					"required": true,
-					"default": "https://schema.org/AudiobookFormat",
 					"options": [
 						{
 							"value": "https://schema.org/AudiobookFormat",
@@ -1284,7 +1283,6 @@
 					"property": "inLanguage",
 					"label": "Language",
 					"required": true,
-					"default": "en",
 					"help": "Use a two-letter code from ISO 639-1."
 				},
 				{
@@ -2530,7 +2528,8 @@
 				{
 					"property": "review",
 					"label": "Review",
-					"type": "Schema:Review"
+					"type": "Schema:Review",
+					"repeatable": true
 				},
 				{
 					"property": "servesCuisine",
@@ -2600,7 +2599,8 @@
 				{
 					"property": "review",
 					"label": "Review",
-					"type": "Schema:Review"
+					"type": "Schema:Review",
+					"repeatable": true
 				}
 			],
 			"links": [
@@ -2881,7 +2881,8 @@
 				{
 					"property": "review",
 					"label": "Review",
-					"type": "Schema:Review"
+					"type": "Schema:Review",
+					"repeatable": true
 				},
 				{
 					"property": "size",
