@@ -8,7 +8,7 @@
     "watch:webpack": "npx webpack watch",
     "watch:tailwind": "npx tailwindcss -i ./assets/styles/src/index.css -o ./assets/styles/dist.css --watch",
     "build": "npm run-script build:tailwind & npm run-script build:webpack",
-    "build:webpack": "npx webpack build",
+    "build:webpack": "npx webpack --mode production",
     "build:tailwind": "npx tailwindcss -i ./assets/styles/src/index.css -o ./assets/styles/dist.css --minify"
   },
   "author": "",

@@ -14,7 +14,7 @@ wp_enqueue_script( 'tools', get_template_directory_uri() . '/tools/' . get_field
 ?>
 
 <section <?php block_atts( $block ); ?> >
-	<div class="container py-24 border-y-4 border-theme-500 rounded -translate-y-1">
+	<div class="container py-24 border-t-4 border-theme-500 rounded-t -translate-y-1">
 		<div id="app"></div>
 
 		<?php if ( $is_preview ) : ?>
