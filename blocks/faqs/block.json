@@ -1,0 +1,8 @@
+{
+	"name": "wrd/faqs",
+	"title": "FAQs",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
