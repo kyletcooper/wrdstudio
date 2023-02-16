@@ -2854,6 +2854,11 @@ video {
   border-bottom-width: 1px;
 }
 
+.border-y-4 {
+  border-top-width: 4px;
+  border-bottom-width: 4px;
+}
+
 .border-t-4 {
   border-top-width: 4px;
 }
@@ -3693,6 +3698,16 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
+.shadow-gray-200 {
+  --tw-shadow-color: #e2e8f0;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
+.shadow-gray-100 {
+  --tw-shadow-color: #f1f5f9;
+  --tw-shadow: var(--tw-shadow-colored);
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -4065,16 +4080,6 @@ body {
 
 .spacing-bottom-xl {
   margin-bottom: 18rem;
-}
-
-.bg-pattern-grid {
-  --foreground: rgb(var(--color-theme-100-rgb) / 0.3);
-  --background: rgb(var(--color-theme-50-rgb));
-  --size: 2.5rem;
-  background-color: var(--background);
-  background-image: linear-gradient(var(--foreground) 1px, transparent 1px), linear-gradient(to right, var(--foreground) 1px, var(--background) 1px);
-  background-size: var(--size) var(--size);
-  background-position: calc(-0.5 * var(--size)) calc(-0.5 * var(--size));
 }
 
 /* Arrows */
@@ -6190,6 +6195,14 @@ body {
     gap: 2rem;
   }
 
+  .md\:border {
+    border-width: 1px;
+  }
+
+  .md\:p-8 {
+    padding: 2rem;
+  }
+
   .md\:py-8 {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -6208,6 +6221,18 @@ body {
   .md\:text-5xl {
     font-size: 3rem;
     line-height: 1;
+  }
+
+  .md\:shadow {
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  }
+
+  .md\:shadow-lg {
+    --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 }
 
@@ -6491,10 +6516,6 @@ body {
 }
 
 @media (min-width: 1280px) {
-  .xl\:grid-cols-2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -6556,28 +6577,4 @@ body {
 
 .admin-bar .\[\.admin-bar_\&\]\:top-24 {
   top: 6rem;
-}
-
-.\[\&\:has\(\.inputSchemaOpenButton\)\]\:cursor-pointer:has(.inputSchemaOpenButton) {
-  cursor: pointer;
-}
-
-.\[\&\:has\(\.inputSchemaOpenButton\)\]\:hover\:border-theme-500:hover:has(.inputSchemaOpenButton) {
-  --tw-border-opacity: 1;
-  border-color: rgb(var(--color-theme-500-rgb) / var(--tw-border-opacity));
-}
-
-.\[\&\:has\(\.inputSchemaOpenButton\)\]\:hover\:bg-theme-50:hover:has(.inputSchemaOpenButton) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-theme-50-rgb) / var(--tw-bg-opacity));
-}
-
-.\[\&\:has\(\.inputSchemaOpenButton\)\]\:hover\:text-theme-500:hover:has(.inputSchemaOpenButton) {
-  --tw-text-opacity: 1;
-  color: rgb(var(--color-theme-500-rgb) / var(--tw-text-opacity));
-}
-
-.dark .dark\:\[\&\:has\(\.inputSchemaOpenButton\)\]\:hover\:bg-theme-900:hover:has(.inputSchemaOpenButton) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(var(--color-theme-900-rgb) / var(--tw-bg-opacity));
 }

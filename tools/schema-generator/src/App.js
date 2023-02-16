@@ -8,7 +8,7 @@ export default function App() {
 	const [schemaType, setSchemaType] = useState();
 
 	return (
-		<div className="bg-white border border-gray-300 rounded-2xl p-8 lg:p-12 dark:bg-gray-900 dark:border-gray-800">
+		<div className="">
 			{
 				!schemaType ?
 					<Fragment>
