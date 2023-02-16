@@ -68,6 +68,22 @@ acf_add_local_field_group(
 				),
 				'return_format'     => 'array',
 			),
+			array(
+				'key'               => 'field_63cfd0bcef6aa3',
+				'label'             => 'Show Divider?',
+				'name'              => 'show_divider',
+				'aria-label'        => '',
+				'type'              => 'true_false',
+				'instructions'      => '',
+				'required'          => 0,
+				'conditional_logic' => 0,
+				'default_value'     => 1,
+				'wrapper'           => array(
+					'width' => '',
+					'class' => '',
+					'id'    => '',
+				),
+			),
 		),
 		'location'              => array(
 			array(
