@@ -14,34 +14,30 @@ namespace wrd;
 <!doctype html>
 <html class="scroll-smooth" <?php language_attributes(); ?>>
 <head>
-	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="<?php bloginfo( 'charset' ); ?>" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="color-scheme" content="light dark" />
-	<meta name="theme-color" content="<?php echo esc_attr( get_theme_color() ); ?>">
+	<meta name="theme-color" content="<?php echo esc_attr( get_theme_color() ); ?>" />
 	
-	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf" as="font" type="font/ttf" crossorigin>
-	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf" as="font" type="font/ttf" crossorigin>
-	<link rel="preload" href="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-SemiBold.ttf" as="font" type="font/ttf" crossorigin>
-
 	<style id="font-faces">
 		@font-face {
 			font-family: "Montserrat";
-			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+			src: local("Montserrat") local("Montserrat Regular") local("Montserrat-Regular") url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 			font-weight: 400;
 			font-display: swap;
 		}
 
 		@font-face {
 			font-family: "Montserrat";
-			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
+			src: local("Montserrat Medium") local("Montserrat-Medium") url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Medium.ttf') format('truetype');
 			font-weight: 500;
 			font-display: swap;
 		}
 
 		@font-face {
 			font-family: "Montserrat";
-			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Semibold.ttf') format('truetype');
-			font-weight: 600;
+			src: local("Montserrat Semibold") local("Montserrat-Semibold") url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Semibold.ttf') format('truetype');
+			font-weight: 500;
 			font-display: swap;
 		}
 

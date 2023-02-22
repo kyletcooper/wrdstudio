@@ -34,7 +34,7 @@ module.exports = {
     },
 
     fontFamily: {
-      sans: ['Montserrat', 'Poppins', 'Helvetica', 'sans-serif'],
+      sans: ['"Montserrat"', 'Montserrat', 'Poppins', 'Helvetica', 'sans-serif'],
       mono: ['Source Code Pro', 'Courier New', 'monospace']
     },
 
