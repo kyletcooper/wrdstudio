@@ -191,6 +191,8 @@ include_plugin_dependencies();
  * Filters the fields in the comment form.
  *
  * @param array $fields The array of fields.
+ *
+ * @since 1.0.0
  */
 function filter_comment_fields( $fields ) {
 	unset( $fields['url'] );
@@ -198,3 +200,15 @@ function filter_comment_fields( $fields ) {
 	return $fields;
 }
 add_filter( 'comment_form_default_fields', __NAMESPACE__ . '\\filter_comment_fields' );
+
+/**
+ * Forces Gravatar URLs to use HTTPS.
+ *
+ * @param string $url The URL of the gravatar image.
+ *
+ * @since 1.0.0
+ */
+function enforce_gravatar_https( $url ) {
+	return set_url_scheme( $url, 'https' );
+}
+add_filter( 'get_avatar_url', __NAMESPACE__ . '\\enforce_gravatar_https', 10, 1 );
