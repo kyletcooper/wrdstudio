@@ -1,0 +1,109 @@
+/* WPCF7 */
+.wpcf7-form {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.wpcf7-form label {
+	display: grid;
+	gap: 0.3rem;
+}
+
+.wpcf7-form input,
+.wpcf7-form textarea {
+	border: 2px solid rgb(15 23 42);
+	background: none;
+	padding: 0.5rem 1rem;
+	width: 100%;
+}
+
+.dark .wpcf7-form input,
+.dark .wpcf7-form textarea {
+	border-color: rgb(100 116 139);
+}
+
+.wpcf7-form input:focus,
+.wpcf7-form textarea:focus {
+	outline: none;
+	border-bottom-color: var(--color-theme-500);
+}
+
+.wpcf7-form input[type="submit"] {
+	background: var(--color-theme-500);
+	border-color: var(--color-theme-500);
+	color: #fff;
+	cursor: pointer;
+	transition: all 150ms ease-in-out;
+	padding: 0.5rem 2rem;
+	width: fit-content;
+}
+
+.wpcf7-form input[type="submit"]:hover,
+.wpcf7-form input[type="submit"]:focus {
+	background: transparent;
+	border-color: var(--color-theme-500);
+	color: var(--color-theme-500);
+}
+
+.wpcf7-form.submitting input[type="submit"] {
+	padding-right: 3rem;
+}
+
+.wpcf7-spinner {
+	position: relative;
+	right: 0.75rem;
+	transform: translateX(-100%) translateY(25%);
+	margin: 0;
+	background: none;
+}
+
+.wpcf7-spinner::before {
+	background-color: var(--color-theme-500);
+}
+
+.wpcf7 form .wpcf7-response-output {
+	--output-color: var(--color-theme-500);
+	--output-bg: rgb(var(--color-theme-500-rgb) / 0.1);
+
+	margin: 0;
+	padding: 2rem;
+	max-width: max-content;
+
+	background: linear-gradient(90deg, var(--output-bg), rgb(255 255 255 / 0));
+	border: none !important;
+	border-left: 3px solid var(--output-color) !important;
+
+	font-weight: 500;
+}
+
+.dark .wpcf7 form .wpcf7-response-output {
+	border-color: rgb(100 116 139);
+}
+
+.wpcf7 form.sent .wpcf7-response-output {
+	--output-color: #46b450;
+	--output-bg: rgb(70 180 80 / 0.1);
+}
+
+.wpcf7 form.failed .wpcf7-response-output,
+.wpcf7 form.aborted .wpcf7-response-output {
+	--output-color: #dc3232;
+	--output-bg: rgb(220 50 50 / 0.1);
+}
+
+.wpcf7 form.spam .wpcf7-response-output {
+	--output-color: #f56e28;
+	--output-bg: rgb(245 110 40 / 0.1);
+}
+
+.wpcf7 form.invalid .wpcf7-response-output,
+.wpcf7 form.unaccepted .wpcf7-response-output,
+.wpcf7 form.payment-required .wpcf7-response-output {
+	--output-color: #ffb900;
+	--output-bg: rgb(255 185 0 / 0.1);
+}
+
+.wpcf7-not-valid-tip {
+	font-size: small;
+	margin-top: 0.5rem
+}

@@ -14,6 +14,8 @@ if ( post_password_required() || ! comments_open() ) {
 	return;
 }
 
+print_inline_style( 'wrd-comments', get_template_directory_uri() . '/assets/styles/comments.css' );
+
 ?>
 
 <div id="comments">

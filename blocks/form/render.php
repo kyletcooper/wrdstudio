@@ -9,6 +9,8 @@
 
 namespace wrd;
 
+print_inline_style( 'wrd-wpcf7', get_template_directory_uri() . '/assets/styles/wpcf7.css' );
+
 ?>
 
 <section <?php block_atts( $block ); ?> >

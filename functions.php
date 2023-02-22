@@ -28,6 +28,7 @@ function include_src() {
 	include get_template_directory() . '/src/search.php';
 	include get_template_directory() . '/src/register-blocks.php';
 	include get_template_directory() . '/src/login.php';
+	include get_template_directory() . '/src/print-inline-styles.php';
 }
 include_src();
 
