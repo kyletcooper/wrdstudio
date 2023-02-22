@@ -40,14 +40,6 @@ include_src();
 function enqueue_assets() {
 	wp_enqueue_style( 'wrdstudio', get_template_directory_uri() . '/assets/styles/dist.css', array(), WRDSTUDIO_VERSION );
 	wp_enqueue_script( 'wrdstudio', get_template_directory_uri() . '/assets/scripts/dist.js', array( 'wp-api' ), WRDSTUDIO_VERSION, true );
-
-	wp_localize_script(
-		'wrdstudio',
-		'wrd_consts',
-		array(
-			'rest_url' => get_rest_url(),
-		)
-	);
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
 
@@ -63,6 +55,7 @@ function dequeue_assets() {
 	wp_dequeue_style( 'wp-block-library-theme' );
 	wp_deregister_style( 'classic-theme-styles' );
 	wp_dequeue_style( 'classic-theme-styles' );
+	wp_dequeue_style( 'global-styles' );
 
 	// Dummy Content Generator.
 	wp_dequeue_script( 'wp_dummy_content_generator' );
@@ -74,8 +67,14 @@ function dequeue_assets() {
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\dequeue_assets', 11 );
 
-remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
-remove_action( 'wp_print_styles', 'print_emoji_styles' );
+remove_action( 'wp_body_open', 'wp_global_styles_render_svg_filters' ); // Removes the SVG filters definitions.
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 ); // Removes the inline emoji detection script.
+remove_action( 'wp_print_styles', 'print_emoji_styles' ); // Removes the inline emoji styles.
+remove_action( 'wp_head', 'wp_generator' ); // Removes the generator meta tag.
+remove_action( 'wp_head', 'wlwmanifest_link' ); // Removes the Window Live Writer manifest link tag.
+remove_action( 'wp_head', 'rsd_link' ); // Removes the Really Simple Discovery endpoint link tag.
+remove_action( 'wp_head', 'feed_links', 2 ); // Removes the RSS and other feed links (does not disable them).
+remove_action( 'wp_head', 'feed_links_extra', 3 ); // Removes the links to extra feeds such as categories.
 
 /**
  * Removes unneccessary script/style from wpcf7 being loaded on page they're not used on.
