@@ -63,7 +63,7 @@ export default function SchemaBuilder({
 								label: "Schema.org Markup Validator"
 							},
 							{
-								url: "https://search.google.com/test/rich-result",
+								url: "https://search.google.com/test/rich-results",
 								label: "Google's Rich Results Test"
 							}
 						]} />
