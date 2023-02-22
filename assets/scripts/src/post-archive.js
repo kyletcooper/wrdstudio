@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { apiRequest, apiRequestHeaders } from './restAPI';
 
 class PostArchive extends LitElement {
 	static properties = {
@@ -14,6 +15,10 @@ class PostArchive extends LitElement {
 			type: Array,
 		},
 
+		_totalPages: {
+			type: Number,
+			state: true,
+		},
 		_cats: {
 			type: Array,
 			state: true,
@@ -38,12 +43,11 @@ class PostArchive extends LitElement {
 		this.page = 1;
 		this.perPage = 10;
 		this.categories = [];
+		this._totalPages = 1;
 		this._cats = [];
 		this._posts = [];
 		this._usingPostsPlaceholder = true;
 		this._loading = 0;
-
-		this.postsCollection = new wp.api.collections.Posts();
 
 		this.getCats();
 
@@ -54,12 +58,16 @@ class PostArchive extends LitElement {
 	async connectedCallback() {
 		super.connectedCallback();
 
-		// Fetch so we can get the max pages into state but don't refresh the posts.
-		await this.postsCollection.fetch({
+		const { headers } = await apiRequestHeaders(`wp/v2/posts`, {
 			data: {
-				_fields: "id"
+				page: this.page,
+				per_page: this.perPage,
+				categories: this.categories,
+				_fields: 'id'
 			}
 		});
+
+		this._totalPages = headers.get('X-WP-TotalPages');
 
 		this.requestUpdate();
 	}
@@ -84,11 +92,9 @@ class PostArchive extends LitElement {
 	}
 
 	async getCats() {
-		var allCategories = new wp.api.collections.Categories()
-
-		this._cats = await allCategories.fetch({
+		this._cats = await apiRequest(`wp/v2/categories`, {
 			data: {
-				hide_empty: true
+				hide_empty: true,
 			}
 		});
 
@@ -119,7 +125,7 @@ class PostArchive extends LitElement {
 		this.clearPlaceholders("posts");
 		this._loading++;
 
-		const posts = await this.postsCollection.fetch({
+		const posts = await apiRequest(`wp/v2/posts`, {
 			data: {
 				page: this.page,
 				per_page: this.perPage,
@@ -150,11 +156,7 @@ class PostArchive extends LitElement {
 	}
 
 	hasOlderPosts() {
-		if (this.postsCollection.state.totalPages === null) {
-			return false;
-		}
-
-		return this.page < this.postsCollection.state.totalPages;
+		return this.page < this._totalPages;
 	}
 
 	showOlderPosts() {

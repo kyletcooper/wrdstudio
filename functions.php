@@ -39,7 +39,7 @@ include_src();
  */
 function enqueue_assets() {
 	wp_enqueue_style( 'wrdstudio', get_template_directory_uri() . '/assets/styles/dist.css', array(), WRDSTUDIO_VERSION );
-	wp_enqueue_script( 'wrdstudio', get_template_directory_uri() . '/assets/scripts/dist.js', array( 'wp-api' ), WRDSTUDIO_VERSION, true );
+	wp_enqueue_script( 'wrdstudio', get_template_directory_uri() . '/assets/scripts/dist.js', array(), WRDSTUDIO_VERSION, true );
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\enqueue_assets' );
 
@@ -60,10 +60,6 @@ function dequeue_assets() {
 	// Dummy Content Generator.
 	wp_dequeue_script( 'wp_dummy_content_generator' );
 	wp_dequeue_style( 'wp_dummy_content_generator' );
-
-	// JQuery (cannot be removed, wp-api depends on this. Might be worth removing the wp-api dependency?).
-	// wp_dequeue_script( 'jquery' );.
-	// wp_deregister_script( 'jquery' );.
 }
 add_action( 'wp_enqueue_scripts', __NAMESPACE__ . '\\dequeue_assets', 11 );
 

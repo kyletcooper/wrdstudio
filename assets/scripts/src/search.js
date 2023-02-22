@@ -1,4 +1,4 @@
-import { restURL } from "./restAPI";
+import { apiRequest } from "./restAPI";
 
 (() => {
 	const input = document.querySelector("[data-search-dialog-input]");
@@ -24,27 +24,16 @@ import { restURL } from "./restAPI";
 		abortController?.abort(); // Cancel the previous request.
 
 		if (search.length) {
-			let url = new URL('wrd/v1/search', restURL);
-			url.searchParams.set('search', search);
+			abortController = new AbortController();
 
-			try {
-				abortController = new AbortController();
-
-				const resp = await fetch(url.href, {
+			results = await apiRequest(`wrd/v1/search`, {
+				data: {
+					search: search
+				},
+				fetchOptions: {
 					signal: abortController.signal
-				});
-
-				const json = await resp.json();
-
-				if (!resp.ok) {
-					throw json.message;
 				}
-
-				results = json;
-			}
-			catch (e) {
-				console.error(e);
-			}
+			}) || [];
 		}
 
 		resultsContainer.innerHTML = results.map((post) => `<li><a class="block py-5 px-8 hover:bg-theme-50 hover:text-theme-500 dark:hover:bg-theme-900 focus:outline-none focus:bg-theme-50 focus:text-theme-500 dark:focus:bg-theme-900" href="${post.link}">${post.preview.small}</a></li>`).join('');
