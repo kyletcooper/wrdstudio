@@ -121,6 +121,7 @@ body {
 }
 
 input {
+	caret-color: var(--color-theme-500);
 	accent-color: var(--color-theme-500);
 }
 
