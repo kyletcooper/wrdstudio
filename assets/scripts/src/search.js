@@ -1,3 +1,5 @@
+import { restURL } from "./restAPI";
+
 (() => {
 	const input = document.querySelector("[data-search-dialog-input]");
 	const resultsContainer = document.querySelector("[data-search-dialog-results]");
@@ -22,7 +24,7 @@
 		abortController?.abort(); // Cancel the previous request.
 
 		if (search.length) {
-			url = new URL('wrd/v1/search', wrd_consts.rest_url);
+			let url = new URL('wrd/v1/search', restURL);
 			url.searchParams.set('search', search);
 
 			try {

@@ -51,6 +51,19 @@ class PostArchive extends LitElement {
 		this.style.flexDirection = "column";
 	}
 
+	async connectedCallback() {
+		super.connectedCallback();
+
+		// Fetch so we can get the max pages into state but don't refresh the posts.
+		await this.postsCollection.fetch({
+			data: {
+				_fields: "id"
+			}
+		});
+
+		this.requestUpdate();
+	}
+
 	createRenderRoot() {
 		// In Light DOM to allow CSS
 		return this;
@@ -119,8 +132,6 @@ class PostArchive extends LitElement {
 	}
 
 	scrollToTop() {
-		const offset = 25;
-
 		window.scrollTo({
 			behavior: 'smooth',
 			top:
@@ -130,9 +141,17 @@ class PostArchive extends LitElement {
 		})
 	}
 
+	updatePageURL() {
+		this.scrollToTop();
+
+		let url = window.location.href.split('/page/')[0];
+		url += url.endsWith("/") ? "" : "/"
+		history.replaceState({}, '', url + `page/${this.page}/`);
+	}
+
 	hasOlderPosts() {
 		if (this.postsCollection.state.totalPages === null) {
-			return true;
+			return false;
 		}
 
 		return this.page < this.postsCollection.state.totalPages;
@@ -141,7 +160,7 @@ class PostArchive extends LitElement {
 	showOlderPosts() {
 		if (this.hasOlderPosts()) {
 			this.page++;
-			this.scrollToTop();
+			this.updatePageURL();
 		}
 
 		this.getPosts();
@@ -154,7 +173,7 @@ class PostArchive extends LitElement {
 	showNewerPosts() {
 		if (this.hasNewerPosts()) {
 			this.page--;
-			this.scrollToTop();
+			this.updatePageURL();
 		}
 
 		this.getPosts();
