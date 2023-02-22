@@ -25,6 +25,7 @@
 .wpcf7-form input:focus,
 .wpcf7-form textarea:focus {
 	outline: none;
+	box-shadow: none;
 	border-bottom-color: var(--color-theme-500);
 }
 

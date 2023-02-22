@@ -94,6 +94,11 @@ body {
 	color: var(--color-theme-800, #004A8B);
 }
 
+*:focus-visible {
+	outline: 2px solid var(--color-theme-500);
+	box-shadow: 0 0 0 8px var(--color-theme-100);
+}
+
 @media (prefers-contrast: more) {
 
 	body,
@@ -271,6 +276,10 @@ input {
 .socialicons {
 	display: flex;
 	gap: 2rem;
+}
+
+.socialicons__a {
+	display: block;
 }
 
 .socialicons svg {

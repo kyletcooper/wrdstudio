@@ -36,7 +36,7 @@ import { apiRequest } from "./restAPI";
 			}) || [];
 		}
 
-		resultsContainer.innerHTML = results.map((post) => `<li><a class="block py-5 px-8 hover:bg-theme-50 hover:text-theme-500 dark:hover:bg-theme-900 focus:outline-none focus:bg-theme-50 focus:text-theme-500 dark:focus:bg-theme-900" href="${post.link}">${post.preview.small}</a></li>`).join('');
+		resultsContainer.innerHTML = results.map((post) => `<li><a class="block py-5 px-8 hover:bg-theme-50 hover:text-theme-500 dark:hover:bg-theme-900 focus:outline-none focus:shadow-none focus:bg-theme-50 focus:text-theme-500 dark:focus:bg-theme-900" href="${post.link}">${post.preview.small}</a></li>`).join('');
 	};
 
 	const debounce = (func, timeout = 250) => {

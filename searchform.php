@@ -21,7 +21,7 @@ namespace wrd;
 			<?php esc_html_e( 'Search for:', 'wrd' ); ?>
 		</span>
 
-		<input class="bg-transparent grow w-32 font-medium focus:outline-none" type="search" placeholder="<?php esc_attr_e( 'Search', 'wrd' ); ?>" value="<?php echo esc_attr( trim( get_search_query() ) ); ?>" name="s" />
+		<input class="bg-transparent grow w-32 font-medium focus:outline-none focus:shadow-none" type="search" placeholder="<?php esc_attr_e( 'Search', 'wrd' ); ?>" value="<?php echo esc_attr( trim( get_search_query() ) ); ?>" name="s" />
 	</label>
 
 	<button class="bg-theme-500 text-white font-medium py-2 px-6" type="submit">
