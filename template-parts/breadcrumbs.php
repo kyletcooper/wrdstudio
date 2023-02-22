@@ -11,7 +11,7 @@ namespace wrd;
 
 ?>
 
-<div id="breadcrumbs" class="bg-theme-500 text-white sticky z-20 top-[var(--admin-bar-height)]">
+<nav id="breadcrumbs" aria-label="<?php esc_attr_e( 'Breadcrumbs', 'wrd' ); ?>" class="bg-theme-500 text-white sticky z-20 top-[var(--admin-bar-height)]">
 	<div class="container py-2">
 		<div class="flex items-center justify-between flex-wrap gap-2">
 			<div class="flex items-center gap-2 text-xs [&>svg]:w-4">
@@ -33,4 +33,4 @@ namespace wrd;
 			</div>
 		</div>
 	</div>
-</div>
+</nav>

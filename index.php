@@ -27,15 +27,15 @@ get_header();
 	<post-archive per-page="<?php echo esc_attr( get_option( 'posts_per_page' ) ); ?>" page="<?php echo esc_attr( max( get_query_var( 'paged' ), 1 ) ); ?>">
 		<div data-placeholder="filters" class="flex gap-4 mb-8">
 			<div class="bg-gray-100 dark:bg-gray-800 rounded-full py-2 px-4 text-sm text-transparent animate-pulse">
-				Category
+				Loading...
 			</div>
 
 			<div class="bg-gray-100 dark:bg-gray-800 rounded-full py-2 px-4 text-sm text-transparent animate-pulse">
-				Private
+				Loading...
 			</div>
 
 			<div class="bg-gray-100 dark:bg-gray-800 rounded-full py-2 px-4 text-sm text-transparent animate-pulse">
-				Placeholder
+				Loading...
 			</div>
 		</div>
 

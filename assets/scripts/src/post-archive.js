@@ -94,7 +94,8 @@ class PostArchive extends LitElement {
 	async getCats() {
 		this._cats = await apiRequest(`wp/v2/categories`, {
 			data: {
-				hide_empty: true,
+				hide_empty: 1,
+				_fields: ['id', 'name', 'count']
 			}
 		});
 
@@ -130,6 +131,7 @@ class PostArchive extends LitElement {
 				page: this.page,
 				per_page: this.perPage,
 				categories: this.categories,
+				_fields: 'preview'
 			}
 		});
 
@@ -241,6 +243,12 @@ class PostArchive extends LitElement {
 	}
 
 	renderChip(cat) {
+		if (cat.count === 0) {
+			// Rest API doesn't support the get_terms argument hierarchical,
+			// so terms with descendents that have children are included.
+			return null;
+		}
+
 		return html`
 			<button @click="${() => { this.toggleCategory(cat.id) }}" type="button"
 				class="rounded-full py-2 px-4 text-sm whitespace-nowrap ${this.hasCategory(cat.id) ? 'bg-theme-100 dark:bg-theme-900 text-theme-500' : 'bg-gray-100 dark:bg-gray-800'}">
@@ -253,7 +261,7 @@ class PostArchive extends LitElement {
 		const lengthArray = Array.from(Array(this.perPage));
 
 		return lengthArray.map(() => html`
-			<div class="grid grid-cols-12 gap-6 md:gap-8">
+			<div class="grid grid-cols-12 gap-6 md:gap-8" aria-label="Loading post...">
 				<div class="col-span-12 md:col-span-6 lg:col-span-4 min-h-[15rem] bg-gray-200 dark:bg-gray-700 animate-pulse">
 				</div>
 			

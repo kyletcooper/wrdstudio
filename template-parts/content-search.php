@@ -9,9 +9,11 @@
 
 namespace wrd;
 
+$heading_id = uniqid( 'article_heading_' );
+
 ?>
 
-<article <?php post_class(); ?> >
+<article <?php post_class(); ?> aria-labelledby="<?php echo esc_attr( $heading_id ); ?>" >
 	<div class="flex items-center gap-2 mb-2 text-sm text-theme-500 [&>svg]:w-5">
 		<?php
 		the_breadcrumbs(
@@ -25,7 +27,7 @@ namespace wrd;
 		?>
 	</div>
 	<a href="<?php the_permalink(); ?>">
-		<h2 class="text-3xl font-semibold">
+		<h2 id="<?php echo esc_attr( $heading_id ); ?>" class="text-3xl font-semibold">
 			<?php the_title(); ?>
 		</h2>
 

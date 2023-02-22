@@ -74,6 +74,10 @@ namespace wrd;
 <body id="body" <?php body_class( array( 'bg-white text-gray-900 dark:bg-gray-900 dark:text-white', get_theme_color_class() ) ); ?>>
 	<?php wp_body_open(); ?>
 
+	<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-gray-900 focus:text-white focus:py-2 focus:px-5" href="#primary">
+		<?php esc_html_e( 'Skip to content', 'wrd' ); ?>
+	</a>
+
 	<script id="dark-mode">
 		window.wrd = window.wrd || {};
 
@@ -124,8 +128,6 @@ namespace wrd;
 	</script>
 
 	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
-		<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-gray-900 focus:text-white focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
-
 		<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
 		
 		<?php get_template_part( 'template-parts/navigation' ); ?>

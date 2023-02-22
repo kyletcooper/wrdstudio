@@ -14,7 +14,7 @@ $parent_id = $comment->comment_parent;
 
 ?>
 
-<div <?php comment_class( 'flex gap-6 items-start py-12 border-t border-gray-300 dark:border-gray-600' ); ?> id="comment-<?php comment_ID(); ?>">
+<div <?php comment_class( 'flex gap-6 items-start py-12 border-t border-gray-300 dark:border-gray-600' ); ?> id="comment-<?php comment_ID(); ?>" role="comment">
 	<div class="overflow-hidden rounded-full">
 		<?php echo get_avatar( get_comment(), 64 ); ?>
 	</div>
