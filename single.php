@@ -15,7 +15,7 @@ get_header();
 
 ?>
 
-<div class="container grid gap-16 mt-16 mb-24">
+<article class="container grid gap-16 mt-16 mb-24">
 	<header>
 		<h1 class="text-4xl lg:text-5xl font-semibold mb-8">
 			<?php the_title(); ?>
@@ -52,8 +52,8 @@ get_header();
 			<?php comments_template(); ?>
 		</div>
 
-		<div>
-			<div class="sticky top-12">
+		<aside>
+			<div class="sticky top-16">
 				<span class="hidden lg:block text-2xl font-semibold">
 					<?php the_title(); ?>
 				</span>
@@ -61,7 +61,7 @@ get_header();
 				<div class="flex flex-wrap gap-10 mt-4">
 					<button data-share class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer" type="button">
 						<?php the_icon( 'share' ); ?>
-						Share
+						<?php esc_html_e( 'Share', 'wrd' ); ?>
 					</button>
 
 					<a href="#comments" class="flex items-center gap-3 text-theme-500 font-semibold cursor-pointer">
@@ -70,9 +70,9 @@ get_header();
 					</a>
 				</div>
 			</div>
-		</div>
+		</aside>
 	</div>
-</div>
+</article>
 
 <?php
 
