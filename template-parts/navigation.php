@@ -18,7 +18,7 @@ $menu_items = get_menu_items_by_location(
 
 ?>
 
-<nav id="nav-desktop" class="container py-8">
+<nav id="nav-desktop" aria-label="Site Navigation (Desktop)" class="container py-8">
 	<div class="flex items-center justify-between">
 		<a href="<?php echo esc_url( get_home_url() ); ?>" class="flex items-center gap-4 font-semibold" >
 			<span class="text-theme-500">
@@ -63,7 +63,7 @@ $menu_items = get_menu_items_by_location(
 										'navigation',
 										$menu_item->ID,
 										function( $is_subtle, $is_first_subtle ) {
-											return 'block py-2 hover:text-theme-500 transition-colors' . ( $is_subtle ? ' text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100' : '' );
+											return 'block py-2 hover:text-theme-500 transition-colors' . ( $is_subtle ? ' text-gray-500 dark:text-gray-400 contrast-more:text-gray-700 contrast-more:dark:text-gray-200 hover:text-gray-900 dark:hover:text-gray-100' : '' );
 										},
 										function( $is_subtle, $is_first_subtle ) {
 											return ( $is_first_subtle ? ' mt-auto' : '' );

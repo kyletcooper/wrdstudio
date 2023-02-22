@@ -22,9 +22,10 @@ namespace wrd;
 			<?php
 			wp_nav_menu(
 				array(
-					'theme_location' => 'socials',
-					'container'      => 'nav',
-					'menu_id'        => 'socialicons',
+					'theme_location'       => 'socials',
+					'container'            => 'nav',
+					'menu_id'              => 'socialicons',
+					'container_aria_label' => __( 'Social Media', 'wrd' ),
 				)
 			);
 			?>
@@ -34,7 +35,7 @@ namespace wrd;
 
 <footer id="footer">
 	<div class="bg-gray-50 dark:bg-gray-800 py-16">
-		<nav class="container">
+		<nav class="container" aria-label="<?php esc_attr_e( 'Sitemap', 'wrd' ); ?>" >
 			<?php
 			wp_nav_menu(
 				array(
@@ -49,11 +50,12 @@ namespace wrd;
 	
 	<div class="container flex justify-between flex-wrap py-12 text-gray-600 dark:text-gray-400">
 		<p>
-			Copyright © <?php echo esc_html( gmdate( 'Y' ) ); ?>. All rights reserved. <a href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Privacy Policy</a>
+			Copyright © <?php echo esc_html( gmdate( 'Y' ) ); ?>. All rights reserved.
+			<a class="underline underline-offset-4 decoration-gray-300 dark:decoration-gray-700" href="<?php echo esc_url( get_privacy_policy_url() ); ?>">Privacy Policy</a>
 		</p>
 
 		<p>
-			Proudly powered by <a href="https://wordpress.org" rel="noopener">WordPress</a>.
+			Proudly powered by <a class="underline underline-offset-4 decoration-gray-300 dark:decoration-gray-700" href="https://wordpress.org" rel="noopener">WordPress</a>.
 		</p>
 	</div>
 </footer>

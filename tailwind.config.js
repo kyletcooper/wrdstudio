@@ -48,9 +48,11 @@ module.exports = {
         'grid': "var(--bg-grid-url)",
         'grid-white': "var(--bg-grid-white-url)"
       },
+
       backgroundSize: {
         '100%': '100%'
       },
+
       typography: {
         DEFAULT: {
           css: {

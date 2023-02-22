@@ -435,7 +435,7 @@ function create_link( $link, $classes = '' ) {
 	}
 
 	if ( $link ) :
-		// Add rel noopener to external links
+		// Add rel noopener to external links.
 		$attr  = '';
 		$parse = wp_parse_url( $link['url'] );
 

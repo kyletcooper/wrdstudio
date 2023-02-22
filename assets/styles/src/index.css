@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-	color-scheme: dark;
+.screen-reader-text {
+	@apply sr-only;
 }
 
-::selection {
-	background: var(--color-theme-100, #BBDFFF);
-	color: var(--color-theme-800, #004A8B);
+/* Colour Schemes */
+.dark {
+	color-scheme: dark;
 }
 
 .theme-red {
@@ -89,6 +89,11 @@ body {
 	--color-theme-900: rgb(var(--color-theme-900-rgb));
 }
 
+::selection {
+	background: var(--color-theme-100, #BBDFFF);
+	color: var(--color-theme-800, #004A8B);
+}
+
 @media (prefers-contrast: more) {
 
 	body,
@@ -110,8 +115,8 @@ body {
 	}
 }
 
-.screen-reader-text {
-	@apply sr-only;
+input {
+	accent-color: var(--color-theme-500);
 }
 
 /* Blocks */

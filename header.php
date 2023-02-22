@@ -12,7 +12,7 @@ namespace wrd;
 ?>
 
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html class="scroll-smooth" <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +27,6 @@ namespace wrd;
 			src: url('<?php echo esc_url( get_template_directory_uri() ); ?>/assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 			font-weight: 400;
 			font-display: swap;
-
 		}
 
 		@font-face {
@@ -52,6 +51,23 @@ namespace wrd;
 		.dark{
 			--bg-grid-url: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/bg-grid-dark.svg' ); ?>');
 		}
+
+		<?php if ( is_admin_bar_showing() ) : ?>
+			@media (min-width: 601px) {
+				body{
+					--admin-bar-height: 46px;
+				}
+			}
+			@media (min-width: 783px) {
+				body{
+					--admin-bar-height: 32px;
+				}
+			}
+		<?php else : ?>
+			body{
+				--admin-bar-height: 0px;
+			}
+		<?php endif; ?>
 	</style>
 
 	<?php wp_head(); ?>
@@ -77,7 +93,7 @@ namespace wrd;
 				if(('theme' in localStorage)){
 					return localStorage.theme;
 				}
-				
+
 				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 			},
 
@@ -110,7 +126,7 @@ namespace wrd;
 	</script>
 
 	<div id="page" class="bg-grid bg-contain bg-no-repeat bg-top min-h-screen leading-7">
-		<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-theme-500 focus:text-white focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
+		<a id="skip-link" class="sr-only focus:not-sr-only focus:absolute focus:z-30 focus:bg-gray-900 focus:text-white focus:py-2 focus:px-5" href="#primary"><?php esc_html_e( 'Skip to content', 'wrd' ); ?></a>
 
 		<?php get_template_part( 'template-parts/breadcrumbs' ); ?>
 		
