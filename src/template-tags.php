@@ -135,6 +135,31 @@ function get_theme_color_class() {
 }
 
 /**
+ * Gets the color theme class of the current page.
+ *
+ * @return string The color theme class.
+ *
+ * @since 1.0.0
+ */
+function get_theme_color() {
+	$colors = array(
+		'red'    => '#EF3838',
+		'orange' => '#F8841E',
+		'green'  => '#85A700',
+		'blue'   => '#1E92F8',
+		'pink'   => '#C60295',
+	);
+
+	$key = 'blue';
+
+	if ( array_key_exists( get_theme_slug(), $colors ) ) {
+		$key = get_theme_slug();
+	}
+
+	return $colors[ $key ];
+}
+
+/**
  * Private: Creates an anchor tag for a breadcrumb item.
  *
  * @param string|WP_Post $url The URL or the post to get the URL for.
