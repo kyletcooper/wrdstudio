@@ -14,7 +14,7 @@ namespace wrd;
  *
  * @since 1.0.0
  */
-define( 'WRDSTUDIO_VERSION', '1.0.11' );
+define( 'WRDSTUDIO_VERSION', '1.0.13' );
 
 
 /**
