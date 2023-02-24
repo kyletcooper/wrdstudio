@@ -170,23 +170,24 @@ function get_theme_color() {
  *
  * @since 1.0.0
  */
-function _the_breadcrumb_link( $url, $title = '', $args ) {
+function _the_breadcrumb_link( $url, $title = '', $args = array(), $is_last_item = false ) {
 	$max_title_length = 17;
+	$title            = trim( wp_strip_all_tags( $title ) );
 
-	if ( strlen( $title ) > $max_title_length ) {
-		$title = substr( $title, 0, $max_title_length - 1 ) . '...';
+	if ( ! $is_last_item && strlen( $title ) > $max_title_length ) {
+		$title = substr( $title, 0, $max_title_length ) . '...';
 	}
 
 	if ( $args['use_links'] ) : ?>
 	
 		<a href="<?php echo esc_url( $url ); ?>">
-			<?php echo esc_html( $title ); ?>
+			<?php echo wp_strip_all_tags( $title ); //phpcs:ignore -- esc_html messes with ampersands ?>
 		</a>
 
 	<?php else : ?>
 
 		<span>
-			<?php echo esc_html( $title ); ?>
+			<?php echo wp_strip_all_tags( $title ); //phpcs:ignore -- esc_html messes with ampersands ?>
 		</span>
 
 		<?php
@@ -324,7 +325,7 @@ function the_breadcrumbs( $post = null, array $args = array() ) {
 			the_icon( 'chevron_right' );
 		}
 
-		_the_breadcrumb_link( $link['url'], $link['title'], $args );
+		_the_breadcrumb_link( $link['url'], $link['title'], $args, count( $links ) === $i + 1 );
 	}
 }
 
