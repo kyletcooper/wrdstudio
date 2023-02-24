@@ -1,0 +1,8 @@
+{
+	"name": "wrd/list",
+	"title": "List",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}

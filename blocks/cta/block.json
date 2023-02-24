@@ -1,0 +1,8 @@
+{
+	"name": "wrd/cta",
+	"title": "Call to Action",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	}
+}
