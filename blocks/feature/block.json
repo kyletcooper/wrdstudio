@@ -1,0 +1,19 @@
+{
+	"name": "wrd/feature",
+	"title": "Feature",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "render.php"
+	},
+	"styles": [
+		{
+			"isDefault": true,
+			"name": "left",
+			"label": "Left"
+		},
+		{
+			"name": "right",
+			"label": "Right"
+		}
+	]
+}
